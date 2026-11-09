@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <script src="./support.js"></script>
+<script src="assets/afel-config.js"></script>
 </head>
 <body>
 <x-dc>
@@ -50,19 +51,30 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
+const fmtDate = d => { const [y, m, j] = d.split('-'); return `${j}/${m}/${y}`; };
 class Component extends DCLogic {
-  state = { q: decodeURIComponent((window.location.hash || '').slice(1)), done: '' };
-  componentDidMount() { if (this.state.q) this.setState({ done: this.state.q }); }
-  check = e => { e.preventDefault(); this.setState(s => ({ done: s.q.trim() })); };
+  state = { q: decodeURIComponent((window.location.hash || '').slice(1)), done: '', loading: false, res: null };
+  componentDidMount() { if (this.state.q) this.verify(this.state.q); }
+  check = e => { e.preventDefault(); this.verify(this.state.q); };
+  verify(q) {
+    const id = q.trim().toUpperCase();
+    if (!id) return;
+    this.setState({ done: id, loading: true, res: null });
+    window.afelRpc('verifier_carte', { p_num: id })
+      .then(rows => this.setState({ loading: false, res: { rows } }))
+      .catch(() => this.setState({ loading: false, res: { error: true } }));
+  }
   renderVals() {
-    const id = this.state.done.toUpperCase();
+    const { done, loading, res } = this.state;
     let r = null;
-    if (id) {
-      let list = []; try { list = JSON.parse(localStorage.getItem('afel-admin-members') || '[]'); } catch (e) {}
-      const m = list.find(x => x.num.toUpperCase() === id);
-      if (!m) r = { ok: false, ko: true, found: false, color: '#A01D1D', title: 'Carte inconnue', text: 'Ce numéro ne figure pas dans le registre de l’AFEL.' };
-      else if (m.etat === 'validee' && m.vip) r = { ok: true, ko: false, found: true, color: '#1F8F86', title: 'Carte valide', name: m.prenom + ' ' + m.nom, statut: m.statut, num: m.num, text: 'Carte de membre VIP Premium attribuée par la présidente de l’AFEL.' };
-      else r = { ok: false, ko: true, found: true, color: '#A01D1D', title: 'Carte non valide', name: m.prenom + ' ' + m.nom, statut: m.statut, num: m.num, text: m.etat === 'revoquee' ? 'Cette carte a été révoquée.' : 'Aucune carte VIP active pour cette personne.' };
+    if (done && loading) r = { ok: false, ko: false, found: false, color: '#5A6B82', title: 'Vérification…', text: 'Interrogation du registre de l’AFEL.' };
+    else if (done && res && res.error) r = { ok: false, ko: true, found: false, color: '#A01D1D', title: 'Vérification impossible', text: 'Le registre ne répond pas. Vérifiez votre connexion et réessayez.' };
+    else if (done && res) {
+      const m = res.rows && res.rows[0];
+      const name = m ? [m.prenom, m.nom].filter(Boolean).join(' ') : '';
+      if (!m) r = { ok: false, ko: true, found: false, color: '#A01D1D', title: 'Carte inconnue', text: 'Ce numéro ne correspond à aucune carte VIP Premium de l’AFEL.' };
+      else if (m.valide) r = { ok: true, ko: false, found: true, color: '#1F8F86', title: 'Carte valide', name, statut: m.statut, num: done, text: 'Carte de membre VIP Premium attribuée par la présidente de l’AFEL.' + (m.vip_fin ? ' Valable jusqu’au ' + fmtDate(m.vip_fin) + '.' : '') };
+      else r = { ok: false, ko: true, found: true, color: '#A01D1D', title: 'Carte non valide', name, statut: m.statut, num: done, text: 'Cette carte a été révoquée ou n’est plus valable.' };
     }
     return { q: this.state.q, onQ: e => this.setState({ q: e.target.value }), check: this.check, hasResult: !!r, r: r || {} };
   }
