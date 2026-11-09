@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+</helmet>
+<div style="width:100%">
+  <sc-if value="{{ isVertical }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative"><img src="{{ sil }}" alt="Silhouettes AFEL" style="position:absolute;left:1.923%;top:0;width:96.154%;height:auto;display:block"><svg viewBox="-8 0 416 356" style="width:100%;height:auto;display:block;overflow:visible">
+      <defs>
+        <path id="{{ idA }}" d="M0 261.6 Q200 341.6 400 261.6"></path>
+        <path id="{{ idB }}" d="M0 303.8 Q200 383.8 400 303.8"></path>
+      </defs>
+      
+      <text style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:84px" fill="{{ afel }}"><textPath href="{{ hrefA }}" textLength="411" lengthAdjust="spacing">AFEL</textPath></text>
+      <text style="font-family:'Nunito',sans-serif;font-weight:600;font-size:22px" fill="{{ sub }}"><textPath href="{{ hrefB }}" textLength="411" lengthAdjust="spacing">Association Femme en Lumière</textPath></text>
+    </svg></div>
+  </sc-if>
+  <sc-if value="{{ isHorizontal }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative"><img src="{{ sil }}" alt="Silhouettes AFEL" style="position:absolute;left:0;top:0;width:46.875%;height:auto;display:block"><svg viewBox="0 0 640 150" style="width:100%;height:auto;display:block;overflow:visible">
+      
+      <text x="334" y="96" textLength="296" lengthAdjust="spacing" style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:80px" fill="{{ afel }}">AFEL</text>
+      <text x="334" y="130" textLength="300" lengthAdjust="spacing" style="font-family:'Nunito',sans-serif;font-weight:600;font-size:21.5px" fill="{{ sub }}">Association Femme en Lumière</text>
+    </svg></div>
+  </sc-if>
+  <sc-if value="{{ isIcon }}" hint-placeholder-val="{{ false }}">
+    <img src="{{ sil }}" alt="Symbole AFEL" style="width:100%;height:auto;display:block">
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:380},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;vertical&quot;,&quot;horizontal&quot;,&quot;icone&quot;],&quot;default&quot;:&quot;vertical&quot;,&quot;tsType&quot;:&quot;'vertical'|'horizontal'|'icone'&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;couleur&quot;,&quot;negatif&quot;,&quot;mono-bleu&quot;,&quot;mono-blanc&quot;],&quot;default&quot;:&quot;couleur&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  uid = 'afel' + Math.random().toString(36).slice(2, 8);
+  renderVals() {
+    const v = this.props.variant ?? 'vertical';
+    const t = this.props.theme ?? 'couleur';
+    const T = {
+      couleur: ['assets/silhouettes.svg', '#283D5C', '#35BDB2'],
+      negatif: ['assets/silhouettes-reverse.svg', '#FFFFFF', '#35BDB2'],
+      'mono-bleu': ['assets/silhouettes-navy.svg', '#283D5C', '#283D5C'],
+      'mono-blanc': ['assets/silhouettes-white.svg', '#FFFFFF', '#FFFFFF'],
+      rose: ['assets/silhouettes-rose.svg', '#7A1D4A', '#E8418A'],
+      'rose-negatif': ['assets/silhouettes-rose-negatif.svg', '#FFFFFF', '#FFFFFF']
+    }[t] || ['assets/silhouettes.svg', '#283D5C', '#35BDB2'];
+    return {
+      isVertical: v === 'vertical', isHorizontal: v === 'horizontal', isIcon: v === 'icone',
+      sil: T[0], afel: T[1], sub: T[2],
+      idA: this.uid + 'a', idB: this.uid + 'b', hrefA: '#' + this.uid + 'a', hrefB: '#' + this.uid + 'b'
+    };
+  }
+}
+</script>
+</body>
+</html>

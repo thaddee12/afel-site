@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="L'AFEL, à Yaoundé, informe, écoute et accompagne les femmes atteintes du SMOP, nouveau nom du SOPK. Rejoignez le mouvement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>html,body{margin:0;background:#283D5C}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;background:#283D5C;color:#FFFFFF;font-family:'Nunito',sans-serif;font-size:18px;line-height:1.55">
+
+<sc-if value="{{ showPre }}" hint-placeholder-val="{{ false }}">
+  <div ref="{{ preRef }}" style="position:fixed;inset:0;z-index:200;background:#283D5C;display:flex;align-items:center;justify-content:center;--p1:0%;--p2:0%;--p3:0%;--p4:0%;--p5:0%;clip-path:polygon(0 0,100% 0,100% calc(100% - var(--p5)),75% calc(100% - var(--p4)),50% calc(100% - var(--p3)),25% calc(100% - var(--p2)),0 calc(100% - var(--p1)))">
+    <canvas data-vgrid data-color="rgba(53,189,178,0.22)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+    <div data-pre-logo style="position:relative;display:flex;flex-direction:column;align-items:center;gap:22px">
+      <dc-import name="Logo" variant="vertical" theme="negatif" style="width:180px" hint-size="180px,154px"></dc-import>
+      <span data-pre-pct style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.2em;color:#35BDB2">0 %</span>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+  <nav aria-label="Navigation principale" style="position:fixed;left:0;top:0;bottom:0;width:72px;z-index:100;background:#35BDB2;border-right:1px solid #283D5C;display:flex;flex-direction:column;align-items:center">
+    <div ref="{{ gaugeRef }}" style="position:absolute;left:0;right:0;top:72px;height:0;background:rgba(40,61,92,0.22)"></div>
+    <a href="#hero" aria-label="Accueil AFEL" onMouseEnter="{{ lgOn }}" onMouseLeave="{{ lgOff }}" onFocus="{{ lgOn }}" onBlur="{{ lgOff }}" style="position:relative;width:72px;height:72px;flex:none;background:{{ lgBg }};display:flex;align-items:center;justify-content:center;transition:background .35s"><span style="position:relative;display:block;width:56px"><img src="assets/silhouettes-reverse.svg" alt="" style="width:100%;height:auto;display:block;visibility:hidden"><img src="assets/silhouettes-reverse.svg" alt="" style="position:absolute;inset:0;width:100%;height:auto;display:block;clip-path:inset(0 80% 0 0%);transform:{{ lgT0 }};transition:transform .45s cubic-bezier(.34,1.8,.64,1) 0s"><img src="assets/silhouettes-reverse.svg" alt="" style="position:absolute;inset:0;width:100%;height:auto;display:block;clip-path:inset(0 60% 0 20%);transform:{{ lgT1 }};transition:transform .45s cubic-bezier(.34,1.8,.64,1) 0.06s"><img src="assets/silhouettes-reverse.svg" alt="" style="position:absolute;inset:0;width:100%;height:auto;display:block;clip-path:inset(0 40% 0 40%);transform:{{ lgT2 }};transition:transform .45s cubic-bezier(.34,1.8,.64,1) 0.12s"><img src="assets/silhouettes-reverse.svg" alt="" style="position:absolute;inset:0;width:100%;height:auto;display:block;clip-path:inset(0 20% 0 60%);transform:{{ lgT3 }};transition:transform .45s cubic-bezier(.34,1.8,.64,1) 0.18s"><img src="assets/silhouettes-reverse.svg" alt="" style="position:absolute;inset:0;width:100%;height:auto;display:block;clip-path:inset(0 0% 0 80%);transform:{{ lgT4 }};transition:transform .45s cubic-bezier(.34,1.8,.64,1) 0.24s"></span></a>
+    <button type="button" onClick="{{ openMenu }}" aria-label="Ouvrir le menu" aria-expanded="{{ menuStr }}" style="position:relative;margin:0 0 auto;width:72px;padding:18px 0 15px;border:none;border-bottom:1px solid #283D5C;background:#F4A340;color:#283D5C;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:9px;transition:background .25s, color .25s, gap .3s cubic-bezier(.34,1.56,.64,1)" style-hover="background:#FFFFFF;color:#A01D1D;gap:13px">
+      <span style="display:flex;flex-direction:column;gap:5px;align-items:center"><span style="display:block;width:28px;height:3px;background:currentColor;border-radius:2px"></span><span style="display:block;width:28px;height:3px;background:currentColor;border-radius:2px"></span><span style="display:block;width:28px;height:3px;background:currentColor;border-radius:2px"></span></span>
+      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:13px;letter-spacing:.16em;line-height:1">MENU</span>
+    </button>
+    <div style="position:relative;margin-top:auto;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Dancing Script',cursive;font-weight:700;font-size:22px;color:#283D5C;padding:22px 0 28px;white-space:nowrap">Brisons le silence</div>
+  </nav>
+  
+</sc-if>
+
+<sc-if value="{{ notWide }}" hint-placeholder-val="{{ false }}">
+  <header style="position:fixed;top:0;left:0;right:0;height:60px;z-index:100;background:#283D5C;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px">
+    <a href="#hero" aria-label="Accueil AFEL" style="display:block;width:180px"><dc-import name="Logo" variant="horizontal" theme="negatif" style="width:180px" hint-size="180px,42px"></dc-import></a>
+    <button type="button" onClick="{{ openMenu }}" aria-label="Ouvrir le menu" aria-expanded="{{ menuStr }}" style="min-height:44px;padding:0 14px 0 16px;border:none;border-radius:999px;background:#F4A340;color:#283D5C;cursor:pointer;display:flex;align-items:center;gap:10px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em;transition:background .25s" style-hover="background:#FFFFFF">MENU<span style="display:flex;flex-direction:column;gap:4px"><span style="display:block;width:20px;height:2.5px;background:#283D5C;border-radius:2px"></span><span style="display:block;width:20px;height:2.5px;background:#283D5C;border-radius:2px"></span><span style="display:block;width:20px;height:2.5px;background:#283D5C;border-radius:2px"></span></span></button>
+  </header>
+</sc-if>
+
+<sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+  <div ref="{{ menuRef }}" role="dialog" aria-modal="true" aria-label="Menu" style="position:fixed;inset:0;z-index:220;background:#F4A340;color:#283D5C;overflow:auto;--m1:100%;--m2:100%;clip-path:polygon(0 0,var(--m1) 0,var(--m2) 100%,0 100%)">
+    <canvas data-vgrid data-color="rgba(40,61,92,0.16)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+    <div data-mlead style="position:absolute;inset:0;z-index:3;background:#35BDB2;pointer-events:none;--l1:100%;--l2:100%;clip-path:polygon(var(--l1) 0,100% 0,100% 100%,var(--l2) 100%)"></div>
+    <button type="button" onClick="{{ closeMenu }}" aria-label="Fermer le menu" style="position:absolute;z-index:2;left:{{ closeL }};right:{{ closeR }};top:{{ closeT }};width:48px;height:48px;border:none;background:transparent;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M4 4l16 16M20 4L4 20" stroke="#283D5C" stroke-width="3"></path></svg></button>
+    <div style="position:relative;min-height:100%;display:grid;grid-template-columns:{{ menuCols }};gap:40px;align-items:center;padding:{{ menuPad }}">
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px">
+          <sc-for list="{{ menuLinks }}" as="l" hint-placeholder-count="6">
+            <li data-ml style="overflow:hidden;padding-right:12px" onMouseEnter="{{ l.enter }}">
+              <div style="display:flex;align-items:center;gap:16px">
+                <a data-mla href="{{ l.href }}" onClick="{{ l.go }}" onMouseEnter="{{ l.hover }}" onFocus="{{ l.hover }}" style="display:inline-block;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px, min(4vw, 6vh), 64px);line-height:1.08;color:#283D5C;text-decoration:none;transition:color .2s, transform .25s" style-hover="color:#A01D1D;transform:translateX(10px)">{{ l.label }}</a>
+                <sc-if value="{{ l.hasSubs }}">
+                  <button type="button" data-mla onClick="{{ l.toggle }}" aria-expanded="{{ l.openStr }}" aria-label="Afficher les façons de s’engager" style="flex:none;width:44px;height:44px;padding:0;border:2.5px solid #283D5C;border-radius:50%;background:{{ l.chevBg }};display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s"><svg viewBox="0 0 24 24" width="20" height="20" style="transform:{{ l.chev }};transition:transform .4s cubic-bezier(.65,0,.35,1)"><path d="M5 9l7 7 7-7" fill="none" stroke="#283D5C" stroke-width="3"></path></svg></button>
+                </sc-if>
+              </div>
+              <sc-if value="{{ l.hasSubs }}">
+                <div style="display:grid;grid-template-rows:{{ l.rows }};visibility:{{ l.vis }};transition:grid-template-rows .45s cubic-bezier(.65,0,.35,1), visibility .45s">
+                  <div style="overflow:hidden;min-height:0">
+                    <ul style="list-style:none;margin:0;padding:8px 0 14px 6px;display:flex;flex-direction:column;gap:2px">
+                      <sc-for list="{{ l.subs }}" as="s" hint-placeholder-count="4">
+                        <li><a href="{{ s.href }}" onClick="{{ s.go }}" onMouseEnter="{{ s.hover }}" onFocus="{{ s.hover }}" style="display:inline-flex;align-items:center;gap:12px;min-height:40px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(18px, min(1.7vw, 3vh), 26px);color:#283D5C;text-decoration:none;transition:color .2s, transform .25s" style-hover="color:#A01D1D;transform:translateX(8px)"><span style="display:block;width:20px;height:3px;background:currentColor"></span>{{ s.label }}</a></li>
+                      </sc-for>
+                    </ul>
+                  </div>
+                </div>
+              </sc-if>
+            </li>
+          </sc-for>
+        </ul>
+        <div data-msoc style="display:flex;flex-wrap:wrap;gap:10px 24px;font-size:17px;font-weight:700">
+          <a href="https://www.tiktok.com/@femmeenlumiere.smop" target="_blank" rel="noopener" style="color:#283D5C">TikTok</a>
+          <a href="https://www.instagram.com/femmeenlumiere" target="_blank" rel="noopener" style="color:#283D5C">Instagram</a>
+          <a href="#" style="color:#283D5C">Facebook</a>
+        </div>
+      </div>
+      <sc-if value="{{ wide }}">
+        <div data-mphoto style="position:relative;height:70vh;clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);overflow:hidden">
+          <sc-for list="{{ menuPhotos }}" as="p" hint-placeholder-count="1">
+            <img src="{{ p.src }}" alt="{{ p.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ p.pos }};opacity:{{ p.op }};transform:{{ p.t }};transition:opacity .55s cubic-bezier(.65,0,.35,1), transform 1.1s cubic-bezier(.25,1,.5,1)">
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<a href="{{ waHref }}" target="_blank" rel="noopener" aria-label="Parler à quelqu'un sur WhatsApp" style="position:fixed;right:{{ waR }};bottom:20px;z-index:210;display:flex;align-items:center;gap:10px;min-height:56px;min-width:56px;justify-content:center;padding:0 16px;background:#35BDB2;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,0.25);transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s, background .25s" style-hover="transform:translateY(-4px) scale(1.06);box-shadow:0 0 0 6px rgba(53,189,178,0.35), 0 12px 28px rgba(0,0,0,0.3);background:#F4A340">
+  <svg viewBox="0 0 24 24" width="26" height="26" style="flex:none;transition:transform .45s cubic-bezier(.34,1.56,.64,1)"><path fill="none" stroke="#283D5C" stroke-width="2" d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"></path><path fill="#283D5C" d="M9.2 7.8c.3 0 .5 0 .7.5l.8 1.8c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.5.9 1.6 2 2.6 2.5.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.3.6-.1 1-.9 1.7-1.9 1.7-2.9-.3-5.9-3.2-6.2-6.1 0-1 .7-1.9 1.6-2z"></path></svg>
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span>Parler à quelqu’un</span></sc-if>
+</a>
+
+<main ref="{{ scrollerRef }}" style="position:relative">
+<div ref="{{ stageRef }}" style="position:relative">
+
+<section id="hero" data-scene aria-label="Accueil" style="position:relative;z-index:1;min-height:{{ heroMinH }};overflow:hidden;background:#283D5C;--ha:46%;--hb:38%;--hc:78%;--hd:66%">
+  <div style="position:absolute;inset:0;background:#283D5C;clip-path:{{ clipN }}">
+    <canvas data-vgrid data-color="rgba(255,255,255,0.07)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+    <div data-htitle style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
+      <h1 style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#F4A340"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" style="display:block;width:1.15em;height:.7em"><path fill="#F4A340" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></h1>
+    </div></div>
+  </div>
+  <div style="position:absolute;inset:0;clip-path:{{ clipP }}">
+    <img src="assets/photo-cover.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%">
+    <div style="position:absolute;inset:0;background:#283D5C;opacity:0.5"></div>
+    <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
+      <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#FFFFFF"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" style="display:block;width:1.15em;height:.7em"><path fill="#FFFFFF" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
+    </div></div>
+  </div>
+  <div style="position:absolute;inset:0;background:rgba(244,163,64,0.82);clip-path:{{ clipO }}">
+    <canvas data-vgrid data-color="rgba(40,61,92,0.16)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+    <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
+      <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#283D5C"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" style="display:block;width:1.15em;height:.7em"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
+    </div></div>
+  </div>
+  <div data-htext style="position:absolute;z-index:3;left:{{ txL }};right:{{ txR }};bottom:{{ txB }};max-width:{{ txW }}">
+    <p data-ht style="margin:0 0 24px;font-size:clamp(18px,1.35vw,22px);line-height:1.5;color:#FFFFFF;text-wrap:pretty">L’Association Femme en Lumière accompagne les femmes atteintes du SMOP, le syndrome métabolique ovarien polyendocrinien, nouveau nom du SOPK.</p>
+    <div data-ht style="display:flex;flex-wrap:wrap;gap:10px">
+      <a data-btn href="{{ waHref }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#35BDB2;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Parler à quelqu’un sur WhatsApp</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Parler à quelqu’un sur WhatsApp</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a>
+      <a data-btn href="#smop" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#F4A340;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Comprendre le SMOP</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Comprendre le SMOP</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a>
+      <a data-btn href="#agir" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#FFFFFF;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Faire un don</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Faire un don</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a>
+    </div>
+  </div>
+</section>
+
+<section id="smop" data-scene aria-labelledby="t-smop" style="position:relative;z-index:2;min-height:{{ sMinH }};overflow:hidden;background:#283D5C;display:flex;flex-direction:column;--x1:0%;--x2:0%;clip-path:polygon(var(--x1) 0,100% 0,100% 100%,var(--x2) 100%)">
+  <img data-smop-bg src="assets/fond-pas-seule.png" alt="" style="position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;object-position:center 72%;pointer-events:none">
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,61,92,0.78) 0%,rgba(40,61,92,0.45) 45%,rgba(40,61,92,0.55) 70%,rgba(40,61,92,0.75) 100%);pointer-events:none"></div>
+  <div data-smop-in style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;padding:{{ pad }}">
+    <div style="display:grid;grid-template-columns:{{ cols2 }};gap:4vw;align-items:center">
+      <h2 id="t-smop" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(52px, min(7.4vw, 13vh), 150px);line-height:.92;color:#F4A340"><span data-sp style="display:inline-block">Tu</span> <span data-sp style="display:inline-block">n’es</span> <span data-sp style="display:inline-block">pas</span><br><span data-sp style="display:inline-block">seule.</span></h2>
+      <div style="display:flex;flex-direction:column;gap:3.2vh">
+        <p data-sl style="margin:0;font-size:clamp(22px, min(2vw, 3.4vh), 34px);line-height:1.3;font-weight:600;text-wrap:pretty">Le SMOP est un trouble hormonal fréquent. Il ne définit pas une femme et il ne se vit pas seul.</p>
+        <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px">
+          <li data-sl style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;font-size:18px">01</span><span>Ce n’est pas une fatalité.</span></li>
+          <li data-sl style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;font-size:18px">02</span><span>Les symptômes varient d’une femme à l’autre.</span></li>
+          <li data-sl style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;font-size:18px">03</span><span>Un suivi médical et un soutien communautaire changent la vie.</span></li>
+        </ol>
+        <div data-sl><a data-btn href="pages.html#smop" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#F4A340;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Comprendre le SMOP</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Comprendre le SMOP</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a></div>
+      </div>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position:relative;flex:none;height:60px;overflow:hidden;margin:0 0 4vh;pointer-events:none"><div data-frise style="display:flex;width:max-content;height:60px"><img src="assets/ornement-frise-blanc.svg" alt="" style="height:60px;width:auto;display:block;flex:none"><img src="assets/ornement-frise-blanc.svg" alt="" style="height:60px;width:auto;display:block;flex:none"><img src="assets/ornement-frise-blanc.svg" alt="" style="height:60px;width:auto;display:block;flex:none"></div></div>
+  <div data-sdark style="position:absolute;inset:0;background:#283D5C;opacity:0;pointer-events:none"></div>
+</section>
+
+<section id="presidente" data-scene aria-labelledby="t-pres" style="position:relative;z-index:3;min-height:{{ sMinH }};overflow:hidden;background:#283D5C;--y1:0%;--y2:0%;--y3:0%;--y4:0%;--x2:10%;--x3:75%;clip-path:polygon(0 var(--y1),var(--x2) var(--y2),var(--x3) var(--y3),100% var(--y4),100% 100%,0 100%)">
+  <img data-pbg src="assets/photo-dos.jpg" alt="" style="position:absolute;left:0;top:-4%;width:100%;height:108%;object-fit:cover;object-position:center 20%">
+  <div style="position:absolute;inset:0;background:#283D5C;opacity:0.82"></div>
+  <div style="position:relative;height:100%;min-height:inherit;display:grid;grid-template-columns:{{ cols3 }};gap:4vw;align-items:center;padding:{{ pad }}">
+    <h2 id="t-pres" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(44px, min(6.4vw, 11vh), 130px);line-height:.9;color:#F4A340;writing-mode:{{ vMode }};transform:{{ vRot }}"><span data-prot style="display:block">Née à<br>Yaoundé</span></h2>
+    <div style="display:flex;flex-direction:column;gap:3vh;max-width:560px">
+      <p data-pt style="margin:0;font-size:clamp(22px, min(2.1vw, 3.6vh), 36px);line-height:1.25;font-weight:600;text-wrap:pretty">Derrière Femme en Lumière, une femme qui a décidé de briser le silence.</p>
+      <div data-pfilet style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 40%,#A01D1D 75%,rgba(160,29,29,0) 100%);transform-origin:0 50%"></div>
+      <p data-pt style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">L'Association Femme en Lumière (AFEL) accompagne les femmes atteintes du SMOP, le syndrome métabolique ovarien polyendocrinien, nouveau nom du SOPK (syndrome des ovaires polykystiques). Notre mission : sensibiliser, informer, écouter et accompagner. Nous offrons un espace d'échange et de soutien où chaque femme peut comprendre le SMOP, partager son expérience et ne plus se sentir seule. Nous orientons nos membres vers des professionnels de santé pour un suivi adapté, et nous suivons l'évolution de leur bien-être dans la durée. Aucune femme ne devrait traverser le SMOP seule : rejoignez le mouvement.</p>
+    </div>
+    <div data-pt style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+      <div data-pphoto style="position:relative;width:min(300px, 30vh);aspect-ratio:420/485;cursor:pointer;will-change:transform">
+        <div data-pframe aria-hidden="true" style="position:absolute;inset:0;transform:translate(14px,14px);will-change:transform"><div data-pframeh style="position:absolute;inset:0;background:#F4A340;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%);will-change:transform"><div data-pframec style="position:absolute;inset:0;background:#35BDB2;opacity:0"></div></div></div>
+        <div style="position:absolute;inset:0;background:#35BDB2;overflow:hidden;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)">
+          <div data-pzoom style="position:absolute;inset:0;will-change:transform;transform-origin:50% 30%"><img data-pimg src="assets/presidente-action.jpg" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform-origin:50% 30%;will-change:transform"></div>
+          <div data-pcur aria-hidden="true" style="position:absolute;inset:-2px;background:#35BDB2;will-change:transform"></div>
+        </div>
+      </div>
+      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:22px;line-height:1.2">Ornella Brinda<br>NGUELE BEKALE</div>
+      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#F4A340">Présidente</div>
+      <span style="border:1.5px dashed #F4A340;color:#F4A340;padding:4px 10px;font-size:15px">[À FOURNIR : biographie]</span>
+      <a data-btn href="pages.html#association" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#FFFFFF;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Découvrir son parcours</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Découvrir son parcours</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a>
+    </div>
+  </div>
+  <img src="assets/silhouettes-reverse.svg" alt="" style="position:absolute;right:5vw;bottom:5vh;width:72px;height:auto">
+</section>
+
+<section id="actions" data-scene aria-labelledby="t-act" style="position:relative;z-index:4;min-height:{{ sMinH }};overflow:hidden;background:#35BDB2;color:#283D5C;--s:50%;clip-path:polygon(0 calc(50% - var(--s)),100% calc(50% - var(--s)),100% calc(50% + var(--s)),0 calc(50% + var(--s)))">
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none">
+    <img data-abg src="assets/action-1-sensibiliser.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;opacity:1;will-change:opacity,transform">
+    <img data-abg src="assets/photo-dos.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0;will-change:opacity,transform">
+    <img data-abg src="assets/action-3-orienter.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:0;will-change:opacity,transform">
+    <img data-abg src="assets/action-4-bienetre.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 35%;opacity:0;will-change:opacity,transform">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(53,189,178,0.93) 0%,rgba(53,189,178,0.8) 45%,rgba(53,189,178,0.88) 100%)"></div>
+  </div>
+  <div style="position:relative;height:100%;min-height:inherit;display:grid;grid-template-columns:{{ cols2 }};gap:4vw;padding:{{ padX }}">
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:5vh;padding:{{ padY }}">
+      <h2 id="t-act" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(46px, min(6.2vw, 11.5vh), 124px);line-height:.94;color:#283D5C"><span style="display:block;overflow:hidden"><span data-al style="display:block">Une cause</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">exige</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">une</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">communauté.</span></span></h2>
+      <div><a data-btn href="pages.html#actions" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#283D5C;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Voir toutes nos actions</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Voir toutes nos actions</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a></div>
+    </div>
+    <div data-awin style="position:relative;height:{{ aWinH }};overflow:{{ aWinO }}">
+      <ol data-alist style="position:relative;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:{{ aGap }}">
+        <li data-aitem style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 24px;align-items:baseline"><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(40px, min(5vw, 9vh), 96px);line-height:1">01</span><div style="display:flex;flex-direction:column;gap:10px"><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(24px, min(2.3vw, 4.2vh), 38px);line-height:1.15">Sensibiliser</h3><p style="margin:0;font-size:18px;line-height:1.55;max-width:460px;text-wrap:pretty">Faire connaître le SMOP, nouveau nom du SOPK, pour qu’il sorte de l’ombre.</p></div></li>
+        <li data-aitem style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 24px;align-items:baseline"><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(40px, min(5vw, 9vh), 96px);line-height:1">02</span><div style="display:flex;flex-direction:column;gap:10px"><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(24px, min(2.3vw, 4.2vh), 38px);line-height:1.15">Créer un espace de dialogue</h3><p style="margin:0;font-size:18px;line-height:1.55;max-width:460px;text-wrap:pretty">Un espace d’échange et de soutien où chaque femme peut comprendre le SMOP, partager son expérience et ne plus se sentir seule.</p></div></li>
+        <li data-aitem style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 24px;align-items:baseline"><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(40px, min(5vw, 9vh), 96px);line-height:1">03</span><div style="display:flex;flex-direction:column;gap:10px"><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(24px, min(2.3vw, 4.2vh), 38px);line-height:1.15">Orienter vers des professionnels de santé</h3><p style="margin:0;font-size:18px;line-height:1.55;max-width:460px;text-wrap:pretty">Nous orientons nos membres vers des professionnels de santé pour un suivi adapté.</p></div></li>
+        <li data-aitem style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 24px;align-items:baseline"><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(40px, min(5vw, 9vh), 96px);line-height:1">04</span><div style="display:flex;flex-direction:column;gap:10px"><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(24px, min(2.3vw, 4.2vh), 38px);line-height:1.15">Suivre l’évolution du bien-être</h3><p style="margin:0;font-size:18px;line-height:1.55;max-width:460px;text-wrap:pretty">Nous suivons l’évolution du bien-être de nos membres dans la durée.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="paroles" data-scene aria-labelledby="t-par" style="position:relative;z-index:5;min-height:{{ sMinH }};overflow:hidden;background:#FFFFFF;color:#283D5C;display:flex;flex-direction:column;--q1:0%;--q2:0%;--q3:0%;--q4:0%;--q5:0%;clip-path:polygon(0 var(--q1),25% var(--q2),50% var(--q3),75% var(--q4),100% var(--q5),100% 100%,0 100%)">
+  <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh;padding:{{ pad }}">
+    <h2 id="t-par" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(5.6vw, 10vh), 116px);line-height:.98;color:#283D5C">
+      <span data-pl style="display:flex;align-items:center;flex-wrap:wrap;gap:.3em">Elles parlent. <img src="assets/silhouettes.svg" alt="" style="height:.62em;width:auto;display:block"></span>
+      <span data-pl2 style="display:block;padding-left:{{ offL }}">On les écoute.</span>
+    </h2>
+    <div data-pfil2 style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 40%,#A01D1D 75%,rgba(160,29,29,0) 100%);transform-origin:0 50%"></div>
+    <div style="display:grid;grid-template-columns:{{ colsP }};gap:4vw;align-items:start">
+      <figure data-pc style="margin:0;display:flex;flex-direction:column;gap:14px">
+        <blockquote style="margin:0;font-size:clamp(22px, min(1.9vw, 3.4vh), 32px);line-height:1.35;font-weight:600;text-wrap:pretty">« Pendant des années, j’ai cru que mes cycles irréguliers étaient de ma faute. Au premier cercle de parole, j’ai compris que je n’étais pas seule. J’ai enfin osé consulter. »</blockquote>
+        <figcaption style="display:flex;align-items:center;gap:12px;font-size:17px"><span style="flex:none;width:44px;height:44px;border-radius:50%;background:#35BDB2;color:#283D5C;display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700">A</span><span><strong>Aïcha</strong>, 27 ans, membre de l’AFEL</span><span style="background:#F3F5F8;color:#A01D1D;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px">Exemple</span></figcaption>
+        <p style="margin:0;font-size:17px;font-style:italic;text-wrap:pretty">Ce témoignage engage son auteure et ne constitue pas un conseil médical.</p>
+      </figure>
+      <div data-pc style="display:flex;flex-direction:column;gap:16px;min-width:0">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:.16em;font-size:15px;text-transform:uppercase">Actualités</span>
+          <div style="display:flex;gap:8px">
+            <button type="button" onClick="{{ carPrev }}" aria-label="Actualité précédente" style="width:44px;height:44px;border:2px solid #283D5C;background:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .2s" style-hover="transform:translateX(-4px);background:#35BDB2"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M20 12H5M11 5.5L4.5 12l6.5 6.5" fill="none" stroke="#283D5C" stroke-width="2.6"></path></svg></button>
+            <button type="button" onClick="{{ carNext }}" aria-label="Actualité suivante" style="width:44px;height:44px;border:2px solid #283D5C;background:#283D5C;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .2s" style-hover="transform:translateX(4px);background:#A01D1D"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="#FFFFFF" stroke-width="2.6"></path></svg></button>
+          </div>
+        </div>
+        <div ref="{{ carRef }}" style="display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px">
+          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/action-1-sensibiliser.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Le SMOP expliqué aux lycéennes</h3><span style="font-size:17px">14 septembre 2026</span></article>
+          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/photo-dos.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cercle de parole d’octobre</h3><span style="font-size:17px">26 octobre 2026</span></article>
+          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/action-3-orienter.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Journée de consultations gratuites</h3><span style="font-size:17px">18 octobre 2026</span></article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position:relative;flex:none;height:56px;overflow:hidden;margin:0 0 3vh;pointer-events:none"><div data-frise2 style="display:flex;width:max-content;height:56px"><img src="assets/ornement-frise.svg" alt="" style="height:56px;width:auto;display:block;flex:none"><img src="assets/ornement-frise.svg" alt="" style="height:56px;width:auto;display:block;flex:none"><img src="assets/ornement-frise.svg" alt="" style="height:56px;width:auto;display:block;flex:none"></div></div>
+</section>
+
+<section id="agir" data-scene aria-labelledby="t-agir" style="position:relative;z-index:6;min-height:{{ sMinH }};overflow:hidden;background:#283D5C;display:flex;flex-direction:column;--g1:0%;--g2:0%;clip-path:polygon(0 var(--g1),100% var(--g2),100% 100%,0 100%)">
+  <h2 id="t-agir" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);margin:0">Comment agir</h2>
+  <a data-band href="{{ waHref }}" target="_blank" rel="noopener" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#35BDB2;color:#283D5C;text-decoration:none;overflow:hidden"><img src="assets/band-parler.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:60% 35%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(53,189,178,0.94) 0%,rgba(53,189,178,0.82) 45%,rgba(53,189,178,0.55) 100%)"></span>
+    <span style="position:relative;display:block;overflow:hidden;flex:1;min-width:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(8.4vw, 15vh), 170px);line-height:1.04"><span data-bandl style="display:block">Parler</span><span data-bandl aria-hidden="true" style="position:absolute;left:0;top:100%;height:100%;display:flex;align-items:center;white-space:nowrap;font-size:.5em">Parlez à quelqu’un</span></span>
+    <svg viewBox="0 0 100 60" style="flex:none;width:min(9vw, 15vh);min-width:56px;height:auto;display:block"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg>
+  </a>
+  <a data-band href="adherer.html" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#F4A340;color:#283D5C;text-decoration:none;overflow:hidden"><img src="assets/band-rejoindre.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:65% 40%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(244,163,64,0.94) 0%,rgba(244,163,64,0.82) 45%,rgba(244,163,64,0.55) 100%)"></span>
+    <span style="position:relative;display:block;overflow:hidden;flex:1;min-width:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(8.4vw, 15vh), 170px);line-height:1.04"><span data-bandl style="display:block">Rejoindre</span><span data-bandl aria-hidden="true" style="position:absolute;left:0;top:100%;height:100%;display:flex;align-items:center;white-space:nowrap;font-size:.5em">Rejoignez le mouvement</span></span>
+    <svg viewBox="0 0 100 60" style="flex:none;width:min(9vw, 15vh);min-width:56px;height:auto;display:block"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg>
+  </a>
+  <a data-band href="pages.html#don" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#A01D1D;color:#FFFFFF;text-decoration:none;overflow:hidden"><img src="assets/band-soutenir.png" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:70% 55%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(160,29,29,0.94) 0%,rgba(160,29,29,0.8) 45%,rgba(160,29,29,0.55) 100%)"></span>
+    <span style="position:relative;display:block;overflow:hidden;flex:1;min-width:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(8.4vw, 15vh), 170px);line-height:1.04"><span data-bandl style="display:block">Soutenir</span><span data-bandl aria-hidden="true" style="position:absolute;left:0;top:100%;height:100%;display:flex;align-items:center;white-space:nowrap;font-size:.5em">Don ou partenariat</span></span>
+    <svg viewBox="0 0 100 60" style="flex:none;width:min(9vw, 15vh);min-width:56px;height:auto;display:block"><path fill="#FFFFFF" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg>
+  </a>
+</section>
+
+<footer id="contact" data-scene style="position:relative;z-index:7;min-height:{{ sMinH }};overflow:hidden;background:#283D5C;display:flex;flex-direction:column;--f1:0%;--f2:0%;clip-path:polygon(0 var(--f1),100% var(--f2),100% 100%,0 100%)">
+  <canvas data-vgrid data-color="rgba(255,255,255,0.07)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+  <div data-fin style="position:relative;flex:1;display:grid;grid-template-columns:{{ colsF }};gap:5vw;align-items:center;padding:{{ pad }}">
+    <div style="display:flex;flex-direction:column;gap:22px;align-items:flex-start">
+      <dc-import name="Logo" variant="vertical" theme="negatif" style="width:min(220px, 26vh)" hint-size="200px,171px"></dc-import>
+      <p style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(28px, min(2.6vw, 4.6vh), 44px);line-height:1.15;color:#F4A340">Brisons le silence,<br>allumons l’espoir.</p>
+      <div style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 40%,#A01D1D 75%,rgba(160,29,29,0) 100%)"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:4vh;min-width:0">
+      <a href="mailto:contact@afel.cm" style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(30px, min(4.4vw, 7.6vh), 84px);line-height:1;color:#FFFFFF;text-decoration:none;overflow-wrap:anywhere;transition:color .2s" style-hover="color:#F4A340">contact@afel.cm</a>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px 32px;font-size:17px;line-height:1.6">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#35BDB2">Nous joindre</span><a href="tel:+237658595657" style="text-decoration:none">+237 658 595 657 · appel et WhatsApp</a><a href="tel:+237697341499" style="text-decoration:none">+237 697 341 499</a></div>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#35BDB2">Nous trouver</span><span>Yaoundé IV, Messamendongo, Cité de la Paix</span><span>www.afel.cm</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#35BDB2">Nous suivre</span><a href="https://www.tiktok.com/@femmeenlumiere.smop" target="_blank" rel="noopener" style="text-decoration:none">TikTok @femmeenlumiere.smop</a><a href="https://www.instagram.com/femmeenlumiere" target="_blank" rel="noopener" style="text-decoration:none">Instagram @femmeenlumiere</a><a href="#" style="text-decoration:none">Facebook Femme en Lumière</a></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:17px">
+        <p style="margin:0;max-width:640px;text-wrap:pretty">L’AFEL écoute, informe et oriente. Elle ne pose pas de diagnostic et ne remplace pas l’avis d’un professionnel de santé.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px"><a href="adherer.html">Adhérer en ligne</a><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a>
+          <a href="carte-vip-premium.html" style="text-decoration:none">Carte VIP Premium</a>
+          <a href="espace-presidente.html" style="text-decoration:none;opacity:.6">Espace présidente</a><span>© 2026 Association Femme en Lumière</span></div>
+      </div>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position:relative;flex:none;height:56px;overflow:hidden;margin:0 0 3vh;pointer-events:none"><div data-frise3 style="display:flex;width:max-content;height:56px"><img src="assets/ornement-frise-blanc.svg" alt="" style="height:56px;width:auto;display:block;flex:none"><img src="assets/ornement-frise-blanc.svg" alt="" style="height:56px;width:auto;display:block;flex:none"><img src="assets/ornement-frise-blanc.svg" alt="" style="height:56px;width:auto;display:block;flex:none"></div></div>
+</footer>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;scrollLength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.85,&quot;min&quot;:0.5,&quot;max&quot;:1.5,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Défilement&quot;},&quot;snap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Défilement&quot;},&quot;alwaysPreload&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Préchargeur&quot;}}">
+const M = window.__afelM || (window.__afelM = (() => {
+  const m = { x: -1e4, y: -1e4, v: 0, mouse: false };
+  window.addEventListener('pointermove', e => { m.mouse = e.pointerType === 'mouse'; const d = Math.hypot(e.clientX - m.x, e.clientY - m.y); m.v = m.v * 0.8 + Math.min(d, 80) * 0.2; m.x = e.clientX; m.y = e.clientY; }, { passive: true });
+  return m;
+})());
+
+function makeGrid(cv, still) {
+  const ctx = cv.getContext('2d'); if (!ctx) return { cv, stop() {} };
+  const color = cv.dataset.color || 'rgba(255,255,255,0.08)';
+  let w = 0, h = 0, lines = [], raf = 0, alive = true, vis = true;
+  const t0 = performance.now();
+  const build = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2); w = cv.clientWidth; h = cv.clientHeight; if (!w || !h) return;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const gap = 25 * (window.innerWidth >= 1025 ? 1 : 0.65), n = Math.ceil(w / gap) + 8; lines = [];
+    for (let i = -4; i < n; i++) {
+      const bk = [1, 2, 3].map(k => h * k / 4 + Math.sin(i * 0.45 + k * 1.9) * h * 0.1);
+      const sl = [0, 1, 2, 3].map(k => (k % 2 ? -1 : 1) * (0.32 + 0.18 * Math.sin(i * 0.27 + k * 2.3)));
+      const pts = []; let x = i * gap, s = 0;
+      for (let y = -60; y <= h + 60; y += 20) { while (s < 3 && y > bk[s]) s++; x += sl[s] * 20; pts.push([x, y, 0, 0, 0, 0]); }
+      lines.push(pts);
+    }
+  };
+  const draw = now => {
+    const t = now - t0; ctx.clearRect(0, 0, w, h); ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.beginPath();
+    const r = cv.getBoundingClientRect(), mx = M.x - r.left, my = M.y - r.top;
+    const R = Math.hypot(window.innerWidth, window.innerHeight) * 0.1, act = M.mouse && M.v > 0.5 && !still;
+    M.v *= 0.985;
+    for (const pts of lines) for (let j = 0; j < pts.length; j++) {
+      const p = pts[j];
+      let px = p[0] + 32 * Math.cos(0.002 * (p[0] + 0.0125 * t)), py = p[1] + 16 * Math.sin(0.0015 * (p[1] + 0.005 * t));
+      if (!still) {
+        if (act) { const dx = px + p[2] - mx, dy = py + p[3] - my, d = Math.hypot(dx, dy); if (d < R && d > 0.01) { const f = (1 - d / R) * M.v * 0.08; p[4] += dx / d * f; p[5] += dy / d * f; } }
+        p[4] += -p[2] * 0.01; p[5] += -p[3] * 0.01; p[4] *= 0.85; p[5] *= 0.85;
+        p[2] = Math.max(-100, Math.min(100, p[2] + p[4])); p[3] = Math.max(-100, Math.min(100, p[3] + p[5]));
+      }
+      px += p[2]; py += p[3]; j ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.stroke();
+  };
+  build();
+  let rzT = 0, lw = 0, lh = 0;
+  const ro = new ResizeObserver(() => { if (cv.clientWidth === lw && cv.clientHeight === lh) return; lw = cv.clientWidth; lh = cv.clientHeight; clearTimeout(rzT); rzT = setTimeout(() => { build(); if (still) draw(performance.now()); }, 60); }); ro.observe(cv);
+  const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; }); io.observe(cv);
+  const loop = now => { if (!alive) return; if (!cv.isConnected) { alive = false; ro.disconnect(); io.disconnect(); return; } raf = requestAnimationFrame(loop); if (!vis || document.hidden) return; draw(now); };
+  if (still) draw(performance.now()); else raf = requestAnimationFrame(loop);
+  return { cv, stop() { alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); } };
+}
+
+class Component extends DCLogic {
+  state = (() => {
+    const wide = window.innerWidth >= 1025;
+    const reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    let seen = false; try { seen = localStorage.getItem('afel-site-vu') === '1'; } catch (e) {}
+    const saveData = !!(navigator.connection && navigator.connection.saveData);
+    const force = !!(this.props && this.props.alwaysPreload);
+    return { wide, reduced, pinned: wide && !reduced, menu: false, showPre: !reduced && !saveData && (!seen || force) };
+  })();
+
+  rootRef = el => { this.root = el; };
+  preRef = el => { this.pre = el; };
+  gaugeRef = el => { this.gauge = el; };
+  clockRef = el => { this.clock = el; if (el) this.tickClock(); };
+  menuRef = el => { this.menuEl = el; };
+  scrollerRef = el => { this.scroller = el; };
+  stageRef = el => { this.stage = el; };
+  carRef = el => { this.car = el; };
+
+  componentDidMount() {
+    window.__afel = this;
+    document.title = 'Association Femme en Lumière (AFEL) | SMOP et SOPK à Yaoundé, Cameroun';
+    this.clockI = setInterval(() => this.tickClock(), 15000);
+    this.initGrids();
+    this.onResize = () => { clearTimeout(this.rz); this.rz = setTimeout(() => this.handleResize(), 200); };
+    window.addEventListener('resize', this.onResize);
+    this.onKey = e => { if (e.key === 'Escape' && this.state.menu) this.closeMenu(); };
+    window.addEventListener('keydown', this.onKey);
+    if (this.root) {
+      this.root.addEventListener('mouseover', this.onOver);
+      this.root.addEventListener('mouseout', this.onOut);
+      this.root.addEventListener('click', this.onClick);
+    }
+    this.waitGsap();
+  }
+
+  componentDidUpdate(pp, ps) {
+    // Le moteur ne transmet que les props précédentes : l'état précédent est mémorisé ici.
+    pp = pp || this.props; ps = ps || this._prevState || this.state;
+    this.initGrids();
+    if (ps.pinned !== this.state.pinned || ps.wide !== this.state.wide || (pp.scrollLength !== this.props.scrollLength && this.state.pinned) || pp.snap !== this.props.snap) { this.teardown(); this.build(); }
+    if (!ps.menu && this.state.menu) this.animMenu();
+    this._prevState = Object.assign({}, this.state);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.clockI); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey);
+    this.teardown(); (this.grids || []).forEach(g => g.stop());
+  }
+
+  tickClock() { if (!this.clock) return; try { this.clock.textContent = new Date().toLocaleTimeString('fr-FR', { timeZone: 'Africa/Douala', hour: '2-digit', minute: '2-digit' }); } catch (e) {} }
+
+  initGrids() {
+    if (!this.root) return;
+    this.grids = (this.grids || []).filter(g => g.cv.isConnected || (g.stop(), false));
+    this.root.querySelectorAll('canvas[data-vgrid]').forEach(cv => { if (cv.__g) return; cv.__g = makeGrid(cv, this.state.reduced); this.grids.push(cv.__g); });
+  }
+
+  handleResize() {
+    const wide = window.innerWidth >= 1025, pinned = wide && !this.state.reduced;
+    if (wide !== this.state.wide || pinned !== this.state.pinned) this.setState({ wide, pinned });
+    else if (this.tl) window.dispatchEvent(new Event('scroll'));
+  }
+
+  waitGsap() {
+    let n = 0;
+    const f = () => {
+      if (window.gsap) {
+        this.build(); if (this.state.showPre) this.runPre(); else this.intro();
+        const check = () => {
+          const s = this.root && this.root.querySelector('#smop');
+          if (this.state.pinned && s && !s.style.getPropertyValue('--x1')) { this.teardown(); this.build(); }
+        };
+        [400, 1200, 2500].forEach(t => setTimeout(check, t));
+      }
+      else if (n++ < 100) setTimeout(f, 50);
+      else this.setState({ showPre: false });
+    };
+    f();
+  }
+
+  build() {
+    const g = window.gsap; if (!g || !this.root) return;
+    const hero = this.root.querySelector('#hero');
+    if (hero && this.state.wide) ['--ha:44%', '--hb:52%', '--hc:80%', '--hd:72%'].forEach(v => { const [k, val] = v.split(':'); if (!hero.style.getPropertyValue(k)) hero.style.setProperty(k, val); });
+    this.ctx = g.context(() => { try { if (this.state.pinned) this.buildPinned(); else this.buildFlow(); } catch (e) { window.__afelErr = String(e && e.stack || e); console.warn('AFEL build', window.__afelErr); } });
+  }
+
+  teardown() {
+    const g = window.gsap;
+    if (g && this.parTick) { g.ticker.remove(this.parTick); this.parTick = null; }
+    if (this.lenis) { if (g) g.ticker.remove(this.lenisTick); this.lenis.destroy(); this.lenis = null; }
+    if (this.unScroll) { this.unScroll(); this.unScroll = null; }
+    if (this.io) { this.io.disconnect(); this.io = null; }
+    if (this.onVis) { document.removeEventListener('visibilitychange', this.onVis); this.onVis = null; }
+    if (this.revealAll) { this.revealAll(); this.revealAll = null; }
+    if (this.ctx) { this.ctx.revert(); this.ctx = null; }
+    if (this.tl) { this.tl.kill(); }
+    this.tl = null; this.st = null;
+    if (this.gauge) this.gauge.style.height = '0';
+  }
+
+  buildFlow() {
+    if (this.state.reduced) return;
+    const g = window.gsap, r = this.root;
+    this.hiddenEls = [];
+    this.io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { this.hiddenEls = this.hiddenEls.filter(x => x !== en.target); g.to(en.target, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }); this.io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    [...r.querySelectorAll('[data-scene]')].slice(1).forEach((s, i) => g.set(s, { clipPath: i % 2 ? 'polygon(0 0,100% 5vw,100% 100%,0 100%)' : 'polygon(0 5vw,100% 0,100% 100%,0 100%)', marginTop: '-5vw' }));
+    r.querySelectorAll('#smop h2, #smop [data-sl], #presidente h2, #presidente [data-pt], #actions h2, #actions [data-aitem], #paroles h2, #paroles [data-pc], #agir [data-band], #contact [data-fin]').forEach(el =>
+      { if (document.visibilityState === 'visible' && el.getBoundingClientRect().top > window.innerHeight * 0.92) { g.set(el, { y: 36, opacity: 0 }); this.io.observe(el); this.hiddenEls.push(el); } });
+    this.revealAll = () => { this.hiddenEls.forEach(el => g.set(el, { clearProps: 'opacity,transform' })); this.hiddenEls = []; if (this.io) this.io.disconnect(); };
+    this.onVis = () => { if (document.hidden && this.revealAll) this.revealAll(); };
+    document.addEventListener('visibilitychange', this.onVis);
+  }
+
+  buildPinned() {
+    const g = window.gsap, r = this.root;
+    const q = s => r.querySelector(s), qa = s => [...r.querySelectorAll(s)];
+    const K = this.props.scrollLength ?? 0.85;
+    g.set(this.stage, { position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' });
+    g.set(qa('[data-scene]'), { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', minHeight: 0 });
+    const hero = q('#hero'), smop = q('#smop'), pres = q('#presidente'), act = q('#actions'), par = q('#paroles'), agir = q('#agir'), foot = q('#contact');
+    g.set(smop, { '--x1': '100%', '--x2': '100%' });
+    g.set(pres, { '--y1': '105%', '--y2': '105%', '--y3': '105%', '--y4': '105%', '--x2': '27.7%', '--x3': '92.7%' });
+    g.set(act, { '--s': '0%' });
+    g.set(par, { '--q1': '105%', '--q2': '105%', '--q3': '105%', '--q4': '105%', '--q5': '105%' });
+    g.set(agir, { '--g1': '102%', '--g2': '102%' });
+    g.set(foot, { '--f1': '102%', '--f2': '102%' });
+    const win = q('#actions [data-awin]'), list = q('#actions [data-alist]'), items = qa('#actions [data-aitem]');
+    const yc = i => win.clientHeight / 2 - (items[i].offsetTop + items[i].offsetHeight / 2);
+    g.set(list, { y: yc(0) }); g.set(items, { opacity: 0.28 }); g.set(items[0], { opacity: 1 });
+
+    const tl = g.timeline({ defaults: { ease: 'none' } });
+    tl.addLabel('hero', 0)
+      .fromTo(hero, { '--ha': '44%', '--hb': '52%', '--hc': '80%', '--hd': '72%' }, { '--ha': '0%', '--hb': '0%', '--hc': '100%', '--hd': '100%', duration: 1.2, ease: 'power1.out', immediateRender: false }, 0.15)
+      .to(qa('[data-htitle]'), { yPercent: -110, rotation: -2, duration: 1.2, ease: 'power1.in' }, 0.15)
+      .to(qa('[data-harrow]'), { xPercent: 200, duration: 0.8, ease: 'power1.in' }, 0.15)
+      .to(q('[data-htext]'), { yPercent: -50, opacity: 0, duration: 0.8 }, 0.15);
+    tl.to(smop, { '--x1': '0%', duration: 1, ease: 'power1.inOut' }, 1)
+      .to(smop, { '--x2': '0%', duration: 1.2, ease: 'power3.inOut' }, 1)
+      .from(qa('#smop [data-sp]'), { x: () => window.innerWidth * 0.5, duration: 1.15, stagger: 0.05, ease: 'power3.out' }, 1.1)
+      .from(qa('#smop [data-sl]'), { y: 40, opacity: 0, duration: 0.6, stagger: 0.06, ease: 'power3.out' }, 1.6)
+      .fromTo(q('#smop [data-frise]'), { xPercent: 0 }, { xPercent: -33.33, duration: 3.6 }, 1)
+      .fromTo(q('#smop [data-smop-bg]'), { yPercent: 4, scale: 1.12 }, { yPercent: -4, scale: 1, duration: 4, ease: 'none', force3D: true }, 1)
+      .addLabel('smop', 2.3);
+    const P = 3;
+    tl.to(pres, { '--y3': '0%', duration: 2, ease: 'power3.inOut' }, P)
+      .to(pres, { '--y4': '0%', duration: 1.75, ease: 'power3.out' }, P + 0.25)
+      .to(pres, { '--y2': '0%', duration: 1.35, ease: 'power3.out' }, P + 0.65)
+      .to(pres, { '--y1': '0%', duration: 1.1, ease: 'power3.out' }, P + 0.9)
+      .to(pres, { '--x2': '10%', '--x3': '75%', duration: 2 }, P)
+      .to(q('#smop [data-smop-in]'), { scale: 0.85, yPercent: -40, duration: 2, ease: 'power1.in' }, P)
+      .to(q('#smop [data-sdark]'), { opacity: 0.75, duration: 2 }, P)
+      .fromTo(q('#presidente [data-pbg]'), { yPercent: 0 }, { yPercent: -6.5, duration: 2.8 }, P)
+      .fromTo(q('#presidente [data-prot]'), { rotation: 3 }, { rotation: 0, duration: 1.15, ease: 'power1.out' }, P + 1)
+      .from(qa('#presidente [data-pt]'), { y: 50, opacity: 0, duration: 0.8, stagger: 0.08, ease: 'power3.out' }, P + 1.1)
+      .from(q('#presidente [data-pfilet]'), { scaleX: 0, duration: 0.8, ease: 'power2.out' }, P + 1.3)
+      .fromTo(q('#presidente [data-pcur]'), { yPercent: 0 }, { yPercent: -102, duration: 1, ease: 'power2.inOut', force3D: true }, P + 1.1)
+      .fromTo(q('#presidente [data-pimg]'), { scale: 1.25 }, { scale: 1, duration: 1.3, ease: 'power2.out', force3D: true }, P + 1.1)
+      .fromTo(q('#presidente [data-pframe]'), { x: 0, y: 0, opacity: 0 }, { x: 14, y: 14, opacity: 1, duration: 0.7, ease: 'power2.out', force3D: true }, P + 1.6)
+      .addLabel('presidente', P + 2);
+    const A = 5.8;
+    tl.fromTo(act, { '--s': '0%' }, { '--s': '50%', duration: 1, ease: 'power3.inOut', immediateRender: false }, A)
+      .from(qa('#actions [data-al]'), { yPercent: 100, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, A + 0.2)
+      .addLabel('actions', A + 1);
+    const abg = qa('#actions [data-abg]');
+    g.set(abg, { opacity: 0 }); g.set(abg[0], { opacity: 1 });
+    tl.fromTo(abg[0], { scale: 1.12 }, { scale: 1, duration: 1.6, ease: 'power2.out', force3D: true }, A);
+    for (let i = 1; i < items.length; i++) {
+      const t = A + 1.4 + (i - 1);
+      if (abg[i]) tl.to(abg[i - 1], { opacity: 0, duration: 0.6, ease: 'power1.inOut' }, t).fromTo(abg[i], { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out', force3D: true }, t);
+      tl.to(list, { y: () => yc(i), duration: 0.6, ease: 'power2.inOut' }, t)
+        .to(items[i - 1], { opacity: 0.28, duration: 0.3 }, t)
+        .to(items[i], { opacity: 1, duration: 0.3 }, t + 0.3)
+        .addLabel('a' + i, t + 0.6);
+    }
+    const Pa = 10.3;
+    tl.to(par, { '--q3': '0%', duration: 1, ease: 'power3.inOut' }, Pa)
+      .to(par, { '--q2': '0%', duration: 1, ease: 'power3.inOut' }, Pa + 0.3)
+      .to(par, { '--q4': '0%', duration: 1, ease: 'power3.inOut' }, Pa + 0.45)
+      .to(par, { '--q5': '0%', duration: 1, ease: 'power3.inOut' }, Pa + 0.7)
+      .to(par, { '--q1': '0%', duration: 1, ease: 'power3.inOut' }, Pa + 0.9)
+      .from(q('#paroles [data-pl]'), { xPercent: -12, opacity: 0, duration: 0.9, ease: 'power3.out' }, Pa + 0.8)
+      .from(q('#paroles [data-pl2]'), { xPercent: 12, opacity: 0, duration: 0.9, ease: 'power3.out' }, Pa + 0.9)
+      .from(q('#paroles [data-pfil2]'), { scaleX: 0, duration: 0.7 }, Pa + 1.1)
+      .from(qa('#paroles [data-pc]'), { y: 50, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out' }, Pa + 1.1)
+      .fromTo(q('#paroles [data-frise2]'), { xPercent: -33.33 }, { xPercent: 0, duration: 4.4 }, Pa)
+      .addLabel('paroles', Pa + 1.9);
+    const Ag = 12.9;
+    tl.to(agir, { '--g1': '0%', duration: 1, ease: 'power1.inOut' }, Ag)
+      .to(agir, { '--g2': '0%', duration: 1.2, ease: 'power3.inOut' }, Ag + 0.05)
+      .from(qa('#agir [data-band]'), { yPercent: 60, duration: 0.9, stagger: 0.12, ease: 'power3.out' }, Ag + 0.3)
+      .addLabel('agir', Ag + 1.4);
+    const F = 14.9;
+    tl.to(foot, { '--f1': '0%', duration: 1.2, ease: 'power3.inOut' }, F)
+      .to(foot, { '--f2': '0%', duration: 1, ease: 'power1.inOut' }, F + 0.1)
+      .from(q('#contact [data-fin]'), { y: 80, opacity: 0, duration: 0.9, ease: 'power3.out' }, F + 0.5)
+      .fromTo(q('#contact [data-frise3]'), { xPercent: 0 }, { xPercent: -33.33, duration: 1.5 }, F)
+      .addLabel('contact', F + 1.3)
+      .to({}, { duration: 0.2 });
+
+    const D = tl.duration();
+    g.set(this.scroller, { height: (D * K + 1) * 100 + 'vh' });
+    const pts = Object.values(tl.labels).map(t => t / D);
+    this.tl = tl; tl.pause(0);
+    const range = () => { const top = this.scroller.getBoundingClientRect().top + window.scrollY; return { start: top, end: top + this.scroller.offsetHeight - window.innerHeight }; };
+    this.st = { get start() { return range().start; }, get end() { return range().end; } };
+    let snapT = 0;
+    const onScroll = () => {
+      const r0 = range(), p = Math.max(0, Math.min(1, (window.scrollY - r0.start) / Math.max(1, r0.end - r0.start)));
+      if (document.hidden) { g.killTweensOf(tl); tl.progress(p); }
+      else g.to(tl, { progress: p, duration: 0.6, ease: 'power2.out', overwrite: true });
+      if (this.gauge) this.gauge.style.height = 'calc((100% - 72px) * ' + p.toFixed(4) + ')';
+      clearTimeout(snapT);
+      if (this.props.snap !== false) snapT = setTimeout(() => {
+        let b = null, d = 0.02; for (const q of pts) { const x = Math.abs(q - p); if (x < d && x > 0.0005) { d = x; b = q; } }
+        if (b != null) window.scrollTo({ top: r0.start + b * (r0.end - r0.start), behavior: 'smooth' });
+      }, 350);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    let lastY = -1; const poll = setInterval(() => { if (window.scrollY !== lastY) { lastY = window.scrollY; onScroll(); } }, 120);
+    this.unScroll = () => { window.removeEventListener('scroll', onScroll); clearTimeout(snapT); clearInterval(poll); };
+    onScroll();
+    const parEls = qa('[data-hpar]'); let cx = 0, cy = 0;
+    this.parTick = () => {
+      if (!M.mouse || (this.tl && this.tl.time() > 1.4)) return;
+      cx += ((M.x / window.innerWidth - 0.5) * -28 - cx) * 0.05; cy += ((M.y / window.innerHeight - 0.5) * -16 - cy) * 0.05;
+      g.set(parEls, { x: cx, y: cy });
+    };
+    g.ticker.add(this.parTick);
+  }
+
+  intro() {
+    const g = window.gsap; if (!g || !this.root || this.state.reduced || !this.ctx || document.visibilityState !== 'visible') return;
+    const r = this.root, qa = s => [...r.querySelectorAll(s)], wide = this.state.wide;
+    this.ctx.add(() => {
+      if (wide) g.fromTo(r.querySelector('#hero'), { '--ha': '100%', '--hb': '100%', '--hc': '100%', '--hd': '100%' }, { '--ha': '44%', '--hb': '52%', '--hc': '80%', '--hd': '72%', duration: 1.5, ease: 'power3.inOut' });
+      g.from(qa('[data-hl]'), { yPercent: 105, duration: 0.85, delay: wide ? 1.05 : 0.2, stagger: 0.06, ease: 'power3.out' });
+      g.from(qa('[data-harrow]'), { xPercent: -100, duration: 0.75, delay: wide ? 1.15 : 0.3, ease: 'power3.out' });
+      g.from(qa('[data-ht]'), { yPercent: 60, opacity: 0, duration: 0.65, delay: wide ? 1.2 : 0.35, stagger: 0.035, ease: 'power3.out' });
+    });
+  }
+
+  runPre() {
+    const g = window.gsap, el = this.pre;
+    try { localStorage.setItem('afel-site-vu', '1'); } catch (e) {}
+    if (!g || !el || document.visibilityState !== 'visible') { this.setState({ showPre: false }); this.intro(); return; }
+    const pct = el.querySelector('[data-pre-pct]'), o = { p: 0 };
+    g.timeline({ onComplete: () => this.setState({ showPre: false }) })
+      .from(el.querySelector('[data-pre-logo]'), { opacity: 0, y: 12, duration: 0.3, ease: 'power1.out' }, 0)
+      .to(o, { p: 100, duration: 0.6, ease: 'power1.inOut', onUpdate: () => { pct.textContent = Math.round(o.p) + ' %'; } }, 0)
+      .to(el, { '--p1': '15%', '--p2': '22%', '--p3': '23%', '--p4': '20%', '--p5': '22%', duration: 0.25, ease: 'power3.inOut' }, 0.25)
+      .to(el, { '--p1': '42%', '--p2': '58%', '--p3': '47%', '--p4': '55%', '--p5': '48%', duration: 0.3, ease: 'power3.inOut' }, 0.5)
+      .to(el, { '--p1': '101%', '--p2': '101%', '--p3': '101%', '--p4': '101%', '--p5': '101%', duration: 0.4, ease: 'power3.inOut' }, 0.8)
+      .call(() => this.intro(), null, 0.6);
+  }
+
+  animMenu() {
+    const g = window.gsap, el = this.menuEl; if (!g || !el) return;
+    const c0 = el.querySelector('button'); if (c0) c0.focus();
+    if (this.state.reduced || document.visibilityState !== 'visible') return;
+    const lead = el.querySelector('[data-mlead]'), ph = el.querySelector('[data-mphoto]');
+    if (this.menuTl) this.menuTl.kill();
+    const tl = this.menuTl = g.timeline({ defaults: { ease: 'power3.inOut' } });
+    tl.set(el, { '--m1': '0%', '--m2': '0%' }).set(lead, { '--l1': '0%', '--l2': '0%' })
+      .to(el, { '--m2': '100%', duration: 0.55 }, 0)
+      .to(el, { '--m1': '100%', duration: 0.65 }, 0.06)
+      .to(lead, { '--l2': '100%', duration: 0.6 }, 0.2)
+      .to(lead, { '--l1': '100%', duration: 0.7 }, 0.26)
+      .from(el.querySelectorAll('[data-mla]'), { yPercent: 110, rotation: 2, duration: 0.7, stagger: 0.045, ease: 'power3.out' }, 0.38)
+      .from(el.querySelector('[data-msoc]'), { y: 16, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.75);
+    if (ph) tl.fromTo(ph, { clipPath: 'polygon(100% 0,100% 0,100% 100%,100% 100%)' }, { clipPath: 'polygon(12% 0,100% 0,100% 100%,0 100%)', duration: 0.9, ease: 'power3.inOut' }, 0.35)
+      .from(ph.querySelector('img'), { scale: 1.18, duration: 1.2, ease: 'power3.out' }, 0.35);
+  }
+
+
+  onOver = e => {
+    const g = window.gsap; if (!g) return;
+    const ph = e.target.closest('[data-pphoto]');
+    if (ph && !ph.contains(e.relatedTarget)) {
+      g.to(ph, { y: -6, rotation: -1.2, duration: 0.6, ease: 'power3.out', overwrite: true, force3D: true });
+      g.to(ph.querySelector('[data-pzoom]'), { scale: 1.06, duration: 0.8, ease: 'power3.out', overwrite: true, force3D: true });
+      g.to(ph.querySelector('[data-pframeh]'), { x: 10, y: 8, duration: 0.6, ease: 'power3.out', overwrite: true, force3D: true });
+      g.to(ph.querySelector('[data-pframec]'), { opacity: 1, duration: 0.4, ease: 'power1.out', overwrite: true });
+    }
+    const b = e.target.closest('[data-btn],[data-band]'); if (!b || b.contains(e.relatedTarget)) return;
+    g.to(b.querySelectorAll('[data-bl],[data-bandl]'), { yPercent: -100, duration: 0.3, ease: 'power1.out', overwrite: true });
+    const a = b.querySelector('[data-ba]'); if (a) g.to(a, { x: 6, duration: 0.3, ease: 'power1.out', overwrite: true });
+  };
+  onOut = e => {
+    const g = window.gsap; if (!g) return;
+    const ph = e.target.closest('[data-pphoto]');
+    if (ph && !ph.contains(e.relatedTarget)) {
+      g.to(ph, { y: 0, rotation: 0, duration: 0.6, ease: 'power3.out', overwrite: true, force3D: true });
+      g.to(ph.querySelector('[data-pzoom]'), { scale: 1, duration: 0.7, ease: 'power3.out', overwrite: true, force3D: true });
+      g.to(ph.querySelector('[data-pframeh]'), { x: 0, y: 0, duration: 0.6, ease: 'power3.out', overwrite: true, force3D: true });
+      g.to(ph.querySelector('[data-pframec]'), { opacity: 0, duration: 0.4, ease: 'power1.out', overwrite: true });
+    }
+    const b = e.target.closest('[data-btn],[data-band]'); if (!b || b.contains(e.relatedTarget)) return;
+    g.to(b.querySelectorAll('[data-bl],[data-bandl]'), { yPercent: 0, duration: 0.25, ease: 'power1.out', overwrite: true });
+    const a = b.querySelector('[data-ba]'); if (a) g.to(a, { x: 0, duration: 0.25, ease: 'power1.out', overwrite: true });
+  };
+  onClick = e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    e.preventDefault();
+    if (id && this.root.querySelector('#' + CSS.escape(id))) this.goTo(id);
+  };
+
+  goTo = id => {
+    const run = () => {
+      const el = this.root && this.root.querySelector('#' + CSS.escape(id)); if (!el) return;
+      let y;
+      if (this.state.pinned && this.tl && this.st) { const lab = this.tl.labels[id]; if (lab == null) return; y = this.st.start + (this.st.end - this.st.start) * (lab / this.tl.duration()); }
+      else y = el.getBoundingClientRect().top + window.scrollY - (this.state.wide ? 0 : 60);
+      window.scrollTo({ top: y, behavior: this.state.reduced ? 'auto' : 'smooth' });
+    };
+    if (this.state.menu) this.closeMenu(() => setTimeout(run, 30)); else run();
+  };
+
+  closeMenu = cb => {
+    const done = () => { this.closing = false; this.setState({ menu: false }, () => { if (typeof cb === 'function') cb(); }); };
+    const g = window.gsap, el = this.menuEl;
+    if (this.closing) return;
+    if (!g || !el || this.state.reduced || document.visibilityState !== 'visible') return done();
+    this.closing = true;
+    if (this.menuTl) this.menuTl.kill();
+    const lead = el.querySelector('[data-mlead]'), ph = el.querySelector('[data-mphoto]');
+    const tl = this.menuTl = g.timeline({ defaults: { ease: 'power3.in' }, onComplete: done });
+    tl.to([...el.querySelectorAll('[data-mla]')].reverse(), { yPercent: -110, duration: 0.35, stagger: 0.025 }, 0)
+      .to(el.querySelector('[data-msoc]'), { opacity: 0, duration: 0.2 }, 0);
+    if (ph) tl.to(ph, { clipPath: 'polygon(0 0,0 0,0 100%,0 100%)', duration: 0.45, ease: 'power3.inOut' }, 0.05);
+    tl.to(lead, { '--l1': '0%', duration: 0.4, ease: 'power3.inOut' }, 0.25)
+      .to(lead, { '--l2': '0%', duration: 0.45, ease: 'power3.inOut' }, 0.3)
+      .to(el, { '--m1': '0%', duration: 0.45, ease: 'power3.inOut' }, 0.5)
+      .to(el, { '--m2': '0%', duration: 0.5, ease: 'power3.inOut' }, 0.56);
+  };
+
+  renderVals() {
+    const { wide, pinned, menu, showPre } = this.state;
+    const L = 'calc(72px + 5vw)';
+    const wa = 'https://wa.me/237658595657?text=' + encodeURIComponent('Bonjour Femme en Lumière, je souhaite être accompagnée.');
+    const links = [['Comprendre le SMOP', 'smop'], ['Nos actions', 'actions'], ['Témoignages', 'paroles'], ['L’association', 'presidente'], ['S’engager', 'agir'], ['Devenir partenaire', 'partenaire'], ['Faire un don', 'don'], ['Contact', 'contact']];
+    const PH = { smop: ['assets/hero-smop.png', '70% 25%'], actions: ['assets/hero-actions.jpg', '40% 30%'], paroles: ['assets/photo-dos.jpg', 'center 25%'], presidente: ['assets/presidente-action.jpg', '50% 22%'], agir: ['assets/hero-engager.jpg', '70% 40%'], partenaire: ['assets/action-3-orienter.jpg', 'center 40%'], don: ['assets/action-4-bienetre.jpg', '70% 35%'], contact: ['assets/photo-cover.jpg', 'center'], adherer: ['assets/action-1-sensibiliser.png', 'center 60%'], vip: ['assets/presidente-action.jpg', '50% 30%'] };
+    const act = this.state.mKey || 'contact', subOpen = !!this.state.subOpen;
+    const goFn = e => { e.preventDefault(); const href = e.currentTarget.getAttribute('href'); const el = this.menuEl; if (el) { el.style.transition = 'opacity .25s'; el.querySelectorAll('[data-mla],[data-msoc],[data-mphoto]').forEach(n => { n.style.transition = 'opacity .25s, transform .3s'; n.style.opacity = '0'; n.style.transform = 'translateY(-20px)'; }); } setTimeout(() => { window.location.href = href; }, 320); };
+    const P = id => 'pages.html#' + id;
+    const mk = (label, k, href, fade) => ({ label, href, go: fade ? goFn : undefined, hover: () => { if (this.state.mKey !== k) this.setState({ mKey: k }); }, hasSubs: false, subs: [] });
+    const eng = mk('S’engager', 'agir', P('engager'), true);
+    const menuLinks = [
+      mk('Comprendre le SMOP', 'smop', P('smop'), true), mk('Nos actions', 'actions', P('actions'), true),
+      mk('Témoignages', 'paroles', P('temoignages'), true), mk('L’association', 'presidente', P('association'), true),
+      { ...eng, hasSubs: true, hover: () => this.setState({ mKey: 'agir', subOpen: true }),
+        subs: [mk('Adhérer en ligne', 'adherer', 'adherer.html'), mk('Devenir partenaire', 'partenaire', P('partenaire'), true), mk('Faire un don', 'don', P('don'), true), mk('Carte VIP Premium', 'vip', 'carte-vip-premium.html')] },
+      mk('Contact', 'contact', P('contact'), true),
+    ].map(l => ({ ...l, enter: l.hover, toggle: () => this.setState(s => ({ subOpen: !s.subOpen, mKey: 'agir' })), openStr: subOpen ? 'true' : 'false', rows: subOpen ? '1fr' : '0fr', vis: subOpen ? 'visible' : 'hidden', chev: subOpen ? 'rotate(180deg)' : 'none', chevBg: subOpen ? '#FFFFFF' : 'transparent' }));
+    return {
+      rootRef: this.rootRef, preRef: this.preRef, gaugeRef: this.gaugeRef, clockRef: this.clockRef, menuRef: this.menuRef, scrollerRef: this.scrollerRef, stageRef: this.stageRef, carRef: this.carRef,
+      lgOn: () => this.setState({ lg: true }), lgOff: () => this.setState({ lg: false }), lgBg: this.state.lg ? '#1F3150' : '#283D5C',
+      ...[0, 1, 2, 3, 4].reduce((o, i) => (o['lgT' + i] = this.state.lg ? 'translateY(' + [-5, -8, -10, -8, -5][i] + 'px) scale(1.06)' : 'none', o), {}),
+      wide, notWide: !wide, menu, menuStr: menu ? 'true' : 'false', showPre, waHref: wa,
+      openMenu: () => { this.setState({ menu: true, subOpen: false, mKey: null }); if (this.lenis) this.lenis.stop(); }, closeMenu: this.closeMenu,
+      menuLinks: menuLinks,
+      menuPhotos: Object.keys(PH).map(k => ({ src: PH[k][0], pos: PH[k][1], alt: k === act ? 'Membres de l’AFEL' : '', op: k === act ? 1 : 0, t: k === act ? 'scale(1)' : 'scale(1.08)' })),
+      closeL: wide ? '12px' : 'auto', closeR: wide ? 'auto' : '8px', closeT: wide ? 'calc(50% - 24px)' : '6px',
+      menuCols: wide ? 'minmax(0,1.2fr) minmax(0,.8fr)' : 'minmax(0,1fr)', menuPad: wide ? '9vh 6vw 9vh ' + L : '80px 24px 100px',
+      waR: wide ? '24px' : '16px',
+      heroMinH: wide ? '100vh' : '880px',
+      clipN: wide ? 'polygon(0 0,var(--ha) 0,var(--hb) 100%,0 100%)' : 'polygon(0 62%,100% 54%,100% 100%,0 100%)',
+      clipP: wide ? 'polygon(var(--ha) 0,var(--hc) 0,var(--hd) 100%,var(--hb) 100%)' : 'polygon(0 30%,100% 22%,100% 54%,0 62%)',
+      clipO: wide ? 'polygon(var(--hc) 0,100% 0,100% 100%,var(--hd) 100%)' : 'polygon(0 0,100% 0,100% 22%,0 30%)',
+      htL: wide ? L : '20px', htT: wide ? '15vh' : '84px', htS: wide ? 'min(8.6vw, 15vh)' : '11vw',
+      txL: wide ? L : '20px', txR: wide ? 'auto' : '20px', txB: wide ? '8vh' : '92px', txW: wide ? '440px' : 'none',
+      pad: wide ? '9vh 6vw 9vh ' + L : '96px 20px 72px',
+      padX: wide ? '0 6vw 0 ' + L : '96px 20px 72px', padY: wide ? '9vh 0' : '0',
+      cols2: wide ? 'minmax(0,1.05fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      cols3: wide ? 'auto minmax(0,1.15fr) minmax(0,.85fr)' : 'minmax(0,1fr)',
+      colsP: wide ? 'minmax(0,.9fr) minmax(0,1.1fr)' : 'minmax(0,1fr)',
+      colsF: wide ? 'auto minmax(0,1fr)' : 'minmax(0,1fr)',
+      sMinH: wide ? '100vh' : 'auto',
+      vMode: wide ? 'vertical-rl' : 'horizontal-tb', vRot: wide ? 'rotate(180deg)' : 'none',
+      aWinH: pinned ? '100vh' : 'auto', aWinO: pinned ? 'hidden' : 'visible', aGap: pinned ? '14vh' : '40px',
+      offL: wide ? '1.8em' : '0',
+      bandPad: wide ? '0 6vw 0 ' + L : '28px 20px', bandMin: wide ? '0' : '150px',
+      carPrev: () => this.car && this.car.scrollBy({ left: -280, behavior: 'smooth' }),
+      carNext: () => this.car && this.car.scrollBy({ left: 280, behavior: 'smooth' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

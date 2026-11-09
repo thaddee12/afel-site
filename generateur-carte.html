@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Carte de membre VIP Premium | AFEL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<style>body{margin:0;background:#F4F6F9}*{box-sizing:border-box}a{color:#283D5C}a:hover{color:#A01D1D}input,select{font:inherit}</style>
+</helmet>
+<div style="min-height:100vh;background:#F4F6F9;font-family:'Nunito',sans-serif;color:#283D5C;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:10;background:#FFFFFF;border-bottom:1px solid #E3E6EA;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:12px clamp(16px,4vw,48px)">
+    <a href="index.html" aria-label="Retour à l’accueil AFEL" style="display:block;width:170px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:scale(1.04)"><dc-import name="Logo" variant="horizontal" theme="couleur" style="width:170px" hint-size="170px,40px"></dc-import></a>
+    <nav aria-label="Navigation" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:15px;font-weight:700">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:#283D5C;color:#FFFFFF;text-decoration:none;transition:background .25s, transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="background:#35BDB2;color:#283D5C;transform:translateX(-3px)"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 12H5M11 5.5L4.5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg>Retour au site</a>
+      <a href="espace-presidente.html" style="text-decoration:none">Espace présidente</a>
+      <a href="pages.html#contact" style="text-decoration:none">Contact</a>
+    </nav>
+  </header>
+
+  <section style="background:#283D5C;color:#FFFFFF;padding:clamp(40px,7vw,80px) clamp(16px,4vw,48px) clamp(36px,5vw,56px);display:flex;flex-direction:column;gap:14px">
+    <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.2em;color:#F4A340">ESPACE MEMBRE</span>
+    <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(34px,5vw,64px);line-height:1.02;text-transform:uppercase">Carte de membre<br>VIP Premium</h1>
+    <div style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 45%,#A01D1D 80%,rgba(160,29,29,0) 100%)"></div>
+    <p style="margin:0;max-width:620px;font-size:18px;line-height:1.55;color:#FFFFFF;font-weight:700;text-wrap:pretty">La carte VIP Premium est réservée aux membres fondateurs et aux personnes que la présidente juge éligibles.</p>
+    <p style="margin:0;max-width:620px;font-size:18px;line-height:1.55;color:#DDE3EA;text-wrap:pretty">Renseignez les informations de la membre : elles s’affichent aussitôt sur la carte. Téléchargez ensuite le recto et le verso en haute définition, prêts à imprimer au format carte bancaire (85 × 54 mm).</p>
+  </section>
+
+  <main style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(24px,4vw,48px);align-items:start;padding:clamp(24px,4vw,48px);max-width:1360px;width:100%;margin:0 auto">
+
+    <form onSubmit="{{ noSubmit }}" style="background:#FFFFFF;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:18px;box-shadow:0 4px 18px rgba(40,61,92,0.08)">
+      <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:22px">Informations de la membre</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Nom
+          <input value="{{ f.nom }}" onInput="{{ set.nom }}" placeholder="NGUELE BEKALE" style="min-height:48px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600;outline:none" style-focus="border-color:#35BDB2"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Prénom(s)
+          <input value="{{ f.prenom }}" onInput="{{ set.prenom }}" placeholder="Ornella Brinda" style="min-height:48px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600;outline:none" style-focus="border-color:#35BDB2"></label>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Statut
+        <select value="{{ f.statut }}" onChange="{{ set.statut }}" style="min-height:48px;padding:0 12px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600">
+          <sc-for list="{{ statuts }}" as="s" hint-placeholder-count="6"><option value="{{ s }}">{{ s }}</option></sc-for>
+        </select></label>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Téléphone
+          <input value="{{ f.tel }}" onInput="{{ set.tel }}" placeholder="+237 6XX XX XX XX" style="min-height:48px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600;outline:none" style-focus="border-color:#35BDB2"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">N° de membre
+          <input value="{{ f.num }}" onInput="{{ set.num }}" style="min-height:48px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600;outline:none" style-focus="border-color:#35BDB2"></label>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Membre depuis le
+          <input type="date" value="{{ f.debut }}" onInput="{{ set.debut }}" style="min-height:48px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Valable jusqu’au
+          <input type="date" value="{{ f.fin }}" onInput="{{ set.fin }}" style="min-height:48px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600"></label>
+      </div>
+            <div style="display:flex;flex-direction:column;gap:6px;border-top:1px solid #E3E6EA;padding-top:16px">
+        <span style="font-size:15px;font-weight:700">Finition de la carte</span>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:12px;margin-bottom:12px">
+          <sc-for list="{{ themes }}" as="t" hint-placeholder-count="6">
+            <button type="button" onClick="{{ t.pick }}" aria-pressed="{{ t.on }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:0;border:none;background:transparent;cursor:pointer;color:#283D5C;font-size:14px;font-weight:{{ t.weight }}">
+              <span style="display:block;width:100%;aspect-ratio:1.586;border-radius:8px;background:{{ t.bg }};border:{{ t.border }};box-shadow:{{ t.ring }};transition:transform .25s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-3px)"></span>{{ t.label }}
+            </button>
+          </sc-for>
+        </div>
+        <span style="font-size:15px;font-weight:700">Couleur des détails</span>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <sc-for list="{{ accents }}" as="c" hint-placeholder-count="3">
+            <button type="button" onClick="{{ c.pick }}" aria-label="{{ c.label }}" aria-pressed="{{ c.on }}" style="width:44px;height:44px;border-radius:50%;background:{{ c.hex }};border:{{ c.border }};cursor:pointer;transition:transform .25s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:scale(1.1)"></button>
+          </sc-for>
+        </div>
+      </div>
+    </form>
+
+    <div style="display:flex;flex-direction:column;gap:22px;position:sticky;top:96px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.18em;color:#5A6B82">RECTO</span>
+        <canvas ref="{{ rectoRef }}" width="1012" height="638" aria-label="Aperçu du recto de la carte" style="width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 16px 36px rgba(40,61,92,0.28)"></canvas>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.18em;color:#5A6B82">VERSO</span>
+        <canvas ref="{{ versoRef }}" width="1012" height="638" aria-label="Aperçu du verso de la carte" style="width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 16px 36px rgba(40,61,92,0.28)"></canvas>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <button type="button" onClick="{{ dlBoth }}" style="min-height:52px;padding:0 24px;border:none;border-radius:999px;background:#F4A340;color:#283D5C;font-size:16px;font-weight:700;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .2s" style-hover="transform:translateY(-2px);background:#35BDB2">Télécharger recto + verso</button>
+        <button type="button" onClick="{{ dlRecto }}" style="min-height:52px;padding:0 20px;border:1.5px solid #283D5C;border-radius:999px;background:#FFFFFF;color:#283D5C;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s" style-hover="background:#EAF8F6">Recto seul</button>
+        <button type="button" onClick="{{ dlVerso }}" style="min-height:52px;padding:0 20px;border:1.5px solid #283D5C;border-radius:999px;background:#FFFFFF;color:#283D5C;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s" style-hover="background:#EAF8F6">Verso seul</button>
+      </div>
+      <p style="margin:0;font-size:14px;line-height:1.5;color:#5A6B82;text-wrap:pretty">Le code QR du verso ouvre la page de vérification de la carte sur www.afel.cm. La carte n’est valable qu’une fois attribuée et signée par la présidente.</p>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const STATUTS = ['Membre fondatrice', 'Membre fondateur', 'Membre d’honneur', 'Bienfaiteur', 'Médecin bénévole', 'Sponsor', 'Membre', 'Sympathisant'];
+const ACCENTS = [['#F4A340', 'Orange'], ['#35BDB2', 'Turquoise'], ['#A01D1D', 'Rouge'], ['#B8924A', 'Or'], ['#9AA3AD', 'Argent'], ['#283D5C', 'Bleu nuit']];
+const THEMES = {
+  nuit: { label: 'Bleu nuit', swatch: '#283D5C', stops: ['#2C4366', '#283D5C', '#22354F'], diag: 'rgba(0,0,0,0.18)', sheen: 0.05, ink: '#FFFFFF', sub: '#C9D3E0', lab: '#8FA3BF', sig: '#F4A340', dark: true },
+  champagne: { label: 'Champagne', swatch: 'linear-gradient(135deg,#F6ECD6,#D8C196 55%,#F1E4C8)', stops: ['#F7EEDB', '#E4D1A8', '#D3BB8C', '#EFE1C2'], diag: 'rgba(150,115,60,0.12)', sheen: 0.35, ink: '#283D5C', sub: '#5E4E33', lab: '#8A7348', sig: '#A01D1D', dark: false },
+  noir: { label: 'Noir intense', swatch: '#151515', stops: ['#222222', '#141414', '#1B1B1B'], diag: 'rgba(255,255,255,0.04)', sheen: 0.06, ink: '#FFFFFF', sub: '#C8C8C8', lab: '#9A9A9A', sig: '#D9B56E', dark: true },
+  rose: { label: 'Rose poudré', swatch: 'linear-gradient(135deg,#F7DDE2,#E8B6C1)', stops: ['#F9E3E7', '#EEC4CD', '#E6B1BD'], diag: 'rgba(160,29,29,0.07)', sheen: 0.25, ink: '#283D5C', sub: '#6B4450', lab: '#9A6573', sig: '#A01D1D', dark: false },
+  turquoise: { label: 'Turquoise', swatch: '#35BDB2', stops: ['#43C8BD', '#35BDB2', '#2AA79D'], diag: 'rgba(40,61,92,0.12)', sheen: 0.12, ink: '#283D5C', sub: '#1F4A52', lab: '#215A60', sig: '#283D5C', dark: false },
+  ivoire: { label: 'Ivoire', swatch: '#FAF5EA', stops: ['#FDFAF3', '#F6EFE0', '#EFE6D2'], diag: 'rgba(40,61,92,0.05)', sheen: 0.2, ink: '#283D5C', sub: '#5A6B82', lab: '#8592A6', sig: '#A01D1D', dark: false },
+};
+const iso = d => d.toISOString().slice(0, 10);
+const fr = s => { if (!s) return '—'; const [y, m, d] = s.split('-'); return `${d}/${m}/${y}`; };
+const KEY = 'afel-carte-vip';
+
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    const now = new Date(), end = new Date(); end.setFullYear(end.getFullYear() + 1);
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+    this.state = {
+      f: { nom: '', prenom: '', statut: 'Membre fondatrice', tel: '', num: 'AFEL-' + now.getFullYear() + '-' + String(Math.floor(Math.random() * 100000)).padStart(5, '0'), debut: iso(now), fin: iso(end), accent: '#F4A340', theme: 'nuit', ...(saved.f || {}) },
+      photo: saved.photo || null,
+    };
+    this.imgs = {};
+  }
+  rectoRef = el => { this.recto = el; if (el) this.draw(); };
+  versoRef = el => { this.verso = el; if (el) this.draw(); };
+  componentDidMount() {
+    this.waitQR = setInterval(() => { if (window.qrcode) { clearInterval(this.waitQR); this.draw(); } }, 150);
+    setTimeout(() => clearInterval(this.waitQR), 8000);
+  }
+  componentWillUnmount() { clearInterval(this.waitQR); }
+  componentDidUpdate(pp, ps) {
+    // Le moteur ne transmet que les props précédentes : l'état précédent est mémorisé ici.
+    ps = ps || this._prevState || {};
+    try {
+    if (ps.f !== this.state.f || ps.photo !== this.state.photo) {
+      this.draw();
+      try { localStorage.setItem(KEY, JSON.stringify({ f: this.state.f, photo: this.state.photo })); } catch (e) {}
+    }
+    } finally { this._prevState = Object.assign({}, this.state); }
+  }
+  img(src) {
+    if (!this.imgs[src]) this.imgs[src] = new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
+    return this.imgs[src];
+  }
+  spread(x, s, left, y, w) {
+    const ch = [...s], ws = ch.map(c => x.measureText(c).width), tot = ws.reduce((p, q) => p + q, 0), gap = ch.length > 1 ? (w - tot) / (ch.length - 1) : 0;
+    let cx = left; ch.forEach((c, i) => { x.fillText(c, cx, y); cx += ws[i] + gap; });
+  }
+  rr(x, a, b, w, h, r) { x.beginPath(); x.moveTo(a + r, b); x.arcTo(a + w, b, a + w, b + h, r); x.arcTo(a + w, b + h, a, b + h, r); x.arcTo(a, b + h, a, b, r); x.arcTo(a, b, a + w, b, r); x.closePath(); }
+  base(x, W, H, frise, T) {
+    x.clearRect(0, 0, W, H); x.save(); this.rr(x, 0, 0, W, H, 36); x.clip();
+    const bg = x.createLinearGradient(0, 0, W, H); T.stops.forEach((c, i) => bg.addColorStop(i / (T.stops.length - 1), c));
+    x.fillStyle = bg; x.fillRect(0, 0, W, H);
+    const sh = x.createLinearGradient(W * 0.15, 0, W * 0.55, H); sh.addColorStop(0, 'rgba(255,255,255,0)'); sh.addColorStop(0.5, 'rgba(255,255,255,' + T.sheen + ')'); sh.addColorStop(1, 'rgba(255,255,255,0)');
+    x.fillStyle = sh; x.fillRect(0, 0, W, H);
+    x.fillStyle = T.diag; x.beginPath(); x.moveTo(W * 0.62, 0); x.lineTo(W, 0); x.lineTo(W, H); x.lineTo(W * 0.48, H); x.closePath(); x.fill();
+    if (frise) { x.globalAlpha = T.dark ? 0.16 : 0.22; const fh = 64, fw = (frise.width * fh / frise.height) || 400; for (let i = 0; i < W; i += fw) x.drawImage(frise, i, H - fh - 14, fw, fh); x.globalAlpha = 1; }
+    const g = x.createLinearGradient(0, 0, W, 0); g.addColorStop(0, '#35BDB2'); g.addColorStop(0.45, '#F4A340'); g.addColorStop(0.8, '#A01D1D'); g.addColorStop(1, 'rgba(160,29,29,0)');
+    x.fillStyle = g; x.fillRect(0, 0, W, 10);
+  }
+  async draw() {
+    if (!this.recto && !this.verso) return;
+    const id = (this.drawId = (this.drawId || 0) + 1);
+    const T = THEMES[this.state.f.theme] || THEMES.nuit;
+    const srcs = [T.dark ? 'assets/silhouettes-reverse.svg' : 'assets/silhouettes.svg', T.dark ? 'assets/ornement-frise-blanc.svg' : 'assets/ornement-frise.svg'];
+    this.done = this.done || {};
+    if (!this.fontsOk || !srcs.every(s => this.done[s] !== undefined)) {
+      try { await Promise.all(['700 40px Quicksand', '700 30px "Dancing Script"', '600 20px Nunito', '700 20px Nunito'].map(f => document.fonts.load(f))); } catch (e) {}
+      this.fontsOk = true;
+      await Promise.all(srcs.map(s => this.img(s).then(i => { this.done[s] = i; })));
+      if (id !== this.drawId) return;
+    }
+    const sil = this.done[srcs[0]], frise = this.done[srcs[1]];
+    const f = this.state.f, A = f.accent, W = 1012, H = 638;
+    const full = [f.prenom.trim(), f.nom.trim().toUpperCase()].filter(Boolean).join(' ') || 'Prénom NOM';
+    if (this.recto) {
+      const x = this.recto.getContext('2d'); this.base(x, W, H, frise, T);
+      const k = 420 / 640, ox = 52, oy = 42;
+      if (sil) { const sw = 300 * k; x.drawImage(sil, ox, oy, sw, sw * ((sil.height / sil.width) || 0.5)); }
+      x.textAlign = 'left';
+      x.fillStyle = T.ink; x.font = `700 ${80 * k}px Quicksand`; this.spread(x, 'AFEL', ox + 334 * k, oy + 96 * k, 296 * k);
+      x.fillStyle = T.sub; x.font = `600 ${21.5 * k}px Nunito`; this.spread(x, 'Association Femme en Lumière', ox + 334 * k, oy + 130 * k, 300 * k);
+      x.font = '700 20px Quicksand'; const vip = 'V I P   P R E M I U M', vw = x.measureText(vip).width;
+      x.strokeStyle = A; x.lineWidth = 2.5; this.rr(x, W - vw - 104, 62, vw + 48, 50, 25); x.stroke();
+      x.fillStyle = A; x.fillText(vip, W - vw - 80, 95);
+      const tx = 56; let fs = 56; x.font = `700 ${fs}px Quicksand`;
+      while (x.measureText(full).width > W - tx - 56 && fs > 26) { fs -= 2; x.font = `700 ${fs}px Quicksand`; }
+      x.fillStyle = T.ink; x.fillText(full, tx, 262);
+      x.fillStyle = A; x.font = '700 28px Quicksand'; x.fillText(f.statut.toUpperCase(), tx, 308);
+      x.fillStyle = A; x.fillRect(tx, 330, 120, 4);
+      [['N° de membre', f.num || '—'], ['Membre depuis', fr(f.debut)], ['Valable jusqu’au', fr(f.fin)]].forEach(([k, v], i) => {
+        const y = 380 + i * 40; x.fillStyle = T.lab; x.font = '600 17px Nunito'; x.fillText(k.toUpperCase(), tx, y);
+        x.fillStyle = T.ink; x.font = '700 22px Nunito'; x.fillText(v, tx + 220, y);
+      });
+      x.fillStyle = T.sig; x.font = '700 34px "Dancing Script"'; x.fillText('Brisons le silence, allumons l’espoir.', 56, H - 108);
+      x.restore();
+    }
+    if (this.verso) {
+      const x = this.verso.getContext('2d'); this.base(x, W, H, frise, T);
+      x.textAlign = 'left'; x.fillStyle = T.ink; x.font = '700 30px Quicksand'; x.fillText('Carte de membre VIP Premium', 56, 92);
+      x.fillStyle = T.sub; x.font = '600 19px Nunito';
+      const lines = ['Carte personnelle et nominative, attribuée aux', 'membres fondateurs et aux personnes désignées', 'par la présidente de l’AFEL.'];
+      lines.forEach((l, i) => x.fillText(l, 56, 140 + i * 30));
+      x.fillStyle = T.lab; x.font = '600 16px Nunito'; x.fillText('SIGNATURE DE LA PRÉSIDENTE', 56, 300);
+      x.strokeStyle = T.lab; x.lineWidth = 1.5; x.beginPath(); x.moveTo(56, 370); x.lineTo(470, 370); x.stroke();
+      x.fillStyle = T.ink; x.font = '700 18px Nunito'; x.fillText('Ornella Brinda NGUELE BEKALE', 56, 400);
+      x.fillStyle = T.sub; x.font = '600 18px Nunito';
+      ['www.afel.cm', '+237 658 595 657 · Appel et WhatsApp', 'Yaoundé IV, Messamendongo, Cité de la Paix'].forEach((l, i) => x.fillText(l, 56, 456 + i * 28));
+      const qs = 240, qx = W - qs - 64, qy = 150;
+      x.fillStyle = '#FFFFFF'; this.rr(x, qx - 16, qy - 16, qs + 32, qs + 32, 18); x.fill();
+      if (window.qrcode) {
+        const q = window.qrcode(0, 'M'); window.qrcode.stringToBytes = window.qrcode.stringToBytesFuncs['UTF-8'];
+        const vc = 'https://www.afel.cm/verifier/' + encodeURIComponent(f.num || '');
+        q.addData(vc, 'Byte'); q.make();
+        const n = q.getModuleCount(), c = qs / n; x.fillStyle = '#283D5C';
+        for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) x.fillRect(qx + k * c, qy + r * c, Math.ceil(c), Math.ceil(c));
+      }
+      x.fillStyle = T.sub; x.font = '600 16px Nunito'; x.textAlign = 'center'; x.fillText(f.num || '', qx + qs / 2, qy + qs + 50); x.textAlign = 'left';
+      x.restore();
+    }
+  }
+  setField = k => e => { const v = e.target.value; this.setState(s => ({ f: { ...s.f, [k]: v } })); };
+  set = ['nom', 'prenom', 'statut', 'tel', 'num', 'debut', 'fin'].reduce((o, k) => (o[k] = this.setField(k), o), {});
+  onPhoto = e => {
+    const file = e.target.files && e.target.files[0]; if (!file) return;
+    const r = new FileReader();
+    r.onload = () => { const im = new Image(); im.onload = () => {
+      const c = document.createElement('canvas'), S = 480, k = Math.max(S / im.width, S / im.height);
+      c.width = S; c.height = S; c.getContext('2d').drawImage(im, (S - im.width * k) / 2, (S - im.height * k) / 3, im.width * k, im.height * k);
+      this.setState({ photo: c.toDataURL('image/jpeg', 0.88) });
+    }; im.src = r.result; };
+    r.readAsDataURL(file); e.target.value = '';
+  };
+  clearPhoto = () => this.setState({ photo: null });
+  dl(cv, side) {
+    if (!cv) return;
+    const n = ((this.state.f.prenom + ' ' + this.state.f.nom).trim() || 'membre').replace(/\s+/g, '-');
+    const a = document.createElement('a'); a.download = `Carte-VIP-AFEL-${n}-${side}.png`; a.href = cv.toDataURL('image/png');
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  dlRecto = () => this.draw().then(() => this.dl(this.recto, 'recto'));
+  dlVerso = () => this.draw().then(() => this.dl(this.verso, 'verso'));
+  dlBoth = () => this.draw().then(() => { this.dl(this.recto, 'recto'); setTimeout(() => this.dl(this.verso, 'verso'), 400); });
+  renderVals() {
+    const f = this.state.f;
+    if (this._lastF !== f || this._lastP !== this.state.photo) {
+      this._lastF = f; this._lastP = this.state.photo;
+      Promise.resolve().then(() => {
+        this.draw();
+        try { localStorage.setItem(KEY, JSON.stringify({ f: this.state.f, photo: this.state.photo })); } catch (e) {}
+      });
+    }
+    return {
+      f, set: this.set, statuts: STATUTS, noSubmit: e => e.preventDefault(),
+      onPhoto: this.onPhoto, clearPhoto: this.clearPhoto, hasPhoto: !!this.state.photo,
+      photoLabel: this.state.photo ? 'Changer la photo' : 'Ajouter une photo',
+      accents: ACCENTS.map(([hex, label]) => ({ hex, label, on: f.accent === hex ? 'true' : 'false', border: f.accent === hex ? '3px solid #283D5C' : '3px solid #FFFFFF', pick: () => this.setState(s => ({ f: { ...s.f, accent: hex } })) })),
+      themes: Object.keys(THEMES).map(k => { const t = THEMES[k], on = f.theme === k; return { label: t.label, bg: t.swatch, border: on ? '3px solid #283D5C' : '3px solid #FFFFFF', ring: on ? '0 0 0 2px #F4A340' : '0 1px 4px rgba(40,61,92,0.25)', on: on ? 'true' : 'false', weight: on ? '700' : '600', pick: () => this.setState(s => ({ f: { ...s.f, theme: k } })) }; }),
+      rectoRef: this.rectoRef, versoRef: this.versoRef, dlRecto: this.dlRecto, dlVerso: this.dlVerso, dlBoth: this.dlBoth,
+    };
+  }
+}
+</script>
+</body>
+</html>

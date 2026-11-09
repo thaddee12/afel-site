@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Espace présidente | AFEL</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F4F6F9}*{box-sizing:border-box}a{color:#283D5C}a:hover{color:#A01D1D}input,select,button{font:inherit}</style>
+</helmet>
+<div style="min-height:100vh;background:#F4F6F9;font-family:'Nunito',sans-serif;color:#283D5C">
+
+<sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ false }}">
+  <div style="min-height:100vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))">
+    <div style="position:relative;background:#283D5C;color:#FFFFFF;padding:clamp(32px,6vw,72px);display:flex;flex-direction:column;justify-content:space-between;gap:40px;overflow:hidden;min-height:320px">
+      <a href="index.html" aria-label="Retour au site" style="display:block;width:200px"><dc-import name="Logo" variant="horizontal" theme="negatif" style="width:200px" hint-size="200px,47px"></dc-import></a>
+      <div style="display:flex;flex-direction:column;gap:14px;position:relative">
+        <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.2em;color:#F4A340">ACCÈS RÉSERVÉ</span>
+        <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,58px);line-height:1.02;text-transform:uppercase">Espace<br>présidente</h1>
+        <div style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 45%,#A01D1D 80%,rgba(160,29,29,0) 100%)"></div>
+        <p style="margin:0;max-width:440px;font-size:18px;line-height:1.55;color:#DDE3EA;text-wrap:pretty">Validez les adhésions, désignez les membres éligibles et générez les cartes VIP Premium.</p>
+      </div>
+      <img src="assets/ornement-frise-blanc.svg" alt="" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:56px;object-fit:cover;object-position:left;opacity:.35">
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;padding:clamp(32px,6vw,72px)">
+      <form onSubmit="{{ login }}" style="width:100%;max-width:400px;display:flex;flex-direction:column;gap:18px">
+        <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:28px">Connexion</h2>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Adresse e-mail
+          <input type="email" required value="{{ email }}" onInput="{{ onEmail }}" placeholder="presidente@afel.cm" style="min-height:50px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;outline:none" style-focus="border-color:#35BDB2"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700">Mot de passe
+          <input type="password" required placeholder="••••••••" style="min-height:50px;padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;outline:none" style-focus="border-color:#35BDB2"></label>
+        <button type="submit" style="min-height:52px;border:none;border-radius:999px;background:#283D5C;color:#FFFFFF;font-weight:700;font-size:16px;cursor:pointer;transition:background .2s, transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="background:#35BDB2;color:#283D5C;transform:translateY(-2px)">Se connecter</button>
+        <a href="#" style="font-size:15px;font-weight:600">Mot de passe oublié ?</a>
+        <span style="font-size:14px;color:#A01D1D;border:1.5px dashed #A01D1D;padding:8px 12px">Maquette : n’importe quel e-mail et mot de passe ouvrent l’espace.</span>
+      </form>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ true }}">
+  <header style="position:sticky;top:0;z-index:10;background:#283D5C;color:#FFFFFF;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:12px clamp(16px,4vw,40px)">
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="index.html" aria-label="Retour au site" style="display:block;width:160px"><dc-import name="Logo" variant="horizontal" theme="negatif" style="width:160px" hint-size="160px,38px"></dc-import></a>
+      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.16em;color:#F4A340;border-left:1px solid rgba(255,255,255,.3);padding-left:18px">ESPACE PRÉSIDENTE</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600">
+      <span style="color:#DDE3EA">{{ who }}</span>
+      <button type="button" onClick="{{ logout }}" style="min-height:44px;padding:0 16px;border:1.5px solid #FFFFFF;border-radius:999px;background:transparent;color:#FFFFFF;font-weight:700;cursor:pointer" style-hover="background:#FFFFFF;color:#283D5C">Déconnexion</button>
+    </div>
+  </header>
+
+  <main style="max-width:1280px;margin:0 auto;padding:clamp(20px,4vw,40px);display:flex;flex-direction:column;gap:24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <button type="button" onClick="{{ s.pick }}" style="text-align:left;background:#FFFFFF;border:none;border-top:5px solid {{ s.color }};padding:18px 20px;display:flex;flex-direction:column;gap:4px;cursor:pointer;box-shadow:{{ s.shadow }};transition:transform .25s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-3px)">
+          <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:36px;line-height:1">{{ s.n }}</span>
+          <span style="font-size:15px;font-weight:700;color:#5A6B82">{{ s.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ quotaFull }}"><div role="status" style="background:#FDF0DE;color:#8A5A12;font-weight:700;padding:12px 16px;border-left:0">{{ quotaMsg }}</div></sc-if>
+    <div style="background:#FFFFFF;box-shadow:0 4px 18px rgba(40,61,92,0.08)">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid #E3E6EA">
+        <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:22px">{{ listTitle }}</h2>
+        <input type="search" value="{{ q }}" onInput="{{ onQ }}" placeholder="Rechercher un nom, un numéro…" aria-label="Rechercher" style="min-height:44px;width:min(100%,320px);padding:0 14px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;outline:none" style-focus="border-color:#35BDB2">
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:15px;min-width:860px">
+          <thead>
+            <tr style="text-align:left;color:#5A6B82;font-size:13px;letter-spacing:.08em;text-transform:uppercase">
+              <th style="padding:12px 20px;font-weight:700">Membre</th>
+              <th style="padding:12px 12px;font-weight:700">Statut</th>
+              <th style="padding:12px 12px;font-weight:700">N° de membre</th>
+              <th style="padding:12px 12px;font-weight:700">Adhésion</th>
+              <th style="padding:12px 12px;font-weight:700">Éligible VIP · motif</th>
+              <th style="padding:12px 20px;font-weight:700;text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ rows }}" as="m" hint-placeholder-count="6">
+              <tr style="border-top:1px solid #EEF1F4;background:{{ m.rowBg }}">
+                <td style="padding:14px 20px">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <span style="flex:none;width:40px;height:40px;border-radius:50%;background:{{ m.avBg }};color:{{ m.avFg }};display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700">{{ m.ini }}</span>
+                    <span style="display:flex;flex-direction:column;line-height:1.3"><strong>{{ m.full }}</strong><span style="font-size:14px;color:#5A6B82">{{ m.tel }} · depuis le {{ m.debutFr }}</span></span>
+                  </div>
+                </td>
+                <td style="padding:14px 12px">
+                  <select value="{{ m.statut }}" onChange="{{ m.setStatut }}" aria-label="Statut" style="min-height:40px;padding:0 8px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-weight:600">
+                    <sc-for list="{{ statuts }}" as="s" hint-placeholder-count="8"><option value="{{ s }}">{{ s }}</option></sc-for>
+                  </select>
+                </td>
+                <td style="padding:14px 12px;font-weight:700;white-space:nowrap">{{ m.num }}</td>
+                <td style="padding:14px 12px">
+                  <span style="display:inline-block;padding:5px 10px;border-radius:999px;font-size:13px;font-weight:700;background:{{ m.etatBg }};color:{{ m.etatFg }};white-space:nowrap">{{ m.etatLabel }}</span>
+                </td>
+                <td style="padding:14px 12px">
+                  <button type="button" role="switch" aria-checked="{{ m.vipStr }}" aria-label="Éligible VIP" onClick="{{ m.toggleVip }}" disabled="{{ m.vipDisabled }}" style="position:relative;width:52px;height:30px;border:none;border-radius:999px;background:{{ m.swBg }};cursor:{{ m.swCursor }};opacity:{{ m.swOp }};transition:background .25s">
+                    <span style="position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,.25);transform:{{ m.knob }};transition:transform .25s cubic-bezier(.34,1.56,.64,1)"></span>
+                  </button>
+                  <sc-if value="{{ m.showMotif }}">
+                    <select value="{{ m.motif }}" onChange="{{ m.setMotif }}" aria-label="Motif d’attribution" style="display:block;margin-top:8px;min-height:36px;max-width:190px;padding:0 6px;border:1.5px solid #C9D3E0;background:#FFFFFF;color:#283D5C;font-size:13px;font-weight:600">
+                      <sc-for list="{{ motifs }}" as="mo" hint-placeholder-count="6"><option value="{{ mo }}">{{ mo }}</option></sc-for>
+                    </select>
+                  </sc-if>
+                  <span style="display:block;margin-top:4px;font-size:12px;color:#5A6B82">{{ m.motifHint }}</span>
+                </td>
+                <td style="padding:14px 20px">
+                  <div style="display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap">
+                    <sc-if value="{{ m.canValidate }}">
+                      <button type="button" onClick="{{ m.validate }}" style="min-height:40px;padding:0 14px;border:none;border-radius:999px;background:#35BDB2;color:#283D5C;font-weight:700;cursor:pointer" style-hover="background:#283D5C;color:#FFFFFF">Valider</button>
+                    </sc-if>
+                    <sc-if value="{{ m.canCard }}">
+                      <button type="button" onClick="{{ m.card }}" style="min-height:40px;padding:0 14px;border:none;border-radius:999px;background:#F4A340;color:#283D5C;font-weight:700;cursor:pointer" style-hover="background:#283D5C;color:#FFFFFF">Générer la carte</button>
+                    </sc-if>
+                    <sc-if value="{{ m.canRevoke }}">
+                      <button type="button" onClick="{{ m.revoke }}" style="min-height:40px;padding:0 14px;border:1.5px solid #A01D1D;border-radius:999px;background:#FFFFFF;color:#A01D1D;font-weight:700;cursor:pointer" style-hover="background:#A01D1D;color:#FFFFFF">Révoquer</button>
+                    </sc-if>
+                    <sc-if value="{{ m.canRestore }}">
+                      <button type="button" onClick="{{ m.restore }}" style="min-height:40px;padding:0 14px;border:1.5px solid #283D5C;border-radius:999px;background:#FFFFFF;color:#283D5C;font-weight:700;cursor:pointer" style-hover="background:#283D5C;color:#FFFFFF">Réactiver</button>
+                    </sc-if>
+                    <a href="{{ m.verifyHref }}" style="display:inline-flex;align-items:center;min-height:40px;padding:0 6px;font-weight:700;font-size:14px">Vérifier</a>
+                  </div>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <sc-if value="{{ empty }}"><p style="margin:0;padding:28px 20px;color:#5A6B82">Aucune membre ne correspond.</p></sc-if>
+    </div>
+    <p style="margin:0;font-size:14px;color:#5A6B82;text-wrap:pretty"><a href="carte-vip-premium.html">Voir les critères d’attribution</a>. Seules les membres validées peuvent être désignées éligibles VIP. Une carte révoquée s’affiche comme « non valide » quand on scanne son code QR.</p>
+  </main>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const KEY = 'afel-admin-members';
+const STATUTS = ['Membre fondatrice', 'Membre fondateur', 'Membre d’honneur', 'Bienfaiteur', 'Médecin bénévole', 'Sponsor', 'Membre', 'Sympathisant'];
+const MOTIFS = ['Fondatrice / fondateur', 'Engagement bénévole', 'Don ou parrainage', 'Soutien professionnel', 'Membre d’honneur', 'Partenaire'];
+const QUOTA = 20;
+const defMotif = st => /fondat/i.test(st) ? MOTIFS[0] : st === 'Médecin bénévole' ? MOTIFS[3] : st === 'Sponsor' || st === 'Bienfaiteur' ? MOTIFS[2] : st === 'Membre d’honneur' ? MOTIFS[4] : MOTIFS[1];
+const SEED = [
+  ['NGUELE BEKALE', 'Ornella Brinda', 'Membre fondatrice', '+237 658 595 657', '2024-03-08', 'validee', true],
+  ['MBARGA', 'Aïcha', 'Membre fondatrice', '+237 677 12 34 56', '2024-03-08', 'validee', true],
+  ['ESSOMBA', 'Mireille', 'Membre', '+237 699 45 67 89', '2024-11-14', 'validee', false],
+  ['NDJOCK', 'Sandrine', 'Médecin bénévole', '+237 655 98 76 54', '2025-02-02', 'validee', true],
+  ['FOUDA', 'Grâce', 'Membre', '+237 690 11 22 33', '2026-10-28', 'attente', false],
+  ['ATANGANA', 'Larissa', 'Sympathisant', '+237 674 55 66 77', '2026-11-03', 'attente', false],
+  ['OWONA', 'Josiane', 'Bienfaiteur', '+237 696 88 99 00', '2025-06-19', 'validee', false],
+  ['BELLA', 'Christelle', 'Sponsor', '+237 651 23 45 67', '2025-09-10', 'revoquee', true],
+].map(([nom, prenom, statut, tel, debut, etat, vip], i) => ({ id: i + 1, nom, prenom, statut, tel, debut, etat, vip, num: 'AFEL-' + debut.slice(0, 4) + '-' + String(101 + i * 37).padStart(5, '0'), motif: vip ? defMotif(statut) : '' }));
+const fr = s => { const [y, m, d] = s.split('-'); return `${d}/${m}/${y}`; };
+const ETAT = { validee: ['Validée', '#E3F6F4', '#1F6F68'], attente: ['En attente', '#FDF0DE', '#8A5A12'], revoquee: ['Carte révoquée', '#F6E1E1', '#A01D1D'] };
+
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    let members = SEED;
+    try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (Array.isArray(s) && s.length) members = s; } catch (e) {}
+    let logged = false; try { logged = sessionStorage.getItem('afel-admin') === '1'; } catch (e) {}
+    this.state = { members, logged, email: '', q: '', filter: 'toutes' };
+  }
+  save(members) { this.setState({ members }); try { localStorage.setItem(KEY, JSON.stringify(members)); } catch (e) {} }
+  upd(id, patch) { this.save(this.state.members.map(m => m.id === id ? { ...m, ...patch } : m)); }
+  login = e => { e.preventDefault(); try { sessionStorage.setItem('afel-admin', '1'); } catch (x) {} this.setState({ logged: true }); };
+  logout = () => { try { sessionStorage.removeItem('afel-admin'); } catch (x) {} this.setState({ logged: false }); };
+  genCard(m) {
+    const end = new Date(m.debut); end.setFullYear(new Date().getFullYear() + 1);
+    const f = { nom: m.nom, prenom: m.prenom, statut: m.statut, tel: m.tel, num: m.num, debut: m.debut, fin: end.toISOString().slice(0, 10) };
+    try { const old = JSON.parse(localStorage.getItem('afel-carte-vip') || '{}'); localStorage.setItem('afel-carte-vip', JSON.stringify({ ...old, f: { ...(old.f || {}), ...f } })); } catch (e) {}
+    window.location.href = 'generateur-carte.html';
+  }
+  renderVals() {
+    const { members, q, filter, logged } = this.state;
+    const vipCount = members.filter(m => m.vip && m.etat === 'validee').length, full = vipCount >= QUOTA;
+    const counts = { toutes: members.length, attente: members.filter(m => m.etat === 'attente').length, vip: vipCount + ' / ' + QUOTA, revoquee: members.filter(m => m.etat === 'revoquee').length };
+    const S = [['toutes', 'Membres', '#283D5C'], ['attente', 'Adhésions en attente', '#F4A340'], ['vip', 'Cartes VIP ' + new Date().getFullYear() + ' (quota)', '#35BDB2'], ['revoquee', 'Cartes révoquées', '#A01D1D']];
+    const qq = q.trim().toLowerCase();
+    const list = members.filter(m => (filter === 'toutes' || (filter === 'attente' && m.etat === 'attente') || (filter === 'vip' && m.vip && m.etat === 'validee') || (filter === 'revoquee' && m.etat === 'revoquee')) && (!qq || (m.prenom + ' ' + m.nom + ' ' + m.num).toLowerCase().includes(qq)));
+    const pal = ['#35BDB2', '#F4A340', '#A01D1D', '#283D5C'];
+    return {
+      loggedIn: logged, loggedOut: !logged, login: this.login, logout: this.logout,
+      email: this.state.email, onEmail: e => this.setState({ email: e.target.value }),
+      who: this.state.email || 'Ornella Brinda NGUELE BEKALE',
+      stats: S.map(([k, label, color]) => ({ n: counts[k], label, color, shadow: filter === k ? '0 0 0 2px ' + color + ', 0 6px 18px rgba(40,61,92,.12)' : '0 4px 14px rgba(40,61,92,.08)', pick: () => this.setState({ filter: k }) })),
+      listTitle: S.find(s => s[0] === filter)[1],
+      motifs: MOTIFS, quotaFull: full, quotaMsg: 'Quota de ' + QUOTA + ' cartes VIP atteint pour ' + new Date().getFullYear() + '. Retirez une carte pour en attribuer une nouvelle.',
+      q, onQ: e => this.setState({ q: e.target.value }), statuts: STATUTS, empty: !list.length,
+      rows: list.map((m, i) => {
+        const ok = m.etat === 'validee', E = ETAT[m.etat], vipOn = m.vip, canOn = ok && (vipOn || !full);
+        return {
+          ...m, full: m.prenom + ' ' + m.nom, ini: (m.prenom[0] || '') + (m.nom[0] || ''), debutFr: fr(m.debut),
+          avBg: pal[m.id % 4], avFg: m.id % 4 === 2 || m.id % 4 === 3 ? '#FFFFFF' : '#283D5C',
+          rowBg: m.etat === 'attente' ? '#FFFBF4' : '#FFFFFF',
+          etatLabel: E[0], etatBg: E[1], etatFg: E[2],
+          vipStr: vipOn ? 'true' : 'false', vipDisabled: !canOn, swBg: vipOn ? '#35BDB2' : '#C9D3E0', knob: vipOn ? 'translateX(22px)' : 'none', swCursor: canOn ? 'pointer' : 'not-allowed', swOp: canOn ? 1 : 0.45,
+          toggleVip: () => canOn && this.upd(m.id, { vip: !m.vip, motif: !m.vip ? (m.motif || defMotif(m.statut)) : m.motif }),
+          motif: m.motif || defMotif(m.statut), showMotif: vipOn, setMotif: e => this.upd(m.id, { motif: e.target.value }),
+          motifHint: !ok ? 'Adhésion à valider' : (!vipOn && full ? 'Quota atteint' : ''),
+          setStatut: e => this.upd(m.id, { statut: e.target.value }),
+          canValidate: m.etat === 'attente', validate: () => this.upd(m.id, { etat: 'validee' }),
+          canCard: ok && vipOn, card: () => this.genCard(m),
+          canRevoke: ok && vipOn, revoke: () => this.upd(m.id, { etat: 'revoquee' }),
+          canRestore: m.etat === 'revoquee', restore: () => this.upd(m.id, { etat: 'validee' }),
+          verifyHref: 'verifier.html#' + m.num,
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

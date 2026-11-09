@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F4F6F9}a{color:#283D5C}a:hover{color:#35BDB2}input,select,button{font-family:inherit}</style>
+</helmet>
+<div style="min-height:100vh;background:#F4F6F9;font-family:'Nunito',sans-serif;color:#283D5C;display:flex;flex-direction:column">
+
+  <header style="background:#FFFFFF;border-bottom:1px solid #E3E6EA;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <a href="index.html" aria-label="Retour à l’accueil AFEL" style="display:block;width:170px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:scale(1.04)"><dc-import name="Logo" variant="horizontal" theme="couleur" style="width:170px" hint-size="170px,40px"></dc-import></a>
+    <nav aria-label="Navigation" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:15px;font-weight:700">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:#283D5C;color:#FFFFFF;text-decoration:none;transition:background .25s, transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="background:#35BDB2;color:#283D5C;transform:translateX(-3px)"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 12H5M11 5.5L4.5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg>Retour au site</a>
+      <a href="pages.html#engager" style="color:#283D5C;text-decoration:none" style-hover="color:#A01D1D">Les statuts</a>
+      <a href="pages.html#contact" style="color:#283D5C;text-decoration:none" style-hover="color:#A01D1D">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600">
+      <span style="width:34px;height:34px;border-radius:50%;background:#35BDB2;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700">{{ initiale }}</span>
+      <span>Espace adhérente</span>
+    </div>
+  </header>
+
+  <main style="width:100%;max-width:780px;margin:0 auto;padding:40px 20px 64px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:30px">Mon adhésion</div>
+      <div style="font-size:16px;color:#5A6B82;text-wrap:pretty">Complétez votre formulaire d’adhésion puis signez la clause de confidentialité. Vos réponses sont enregistrées au fur et à mesure.</div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div style="flex:1;min-width:150px;display:flex;flex-direction:column;gap:8px">
+          <div style="height:5px;border-radius:3px;background:{{ s.bar }}"></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:{{ s.fg }}"><span>{{ s.n }}</span><span>{{ s.label }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#FFFFFF;border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:30px;box-shadow:0 1px 2px rgba(40,61,92,0.06)">
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:center">
+          <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.05em">FORMULAIRE D’ADHÉSION</div>
+          <div style="font-size:15px;color:#5A6B82">Membre ou sympathisant(e) de l’Association Femme en Lumière (AFEL)</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-weight:700;font-size:15px">Je souhaite adhérer en tant que</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+            <sc-for list="{{ types }}" as="t" hint-placeholder-count="6">
+              <button type="button" onClick="{{ t.pick }}" style="padding:16px;border-radius:12px;border:2px solid {{ t.border }};background:{{ t.bg }};color:#283D5C;font-size:16px;font-weight:700;cursor:pointer;text-align:left">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ err.type }}"><div style="color:#A01D1D;font-size:13px">{{ err.type }}</div></sc-if>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:26px;height:4px;border-radius:2px;background:#F4A340"></span><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.14em">IDENTITÉ</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;grid-column:1/-1">Nom et prénoms
+              <input value="{{ f.nom }}" onChange="{{ on.nom }}" placeholder="Ex. NGUELE BEKALE Ornella Brinda" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+              <sc-if value="{{ err.nom }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.nom }}</span></sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Date de naissance
+              <input type="date" value="{{ f.naissance }}" onChange="{{ on.naissance }}" style="padding:11px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+              <sc-if value="{{ err.naissance }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.naissance }}</span></sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Genre
+              <select value="{{ f.genre }}" onChange="{{ on.genre }}" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none">
+                <option value="">Choisir…</option><option value="Femme">Femme</option><option value="Homme">Homme</option>
+              </select>
+              <sc-if value="{{ err.genre }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.genre }}</span></sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Nationalité
+              <input value="{{ f.nationalite }}" onChange="{{ on.nationalite }}" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+              <sc-if value="{{ err.nationalite }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.nationalite }}</span></sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Ville de résidence
+              <input value="{{ f.ville }}" onChange="{{ on.ville }}" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+              <sc-if value="{{ err.ville }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.ville }}</span></sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;grid-column:1/-1">Régime matrimonial
+              <select value="{{ f.regime }}" onChange="{{ on.regime }}" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none">
+                <option value="">Choisir…</option><option value="Célibataire">Célibataire</option><option value="Marié(e)">Marié(e)</option><option value="Union libre">Union libre</option><option value="Divorcé(e)">Divorcé(e)</option><option value="Veuf / veuve">Veuf / veuve</option>
+              </select>
+              <sc-if value="{{ err.regime }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.regime }}</span></sc-if>
+            </label>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:26px;height:4px;border-radius:2px;background:#F4A340"></span><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.14em">SITUATION PROFESSIONNELLE</span></div>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Profession
+            <input value="{{ f.profession }}" onChange="{{ on.profession }}" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+            <sc-if value="{{ err.profession }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.profession }}</span></sc-if>
+          </label>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:26px;height:4px;border-radius:2px;background:#F4A340"></span><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.14em">COORDONNÉES</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Téléphone
+              <input type="tel" value="{{ f.tel }}" onChange="{{ on.tel }}" placeholder="+237 6XX XX XX XX" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+              <sc-if value="{{ err.tel }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.tel }}</span></sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Adresse e-mail
+              <input type="email" value="{{ f.email }}" onChange="{{ on.email }}" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+              <sc-if value="{{ err.email }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.email }}</span></sc-if>
+            </label>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:26px;height:4px;border-radius:2px;background:#F4A340"></span><span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.14em">ENGAGEMENT</span></div>
+          <label style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;cursor:pointer">
+            <input type="checkbox" checked="{{ f.valeurs }}" onChange="{{ on.valeurs }}" style="width:20px;height:20px;margin:2px 0 0;accent-color:#35BDB2;flex:none">
+            <span style="text-wrap:pretty">En signant ce formulaire, je confirme mon adhésion volontaire à l’Association Femme en Lumière (AFEL) et j’adhère à ses valeurs de sensibilisation, d’accompagnement, d’encouragement et de solidarité entre femmes.</span>
+          </label>
+          <sc-if value="{{ err.valeurs }}"><div style="color:#A01D1D;font-size:13px">{{ err.valeurs }}</div></sc-if>
+          <label style="display:flex;gap:12px;align-items:center;font-size:15px;cursor:pointer">
+            <input type="checkbox" checked="{{ f.age21 }}" onChange="{{ on.age21 }}" style="width:20px;height:20px;margin:0;accent-color:#35BDB2;flex:none">
+            <span>Je certifie avoir {{ ageMin }} ans révolus.</span>
+          </label>
+          <sc-if value="{{ err.age21 }}"><div style="color:#A01D1D;font-size:13px">{{ err.age21 }}</div></sc-if>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap;border-top:1px solid #E3E6EA;padding-top:24px">
+          <button type="button" onClick="{{ next }}" style="padding:14px 28px;border:none;border-radius:999px;background:#283D5C;color:#FFFFFF;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#35BDB2">Continuer vers la clause</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isStep2 }}">
+      <div style="background:#FFFFFF;border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:26px;box-shadow:0 1px 2px rgba(40,61,92,0.06)">
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:center">
+          <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.05em">CLAUSE DE CONFIDENTIALITÉ</div>
+          <div style="font-size:15px;color:#5A6B82">Engagement de l’adhérente</div>
+        </div>
+        <div style="font-size:16px;line-height:1.55;text-wrap:pretty">Je soussignée <strong>{{ f.nom }}</strong>, adhérente de l’Association Femme en Lumière (AFEL), m’engage à respecter les dispositions suivantes.</div>
+
+        <div style="display:flex;flex-direction:column;gap:18px;font-size:15px;line-height:1.55">
+          <div style="display:flex;gap:14px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;min-width:24px">01</span><div style="display:flex;flex-direction:column;gap:3px"><strong style="font-family:'Quicksand',sans-serif">Informations confidentielles</strong><span style="text-wrap:pretty">Sont confidentielles toutes les informations partagées au sein de l’AFEL : identité des membres, état de santé, parcours médical, témoignages et échanges lors des rencontres, groupes de discussion et activités de l’association.</span></div></div>
+          <div style="display:flex;gap:14px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;min-width:24px">02</span><div style="display:flex;flex-direction:column;gap:3px"><strong style="font-family:'Quicksand',sans-serif">Engagements de l’adhérente</strong><span style="text-wrap:pretty">Je m’engage à ne pas divulguer ces informations à des tiers, à ne pas enregistrer, photographier ni faire de captures d’écran des échanges sans l’accord des personnes concernées, et à ne publier aucun contenu permettant d’identifier une autre membre.</span></div></div>
+          <div style="display:flex;gap:14px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;min-width:24px">03</span><div style="display:flex;flex-direction:column;gap:3px"><strong style="font-family:'Quicksand',sans-serif">Engagements de l’AFEL</strong><span style="text-wrap:pretty">L’association utilise les données de l’adhérente uniquement pour son accompagnement et le suivi de son bien-être. Elle ne les transmet à aucun tiers, y compris aux professionnels de santé, sans son accord préalable.</span></div></div>
+          <div style="display:flex;gap:14px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;min-width:24px">04</span><div style="display:flex;flex-direction:column;gap:8px"><strong style="font-family:'Quicksand',sans-serif">Droit à l’image</strong>
+            <div style="display:flex;gap:24px;flex-wrap:wrap">
+              <label style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="radio" name="image" checked="{{ imgOui }}" onChange="{{ pickImgOui }}" style="width:18px;height:18px;margin:0;accent-color:#35BDB2">J’autorise</label>
+              <label style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="radio" name="image" checked="{{ imgNon }}" onChange="{{ pickImgNon }}" style="width:18px;height:18px;margin:0;accent-color:#35BDB2">Je n’autorise pas</label>
+            </div>
+            <span>l’AFEL à utiliser mon image (photos, vidéos) dans ses communications.</span>
+            <sc-if value="{{ err.image }}"><span style="color:#A01D1D;font-size:13px">{{ err.image }}</span></sc-if>
+          </div></div>
+          <div style="display:flex;gap:14px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;min-width:24px">05</span><div style="display:flex;flex-direction:column;gap:3px"><strong style="font-family:'Quicksand',sans-serif">Durée</strong><span>Cet engagement s’applique pendant toute la durée de mon adhésion et après sa fin.</span></div></div>
+          <div style="display:flex;gap:14px"><span style="font-family:'Quicksand',sans-serif;font-weight:700;color:#35BDB2;min-width:24px">06</span><div style="display:flex;flex-direction:column;gap:3px"><strong style="font-family:'Quicksand',sans-serif">Manquement</strong><span>Tout manquement à cette clause peut entraîner l’exclusion de l’association. En cas de faute grave, notamment la divulgation d’informations sur la santé ou l’identité d’une membre, l’AFEL se réserve le droit d’engager des poursuites judiciaires.</span></div></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;border-top:1px solid #E3E6EA;padding-top:24px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Fait à
+            <input value="{{ f.faitA }}" onChange="{{ on.faitA }}" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+            <sc-if value="{{ err.faitA }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.faitA }}</span></sc-if>
+          </label>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Le
+            <div style="padding:12px 14px;border:1.5px solid #E3E6EA;border-radius:10px;font-size:16px;font-weight:500;background:#F4F6F9">{{ today }}</div>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;grid-column:1/-1">Écrivez « Lu et approuvé »
+            <input value="{{ f.lu }}" onChange="{{ on.lu }}" placeholder="Lu et approuvé" style="padding:12px 14px;border:1.5px solid #C9D3E0;border-radius:10px;font-size:16px;color:#283D5C;background:#FFFFFF;outline:none" style-focus="border-color:#35BDB2">
+            <sc-if value="{{ err.lu }}"><span style="color:#A01D1D;font-size:13px;font-weight:500">{{ err.lu }}</span></sc-if>
+          </label>
+          <div style="display:flex;flex-direction:column;gap:6px;grid-column:1/-1">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600"><span>Signature</span><button type="button" onClick="{{ clearSig }}" style="border:none;background:none;color:#35BDB2;font-size:14px;font-weight:700;cursor:pointer;padding:4px 0">Effacer</button></div>
+            <canvas ref="{{ sigRef }}" style="width:100%;height:170px;border:1.5px dashed #C9D3E0;border-radius:10px;background:#FFFFFF;touch-action:none;cursor:crosshair;display:block"></canvas>
+            <span style="font-size:13px;color:#5A6B82">Signez avec la souris ou le doigt.</span>
+            <sc-if value="{{ err.signature }}"><span style="color:#A01D1D;font-size:13px">{{ err.signature }}</span></sc-if>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #E3E6EA;padding-top:24px">
+          <button type="button" onClick="{{ back }}" style="padding:14px 24px;border:1.5px solid #C9D3E0;border-radius:999px;background:#FFFFFF;color:#283D5C;font-size:16px;font-weight:700;cursor:pointer">Retour au formulaire</button>
+          <button type="button" onClick="{{ submit }}" style="padding:14px 28px;border:none;border-radius:999px;background:#283D5C;color:#FFFFFF;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#35BDB2">Signer et envoyer</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isStep3 }}">
+      <div style="background:#FFFFFF;border-radius:18px;padding:40px 32px;display:flex;flex-direction:column;gap:22px;align-items:center;text-align:center;box-shadow:0 1px 2px rgba(40,61,92,0.06)">
+        <div style="width:64px;height:64px;border-radius:50%;background:#35BDB2;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="30" height="30"><path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+        <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:26px">Merci, {{ prenom }}</div>
+        <div style="font-size:16px;line-height:1.55;max-width:520px;text-wrap:pretty">Votre formulaire d’adhésion et votre clause de confidentialité signée ont bien été envoyés. L’équipe AFEL vous contactera au <strong>{{ f.tel }}</strong> pour finaliser votre inscription.</div>
+        <div style="width:100%;max-width:520px;display:grid;grid-template-columns:auto 1fr;gap:10px 20px;text-align:left;font-size:15px;background:#F4F6F9;border-radius:12px;padding:20px 22px;box-sizing:border-box">
+          <span style="color:#5A6B82">Statut</span><strong>{{ f.type }}</strong>
+          <span style="color:#5A6B82">Nom</span><strong>{{ f.nom }}</strong>
+          <span style="color:#5A6B82">Droit à l’image</span><strong>{{ imageLabel }}</strong>
+          <span style="color:#5A6B82">Signé le</span><strong>{{ signedAt }}</strong>
+        </div>
+        
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+          <button type="button" onClick="{{ print }}" style="padding:14px 24px;border:none;border-radius:999px;background:#283D5C;color:#FFFFFF;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#35BDB2">Imprimer mon récapitulatif</button>
+          <button type="button" onClick="{{ reset }}" style="padding:14px 24px;border:1.5px solid #C9D3E0;border-radius:999px;background:#FFFFFF;color:#283D5C;font-size:16px;font-weight:700;cursor:pointer">Nouvelle adhésion</button>
+        </div>
+        <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:26px;color:#F4A340">Brisons le silence, allumons l’espoir.</div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ageMinimum&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:21,&quot;min&quot;:16,&quot;max&quot;:30,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Règles d’adhésion&quot;}}">
+const KEY = 'afel-adhesion-brouillon';
+const EMPTY = { type: '', nom: '', naissance: '', genre: '', nationalite: '', ville: '', regime: '', profession: '', tel: '', email: '', valeurs: false, age21: false, image: '', faitA: '', lu: '' };
+const TEXT = ['nom', 'naissance', 'genre', 'nationalite', 'ville', 'regime', 'profession', 'tel', 'email', 'faitA', 'lu'];
+const BOOL = ['valeurs', 'age21'];
+const fmt = d => d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+class Component extends DCLogic {
+  state = (() => {
+    try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.f) return { f: { ...EMPTY, ...s.f }, step: s.step || 1, signature: s.signature || null, signedAt: s.signedAt || '', errors: {} }; } catch (e) {}
+    return { f: { ...EMPTY }, step: 1, signature: null, signedAt: '', errors: {} };
+  })();
+
+  on = Object.fromEntries([
+    ...TEXT.map(k => [k, e => this.set(k, e.target.value)]),
+    ...BOOL.map(k => [k, e => this.set(k, e.target.checked)]),
+  ]);
+
+  componentDidUpdate(pp, ps) {
+    // Le moteur ne transmet que les props précédentes : l'état précédent est mémorisé ici.
+    ps = ps || this._prevState || {};
+    try {
+    if (this.cardEl && (ps.step !== this.state.step || ps.f !== this.state.f)) this.drawCard();
+    const { f, step, signature, signedAt } = this.state;
+    try { localStorage.setItem(KEY, JSON.stringify({ f, step, signature, signedAt })); } catch (e) {}
+    } finally { this._prevState = Object.assign({}, this.state); }
+  }
+
+  set(k, v) { this.setState(s => ({ f: { ...s.f, [k]: v }, errors: { ...s.errors, [k]: undefined } })); }
+
+  ageMin() { return this.props.ageMinimum ?? 21; }
+
+  age(iso) {
+    if (!iso) return null;
+    const b = new Date(iso), t = new Date();
+    let a = t.getFullYear() - b.getFullYear();
+    if (t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) a--;
+    return a;
+  }
+
+  validate1() {
+    const f = this.state.f, e = {}, req = 'Champ obligatoire.';
+    if (!f.type) e.type = 'Choisissez votre statut.';
+    ['nom', 'genre', 'nationalite', 'ville', 'regime', 'profession'].forEach(k => { if (!String(f[k]).trim()) e[k] = req; });
+    const a = this.age(f.naissance);
+    if (a === null) e.naissance = req;
+    else if (a < this.ageMin()) e.naissance = `L’adhésion est réservée aux personnes de ${this.ageMin()} ans révolus.`;
+    if (f.tel.replace(/\D/g, '').length < 9) e.tel = 'Numéro de téléphone invalide.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) e.email = 'Adresse e-mail invalide.';
+    if (!f.valeurs) e.valeurs = 'Vous devez confirmer votre adhésion aux valeurs de l’AFEL.';
+    if (!f.age21) e.age21 = `Vous devez certifier avoir ${this.ageMin()} ans révolus.`;
+    return e;
+  }
+
+  validate2() {
+    const f = this.state.f, e = {};
+    if (!f.image) e.image = 'Indiquez votre choix.';
+    if (!f.faitA.trim()) e.faitA = 'Champ obligatoire.';
+    if (!/^lu et approuv[ée]$/i.test(f.lu.trim())) e.lu = 'Écrivez exactement « Lu et approuvé ».';
+    if (!this.state.signature) e.signature = 'Votre signature est obligatoire.';
+    return e;
+  }
+
+  go(step) { this.setState({ step, errors: {} }); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  next = () => {
+    const e = this.validate1();
+    if (Object.keys(e).length) return this.setState({ errors: e });
+    if (!this.state.f.faitA) this.set('faitA', this.state.f.ville);
+    this.canvas = null;
+    this.go(2);
+  };
+
+  submit = () => {
+    const e = this.validate2();
+    if (Object.keys(e).length) return this.setState({ errors: e });
+    const signedAt = fmt(new Date());
+    try {
+      const all = JSON.parse(localStorage.getItem('afel-adhesions') || '[]');
+      all.push({ ...this.state.f, signature: this.state.signature, signedAt });
+      localStorage.setItem('afel-adhesions', JSON.stringify(all));
+    } catch (err) {}
+    this.setState({ signedAt });
+    this.go(3);
+  };
+
+  sigRef = el => {
+    if (!el || el === this.canvas) return;
+    this.canvas = el;
+    const dpr = window.devicePixelRatio || 1;
+    el.width = el.clientWidth * dpr; el.height = el.clientHeight * dpr;
+    const ctx = el.getContext('2d');
+    ctx.scale(dpr, dpr); ctx.lineWidth = 2.4; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#283D5C';
+    if (this.state.signature) { const img = new Image(); img.onload = () => ctx.drawImage(img, 0, 0, el.clientWidth, el.clientHeight); img.src = this.state.signature; }
+    let drawing = false;
+    const pt = ev => { const r = el.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; };
+    el.addEventListener('pointerdown', ev => { drawing = true; el.setPointerCapture(ev.pointerId); const [x, y] = pt(ev); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 0.1, y + 0.1); ctx.stroke(); });
+    el.addEventListener('pointermove', ev => { if (!drawing) return; const [x, y] = pt(ev); ctx.lineTo(x, y); ctx.stroke(); });
+    const end = () => { if (!drawing) return; drawing = false; this.setState(s => ({ signature: el.toDataURL('image/png'), errors: { ...s.errors, signature: undefined } })); };
+    el.addEventListener('pointerup', end); el.addEventListener('pointerleave', end);
+  };
+
+  clearSig = () => {
+    const el = this.canvas; if (el) el.getContext('2d').clearRect(0, 0, el.width, el.height);
+    this.setState({ signature: null });
+  };
+
+  cardRef = el => { this.cardEl = el; if (el) this.drawCard(); };
+  imgCache = {};
+  loadImg(src) {
+    if (this.imgCache[src]) return this.imgCache[src];
+    return (this.imgCache[src] = new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; }));
+  }
+  memberNo() {
+    const s = (this.state.f.nom || '') + '|' + (this.state.signedAt || '');
+    let h = 7; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+    return 'AFEL-' + new Date().getFullYear() + '-' + String(h % 100000).padStart(5, '0');
+  }
+  onPhoto = e => {
+    const file = e.target.files && e.target.files[0]; if (!file) return;
+    const r = new FileReader();
+    r.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const c = document.createElement('canvas'), S = 400, k = Math.max(S / img.width, S / img.height);
+        c.width = S; c.height = S; c.getContext('2d').drawImage(img, (S - img.width * k) / 2, (S - img.height * k) / 2, img.width * k, img.height * k);
+        this.setState({ photo: c.toDataURL('image/jpeg', 0.85) }, () => this.drawCard());
+      };
+      img.src = r.result;
+    };
+    r.readAsDataURL(file);
+  };
+  async drawCard() {
+    const cv = this.cardEl; if (!cv) return;
+    try { await Promise.all(['700 40px Quicksand', '700 30px "Dancing Script"', '600 20px Nunito'].map(f => document.fonts.load(f))); } catch (e) {}
+    const [sil, frise, photo] = await Promise.all([this.loadImg('assets/silhouettes-reverse.svg'), this.loadImg('assets/ornement-frise-blanc.svg'), this.state.photo ? this.loadImg(this.state.photo) : null]);
+    if (!this.cardEl) return;
+    const x = cv.getContext('2d'), W = 1012, H = 638, f = this.state.f;
+    const rr = (a, b, w, h, r) => { x.beginPath(); x.moveTo(a + r, b); x.arcTo(a + w, b, a + w, b + h, r); x.arcTo(a + w, b + h, a, b + h, r); x.arcTo(a, b + h, a, b, r); x.arcTo(a, b, a + w, b, r); x.closePath(); };
+    x.clearRect(0, 0, W, H); x.save(); rr(0, 0, W, H, 36); x.clip();
+    x.fillStyle = '#283D5C'; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#1F3150'; x.beginPath(); x.moveTo(W * 0.62, 0); x.lineTo(W, 0); x.lineTo(W, H); x.lineTo(W * 0.48, H); x.closePath(); x.fill();
+    if (frise) { x.globalAlpha = 0.18; const fh = 70, fw = frise.width * fh / frise.height || 400; for (let i = 0; i < W; i += fw) x.drawImage(frise, i, H - fh - 18, fw, fh); x.globalAlpha = 1; }
+    const g = x.createLinearGradient(0, 0, W, 0); g.addColorStop(0, '#35BDB2'); g.addColorStop(0.45, '#F4A340'); g.addColorStop(0.8, '#A01D1D'); g.addColorStop(1, 'rgba(160,29,29,0)');
+    x.fillStyle = g; x.fillRect(0, 0, W, 10);
+    if (sil) x.drawImage(sil, 56, 50, 110, 110 * (sil.height / sil.width || 0.8));
+    x.fillStyle = '#FFFFFF'; x.font = '700 40px Quicksand'; x.textBaseline = 'alphabetic'; x.fillText('A F E L', 186, 100);
+    x.fillStyle = '#C9D3E0'; x.font = '600 19px Nunito'; x.fillText('Association Femme en Lumière', 188, 132);
+    x.font = '700 20px Quicksand'; const vip = 'V I P   P R E M I U M', vw = x.measureText(vip).width;
+    x.strokeStyle = '#F4A340'; x.lineWidth = 2.5; rr(W - vw - 104, 62, vw + 48, 50, 25); x.stroke();
+    x.fillStyle = '#F4A340'; x.fillText(vip, W - vw - 80, 95);
+    const px = 56, py = 210, ps = 230;
+    x.save(); rr(px, py, ps, ps, 24); x.clip(); x.fillStyle = '#35BDB2'; x.fillRect(px, py, ps, ps);
+    if (photo) x.drawImage(photo, px, py, ps, ps);
+    else { x.fillStyle = '#283D5C'; x.font = '700 110px Quicksand'; x.textAlign = 'center'; x.fillText((f.nom.trim()[0] || 'A').toUpperCase(), px + ps / 2, py + ps / 2 + 38); x.textAlign = 'left'; }
+    x.restore(); x.strokeStyle = '#F4A340'; x.lineWidth = 4; rr(px - 2, py - 2, ps + 4, ps + 4, 26); x.stroke();
+    const tx = 330; let name = (f.nom || 'Nom de la membre').toUpperCase(), fs = 48;
+    x.font = `700 ${fs}px Quicksand`; while (x.measureText(name).width > W - tx - 60 && fs > 28) { fs -= 2; x.font = `700 ${fs}px Quicksand`; }
+    x.fillStyle = '#FFFFFF'; x.fillText(name, tx, 262);
+    x.fillStyle = '#F4A340'; x.font = '700 26px Quicksand'; x.fillText((f.type || 'Membre').toUpperCase(), tx, 304);
+    const end = new Date(); end.setFullYear(end.getFullYear() + 1);
+    const rows = [['N° de membre', this.memberNo()], ['Membre depuis', this.state.signedAt || fmt(new Date())], ['Valable jusqu’au', fmt(end)]];
+    rows.forEach(([k, v], i) => { const y = 352 + i * 44; x.fillStyle = '#8FA3BF'; x.font = '600 18px Nunito'; x.fillText(k.toUpperCase(), tx, y); x.fillStyle = '#FFFFFF'; x.font = '700 22px Nunito'; x.fillText(v, tx + 210, y); });
+    x.fillStyle = '#F4A340'; x.font = '700 34px "Dancing Script"'; x.fillText('Brisons le silence, allumons l’espoir.', 56, H - 112);
+    x.fillStyle = '#C9D3E0'; x.font = '600 17px Nunito'; x.textAlign = 'right'; x.fillText('www.afel.cm · +237 658 595 657', W - 56, H - 112); x.textAlign = 'left';
+    x.restore();
+  }
+  downloadCard = () => {
+    const cv = this.cardEl; if (!cv) return;
+    this.drawCard().then(() => { const a = document.createElement('a'); a.download = 'Carte-VIP-AFEL-' + (this.state.f.nom || 'membre').trim().replace(/\s+/g, '-') + '.png'; a.href = cv.toDataURL('image/png'); document.body.appendChild(a); a.click(); a.remove(); });
+  };
+
+  reset = () => { this.canvas = null; this.setState({ f: { ...EMPTY }, step: 1, signature: null, signedAt: '', errors: {} }); };
+
+  renderVals() {
+    const { f, step, errors } = this.state;
+    const labels = ['Formulaire d’adhésion', 'Clause de confidentialité', 'Confirmation'];
+    const pick = (k, v) => () => this.set(k, v);
+    const sel = on => ({ b: on ? '#35BDB2' : '#C9D3E0', bg: on ? '#EAF8F6' : '#FFFFFF' });
+    const types = ["Membre","Bienfaiteur","Médecin bénévole","Sponsor","Membre d’honneur","Sympathisant(e)"].map(label => { const st = sel(f.type === label); return { label, border: st.b, bg: st.bg, pick: pick('type', label) }; });
+    const prenom = (f.nom.trim().split(/\s+/).pop()) || '';
+    return {
+      f, err: errors, on: this.on, ageMin: this.ageMin(),
+      isStep1: step === 1, isStep2: step === 2, isStep3: step === 3,
+      steps: labels.map((label, i) => ({ n: `0${i + 1}`, label, bar: i + 1 <= step ? '#35BDB2' : '#DDE3EA', fg: i + 1 === step ? '#283D5C' : (i + 1 < step ? '#35BDB2' : '#8A97A8') })),
+      types,
+      imgOui: f.image === 'oui', imgNon: f.image === 'non',
+      pickImgOui: pick('image', 'oui'), pickImgNon: pick('image', 'non'),
+      imageLabel: f.image === 'oui' ? 'Autorisé' : 'Non autorisé',
+      today: fmt(new Date()), signedAt: this.state.signedAt,
+      initiale: (f.nom.trim()[0] || 'A').toUpperCase(), prenom,
+      next: this.next, back: () => { this.canvas = null; this.go(1); }, submit: this.submit,
+      cardRef: this.cardRef, onPhoto: this.onPhoto, downloadCard: this.downloadCard, photoLabel: this.state.photo ? 'Changer ma photo' : 'Ajouter ma photo',
+      sigRef: this.sigRef, clearSig: this.clearSig, reset: this.reset, print: () => window.print(),
+    };
+  }
+}
+</script>
+</body>
+</html>
