@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<script src="assets/vendor/react.production.min.js"></script>
+<script src="assets/vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <meta name="description" content="L'AFEL, à Yaoundé, informe, écoute et accompagne les femmes atteintes du SMOP, nouveau nom du SOPK. Rejoignez le mouvement.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="assets/afel-fonts.css">
+<script src="assets/vendor/gsap.min.js"></script>
 <style>html,body{margin:0;background:#283D5C}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}</style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;background:#283D5C;color:#FFFFFF;font-family:'Nunito',sans-serif;font-size:18px;line-height:1.55">
@@ -110,13 +111,13 @@
     </div></div>
   </div>
   <div style="position:absolute;inset:0;clip-path:{{ clipP }}">
-    <img src="assets/photo-cover.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%">
+    <img src="assets/photo-cover.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%">
     <div style="position:absolute;inset:0;background:#283D5C;opacity:0.5"></div>
     <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
       <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#FFFFFF"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" style="display:block;width:1.15em;height:.7em"><path fill="#FFFFFF" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
     </div></div>
   </div>
-  <div style="position:absolute;inset:0;background:rgba(244,163,64,0.82);clip-path:{{ clipO }}">
+  <div style="position:absolute;inset:0;background:#F4A340;clip-path:{{ clipO }}">
     <canvas data-vgrid data-color="rgba(40,61,92,0.16)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
     <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
       <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#283D5C"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" style="display:block;width:1.15em;height:.7em"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
@@ -133,7 +134,7 @@
 </section>
 
 <section id="smop" data-scene aria-labelledby="t-smop" style="position:relative;z-index:2;min-height:{{ sMinH }};overflow:hidden;background:#283D5C;display:flex;flex-direction:column;--x1:0%;--x2:0%;clip-path:polygon(var(--x1) 0,100% 0,100% 100%,var(--x2) 100%)">
-  <img data-smop-bg src="assets/fond-pas-seule.png" alt="" style="position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;object-position:center 72%;pointer-events:none">
+  <img data-smop-bg src="assets/fond-pas-seule.webp" alt="" style="position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;object-position:center 72%;pointer-events:none">
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,61,92,0.78) 0%,rgba(40,61,92,0.45) 45%,rgba(40,61,92,0.55) 70%,rgba(40,61,92,0.75) 100%);pointer-events:none"></div>
   <div data-smop-in style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;padding:{{ pad }}">
     <div style="display:grid;grid-template-columns:{{ cols2 }};gap:4vw;align-items:center">
@@ -154,7 +155,7 @@
 </section>
 
 <section id="presidente" data-scene aria-labelledby="t-pres" style="position:relative;z-index:3;min-height:{{ sMinH }};overflow:hidden;background:#283D5C;--y1:0%;--y2:0%;--y3:0%;--y4:0%;--x2:10%;--x3:75%;clip-path:polygon(0 var(--y1),var(--x2) var(--y2),var(--x3) var(--y3),100% var(--y4),100% 100%,0 100%)">
-  <img data-pbg src="assets/photo-dos.jpg" alt="" style="position:absolute;left:0;top:-4%;width:100%;height:108%;object-fit:cover;object-position:center 20%">
+  <img data-pbg src="assets/photo-dos.webp" alt="" style="position:absolute;left:0;top:-4%;width:100%;height:108%;object-fit:cover;object-position:center 20%">
   <div style="position:absolute;inset:0;background:#283D5C;opacity:0.82"></div>
   <div style="position:relative;height:100%;min-height:inherit;display:grid;grid-template-columns:{{ cols3 }};gap:4vw;align-items:center;padding:{{ pad }}">
     <h2 id="t-pres" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(44px, min(6.4vw, 11vh), 130px);line-height:.9;color:#F4A340;writing-mode:{{ vMode }};transform:{{ vRot }}"><span data-prot style="display:block">Née à<br>Yaoundé</span></h2>
@@ -167,7 +168,7 @@
       <div data-pphoto style="position:relative;width:min(300px, 30vh);aspect-ratio:420/485;cursor:pointer;will-change:transform">
         <div data-pframe aria-hidden="true" style="position:absolute;inset:0;transform:translate(14px,14px);will-change:transform"><div data-pframeh style="position:absolute;inset:0;background:#F4A340;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%);will-change:transform"><div data-pframec style="position:absolute;inset:0;background:#35BDB2;opacity:0"></div></div></div>
         <div style="position:absolute;inset:0;background:#35BDB2;overflow:hidden;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)">
-          <div data-pzoom style="position:absolute;inset:0;will-change:transform;transform-origin:50% 30%"><img data-pimg src="assets/presidente-action.jpg" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform-origin:50% 30%;will-change:transform"></div>
+          <div data-pzoom style="position:absolute;inset:0;will-change:transform;transform-origin:50% 30%"><img data-pimg src="assets/presidente-action.webp" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform-origin:50% 30%;will-change:transform"></div>
           <div data-pcur aria-hidden="true" style="position:absolute;inset:-2px;background:#35BDB2;will-change:transform"></div>
         </div>
       </div>
@@ -182,15 +183,15 @@
 
 <section id="actions" data-scene aria-labelledby="t-act" style="position:relative;z-index:4;min-height:{{ sMinH }};overflow:hidden;background:#35BDB2;color:#283D5C;--s:50%;clip-path:polygon(0 calc(50% - var(--s)),100% calc(50% - var(--s)),100% calc(50% + var(--s)),0 calc(50% + var(--s)))">
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none">
-    <img data-abg src="assets/action-1-sensibiliser.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;opacity:1;will-change:opacity,transform">
-    <img data-abg src="assets/photo-dos.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0;will-change:opacity,transform">
-    <img data-abg src="assets/action-3-orienter.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:0;will-change:opacity,transform">
-    <img data-abg src="assets/action-4-bienetre.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 35%;opacity:0;will-change:opacity,transform">
-    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(53,189,178,0.93) 0%,rgba(53,189,178,0.8) 45%,rgba(53,189,178,0.88) 100%)"></div>
+    <img data-abg src="assets/action-1-sensibiliser.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;opacity:1;will-change:opacity,transform">
+    <img data-abg src="assets/photo-dos.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0;will-change:opacity,transform">
+    <img data-abg src="assets/action-3-orienter.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:0;will-change:opacity,transform">
+    <img data-abg src="assets/action-4-bienetre.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 35%;opacity:0;will-change:opacity,transform">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(53,189,178,0.97) 0%,rgba(53,189,178,0.92) 45%,rgba(53,189,178,0.95) 100%)"></div>
   </div>
   <div style="position:relative;height:100%;min-height:inherit;display:grid;grid-template-columns:{{ cols2 }};gap:4vw;padding:{{ padX }}">
     <div style="display:flex;flex-direction:column;justify-content:center;gap:5vh;padding:{{ padY }}">
-      <h2 id="t-act" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(46px, min(6.2vw, 11.5vh), 124px);line-height:.94;color:#283D5C"><span style="display:block;overflow:hidden"><span data-al style="display:block">Une cause</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">exige</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">une</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">communauté.</span></span></h2>
+      <h2 id="t-act" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(5.2vw, 11.5vh), 112px);line-height:.94;color:#283D5C"><span style="display:block;overflow:hidden"><span data-al style="display:block">Une cause</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">exige</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">une</span></span><span style="display:block;overflow:hidden"><span data-al style="display:block">communauté.</span></span></h2>
       <div><a data-btn href="pages.html#actions" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#283D5C;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Voir toutes nos actions</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Voir toutes nos actions</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a></div>
     </div>
     <div data-awin style="position:relative;height:{{ aWinH }};overflow:{{ aWinO }}">
@@ -226,9 +227,9 @@
           </div>
         </div>
         <div ref="{{ carRef }}" style="display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px">
-          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/action-1-sensibiliser.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Le SMOP expliqué aux lycéennes</h3><span style="font-size:17px">14 septembre 2026</span></article>
-          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/photo-dos.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cercle de parole d’octobre</h3><span style="font-size:17px">26 octobre 2026</span></article>
-          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/action-3-orienter.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Journée de consultations gratuites</h3><span style="font-size:17px">18 octobre 2026</span></article>
+          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/action-1-sensibiliser.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Le SMOP expliqué aux lycéennes</h3><span style="font-size:17px">14 septembre 2026</span></article>
+          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/photo-dos.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cercle de parole d’octobre</h3><span style="font-size:17px">26 octobre 2026</span></article>
+          <article style="flex:0 0 min(260px, 78%);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px"><div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C"><img src="assets/action-3-orienter.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%"><span style="position:absolute;right:8px;top:8px;background:#FFFFFF;color:#A01D1D;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Exemple</span></div><h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;line-height:1.2">Journée de consultations gratuites</h3><span style="font-size:17px">18 octobre 2026</span></article>
         </div>
       </div>
     </div>
@@ -238,15 +239,15 @@
 
 <section id="agir" data-scene aria-labelledby="t-agir" style="position:relative;z-index:6;min-height:{{ sMinH }};overflow:hidden;background:#283D5C;display:flex;flex-direction:column;--g1:0%;--g2:0%;clip-path:polygon(0 var(--g1),100% var(--g2),100% 100%,0 100%)">
   <h2 id="t-agir" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);margin:0">Comment agir</h2>
-  <a data-band href="{{ waHref }}" target="_blank" rel="noopener" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#35BDB2;color:#283D5C;text-decoration:none;overflow:hidden"><img src="assets/band-parler.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:60% 35%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(53,189,178,0.94) 0%,rgba(53,189,178,0.82) 45%,rgba(53,189,178,0.55) 100%)"></span>
+  <a data-band href="{{ waHref }}" target="_blank" rel="noopener" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#35BDB2;color:#283D5C;text-decoration:none;overflow:hidden"><img src="assets/band-parler.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:60% 35%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(53,189,178,0.97) 0%,rgba(53,189,178,0.92) 45%,rgba(53,189,178,0.85) 100%)"></span>
     <span style="position:relative;display:block;overflow:hidden;flex:1;min-width:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(8.4vw, 15vh), 170px);line-height:1.04"><span data-bandl style="display:block">Parler</span><span data-bandl aria-hidden="true" style="position:absolute;left:0;top:100%;height:100%;display:flex;align-items:center;white-space:nowrap;font-size:.5em">Parlez à quelqu’un</span></span>
     <svg viewBox="0 0 100 60" style="flex:none;width:min(9vw, 15vh);min-width:56px;height:auto;display:block"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg>
   </a>
-  <a data-band href="adherer.html" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#F4A340;color:#283D5C;text-decoration:none;overflow:hidden"><img src="assets/band-rejoindre.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:65% 40%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(244,163,64,0.94) 0%,rgba(244,163,64,0.82) 45%,rgba(244,163,64,0.55) 100%)"></span>
+  <a data-band href="adherer.html" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#F4A340;color:#283D5C;text-decoration:none;overflow:hidden"><img src="assets/band-rejoindre.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:65% 40%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(244,163,64,0.97) 0%,rgba(244,163,64,0.92) 45%,rgba(244,163,64,0.85) 100%)"></span>
     <span style="position:relative;display:block;overflow:hidden;flex:1;min-width:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(8.4vw, 15vh), 170px);line-height:1.04"><span data-bandl style="display:block">Rejoindre</span><span data-bandl aria-hidden="true" style="position:absolute;left:0;top:100%;height:100%;display:flex;align-items:center;white-space:nowrap;font-size:.5em">Rejoignez le mouvement</span></span>
     <svg viewBox="0 0 100 60" style="flex:none;width:min(9vw, 15vh);min-width:56px;height:auto;display:block"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg>
   </a>
-  <a data-band href="pages.html#don" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#A01D1D;color:#FFFFFF;text-decoration:none;overflow:hidden"><img src="assets/band-soutenir.png" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:70% 55%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(160,29,29,0.94) 0%,rgba(160,29,29,0.8) 45%,rgba(160,29,29,0.55) 100%)"></span>
+  <a data-band href="pages.html#don" style="position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:{{ bandMin }};display:flex;align-items:center;justify-content:space-between;gap:3vw;padding:{{ bandPad }};background:#A01D1D;color:#FFFFFF;text-decoration:none;overflow:hidden"><img src="assets/band-soutenir.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:70% 55%;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.25,1,.5,1)" style-hover="transform:scale(1.1)"><span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(160,29,29,0.97) 0%,rgba(160,29,29,0.92) 45%,rgba(160,29,29,0.85) 100%)"></span>
     <span style="position:relative;display:block;overflow:hidden;flex:1;min-width:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px, min(8.4vw, 15vh), 170px);line-height:1.04"><span data-bandl style="display:block">Soutenir</span><span data-bandl aria-hidden="true" style="position:absolute;left:0;top:100%;height:100%;display:flex;align-items:center;white-space:nowrap;font-size:.5em">Don ou partenariat</span></span>
     <svg viewBox="0 0 100 60" style="flex:none;width:min(9vw, 15vh);min-width:56px;height:auto;display:block"><path fill="#FFFFFF" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg>
   </a>
@@ -281,7 +282,7 @@
 </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;scrollLength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.85,&quot;min&quot;:0.5,&quot;max&quot;:1.5,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Défilement&quot;},&quot;snap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Défilement&quot;},&quot;alwaysPreload&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Préchargeur&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;scrollLength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.85,&quot;min&quot;:0.5,&quot;max&quot;:1.5,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Défilement&quot;},&quot;snap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Défilement&quot;},&quot;alwaysPreload&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Préchargeur&quot;}}">
 const M = window.__afelM || (window.__afelM = (() => {
   const m = { x: -1e4, y: -1e4, v: 0, mouse: false };
   window.addEventListener('pointermove', e => { m.mouse = e.pointerType === 'mouse'; const d = Math.hypot(e.clientX - m.x, e.clientY - m.y); m.v = m.v * 0.8 + Math.min(d, 80) * 0.2; m.x = e.clientX; m.y = e.clientY; }, { passive: true });
@@ -294,7 +295,7 @@ function makeGrid(cv, still) {
   let w = 0, h = 0, lines = [], raf = 0, alive = true, vis = true;
   const t0 = performance.now();
   const build = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2); w = cv.clientWidth; h = cv.clientHeight; if (!w || !h) return;
+    const dpr = 1; w = cv.clientWidth; h = cv.clientHeight; if (!w || !h) return;
     cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const gap = 25 * (window.innerWidth >= 1025 ? 1 : 0.65), n = Math.ceil(w / gap) + 8; lines = [];
     for (let i = -4; i < n; i++) {
@@ -307,8 +308,8 @@ function makeGrid(cv, still) {
   };
   const draw = now => {
     const t = now - t0; ctx.clearRect(0, 0, w, h); ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.beginPath();
-    const r = cv.getBoundingClientRect(), mx = M.x - r.left, my = M.y - r.top;
     const R = Math.hypot(window.innerWidth, window.innerHeight) * 0.1, act = M.mouse && M.v > 0.5 && !still;
+    let mx = 0, my = 0; if (act) { const r = cv.getBoundingClientRect(); mx = M.x - r.left; my = M.y - r.top; }
     M.v *= 0.985;
     for (const pts of lines) for (let j = 0; j < pts.length; j++) {
       const p = pts[j];
@@ -326,7 +327,8 @@ function makeGrid(cv, still) {
   let rzT = 0, lw = 0, lh = 0;
   const ro = new ResizeObserver(() => { if (cv.clientWidth === lw && cv.clientHeight === lh) return; lw = cv.clientWidth; lh = cv.clientHeight; clearTimeout(rzT); rzT = setTimeout(() => { build(); if (still) draw(performance.now()); }, 60); }); ro.observe(cv);
   const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; }); io.observe(cv);
-  const loop = now => { if (!alive) return; if (!cv.isConnected) { alive = false; ro.disconnect(); io.disconnect(); return; } raf = requestAnimationFrame(loop); if (!vis || document.hidden) return; draw(now); };
+  const loop = now => { if (!alive) return; if (!cv.isConnected) { alive = false; ro.disconnect(); io.disconnect(); return; } raf = requestAnimationFrame(loop); if (!vis || document.hidden) return; if (now - lastDraw < 32) return; lastDraw = now; draw(now); };
+  let lastDraw = 0;
   if (still) draw(performance.now()); else raf = requestAnimationFrame(loop);
   return { cv, stop() { alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); } };
 }
@@ -542,7 +544,7 @@ class Component extends DCLogic {
     const onScroll = () => {
       const r0 = range(), p = Math.max(0, Math.min(1, (window.scrollY - r0.start) / Math.max(1, r0.end - r0.start)));
       if (document.hidden) { g.killTweensOf(tl); tl.progress(p); }
-      else g.to(tl, { progress: p, duration: 0.6, ease: 'power2.out', overwrite: true });
+      else g.to(tl, { progress: p, duration: 0.4, ease: 'power2.out', overwrite: true });
       if (this.gauge) this.gauge.style.height = 'calc((100% - 72px) * ' + p.toFixed(4) + ')';
       clearTimeout(snapT);
       if (this.props.snap !== false) snapT = setTimeout(() => {
@@ -674,7 +676,7 @@ class Component extends DCLogic {
     const L = 'calc(72px + 5vw)';
     const wa = 'https://wa.me/237658595657?text=' + encodeURIComponent('Bonjour Femme en Lumière, je souhaite être accompagnée.');
     const links = [['Comprendre le SMOP', 'smop'], ['Nos actions', 'actions'], ['Témoignages', 'paroles'], ['L’association', 'presidente'], ['S’engager', 'agir'], ['Devenir partenaire', 'partenaire'], ['Faire un don', 'don'], ['Contact', 'contact']];
-    const PH = { smop: ['assets/hero-smop.png', '70% 25%'], actions: ['assets/hero-actions.jpg', '40% 30%'], paroles: ['assets/photo-dos.jpg', 'center 25%'], presidente: ['assets/presidente-action.jpg', '50% 22%'], agir: ['assets/hero-engager.jpg', '70% 40%'], partenaire: ['assets/action-3-orienter.jpg', 'center 40%'], don: ['assets/action-4-bienetre.jpg', '70% 35%'], contact: ['assets/photo-cover.jpg', 'center'], adherer: ['assets/action-1-sensibiliser.png', 'center 60%'], vip: ['assets/presidente-action.jpg', '50% 30%'] };
+    const PH = { smop: ['assets/hero-smop.webp', '70% 25%'], actions: ['assets/hero-actions.webp', '40% 30%'], paroles: ['assets/photo-dos.webp', 'center 25%'], presidente: ['assets/presidente-action.webp', '50% 22%'], agir: ['assets/hero-engager.webp', '70% 40%'], partenaire: ['assets/action-3-orienter.webp', 'center 40%'], don: ['assets/action-4-bienetre.webp', '70% 35%'], contact: ['assets/photo-cover.webp', 'center'], adherer: ['assets/action-1-sensibiliser.webp', 'center 60%'], vip: ['assets/presidente-action.webp', '50% 30%'] };
     const act = this.state.mKey || 'contact', subOpen = !!this.state.subOpen;
     const goFn = e => { e.preventDefault(); const href = e.currentTarget.getAttribute('href'); const el = this.menuEl; if (el) { el.style.transition = 'opacity .25s'; el.querySelectorAll('[data-mla],[data-msoc],[data-mphoto]').forEach(n => { n.style.transition = 'opacity .25s, transform .3s'; n.style.opacity = '0'; n.style.transform = 'translateY(-20px)'; }); } setTimeout(() => { window.location.href = href; }, 320); };
     const P = id => 'pages.html#' + id;

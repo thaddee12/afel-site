@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<script src="assets/vendor/react.production.min.js"></script>
+<script src="assets/vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/afel-fonts.css">
 <style>html,body{margin:0;background:#FFFFFF}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}@keyframes afelUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}@keyframes afelZoom{from{transform:scale(1.08)}to{transform:none}}@keyframes afelMenu{from{clip-path:polygon(0 0,0 0,0 100%,0 100%)}to{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}}@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
 </helmet>
 <div style="position:relative;background:#FFFFFF;color:#283D5C;font-family:'Nunito',sans-serif;font-size:18px;line-height:1.6">
@@ -79,7 +80,7 @@
 
 <sc-if value="{{ isSmop }}" hint-placeholder-val="{{ true }}">
   <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;clip-path:polygon(0 0,100% 0,100% 90%,0 100%);overflow:hidden">
-    <img src="assets/hero-smop.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 20%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <img src="assets/hero-smop.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 20%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,#283D5C 0%,rgba(40,61,92,0.92) 35%,rgba(40,61,92,0.35) 65%,rgba(40,61,92,0.1) 100%);pointer-events:none"></div>
     <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">SMOP, nouveau nom du SOPK</span>
@@ -117,7 +118,7 @@
 
 <sc-if value="{{ isActions }}" hint-placeholder-val="{{ false }}">
   <section style="position:relative;background:#35BDB2;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)">
-    <img src="assets/hero-actions.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <img src="assets/hero-actions.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,#35BDB2 0%,rgba(53,189,178,0.9) 30%,rgba(53,189,178,0.35) 55%,rgba(53,189,178,0) 78%);pointer-events:none"></div>
     <div style="position:relative;max-width:640px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Notre mission</span>
@@ -178,7 +179,7 @@
 
 <sc-if value="{{ isAsso }}" hint-placeholder-val="{{ false }}">
   <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)">
-    <img src="assets/photo-dos.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%">
+    <img src="assets/photo-dos.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%">
     <div style="position:absolute;inset:0;background:#283D5C;opacity:0.84"></div>
     <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">Yaoundé, Cameroun</span>
@@ -193,7 +194,7 @@
       <p style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:34px;line-height:1.2;color:#F4A340">Brisons le silence, allumons l’espoir.</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
-      <div style="position:relative;width:min(340px,100%);aspect-ratio:420/485;background:#35BDB2;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)"><img src="assets/presidente-action.jpg" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%"></div>
+      <div style="position:relative;width:min(340px,100%);aspect-ratio:420/485;background:#35BDB2;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)"><img src="assets/presidente-action.webp" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%"></div>
       <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:24px;line-height:1.2">Ornella Brinda NGUELE BEKALE</div>
       <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#A01D1D">Présidente</div>
       <span style="border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px">[À FOURNIR : biographie et parcours]</span>
@@ -207,7 +208,7 @@
 
 <sc-if value="{{ isEngager }}" hint-placeholder-val="{{ false }}">
   <section style="position:relative;background:#F4A340;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)">
-    <img src="assets/hero-engager.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 40%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <img src="assets/hero-engager.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 40%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,#F4A340 0%,rgba(244,163,64,0.94) 32%,rgba(244,163,64,0.4) 58%,rgba(244,163,64,0) 80%);pointer-events:none"></div>
     <div style="position:relative;max-width:640px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Rejoignez le mouvement</span>
@@ -351,20 +352,20 @@ const TEMS = [
 ];
 const EVENTS = [
   [
-    { date: '14 sept. 2026', title: 'Le SMOP expliqué aux lycéennes', place: 'Lycée bilingue d’Essos, Yaoundé', text: 'Une heure d’échange avec 120 élèves de terminale sur les signes du SMOP et l’importance de consulter.', img: 'assets/hero-actions.jpg', pos: '36% 30%' },
-    { date: '1er sept. 2026', title: 'Mois de sensibilisation au SMOP', place: 'En ligne, TikTok et Instagram', text: 'Une série de vidéos courtes pour faire connaître le nouveau nom du SOPK.', img: 'assets/photo-cover.jpg', pos: 'center 40%' },
+    { date: '14 sept. 2026', title: 'Le SMOP expliqué aux lycéennes', place: 'Lycée bilingue d’Essos, Yaoundé', text: 'Une heure d’échange avec 120 élèves de terminale sur les signes du SMOP et l’importance de consulter.', img: 'assets/hero-actions.webp', pos: '36% 30%' },
+    { date: '1er sept. 2026', title: 'Mois de sensibilisation au SMOP', place: 'En ligne, TikTok et Instagram', text: 'Une série de vidéos courtes pour faire connaître le nouveau nom du SOPK.', img: 'assets/photo-cover.webp', pos: 'center 40%' },
   ],
   [
-    { date: '26 oct. 2026', title: 'Cercle de parole mensuel', place: 'Messamendongo, Cité de la Paix', text: 'Quinze femmes réunies pour partager leur quotidien avec le SMOP, en toute confidentialité.', img: 'assets/photo-dos.jpg', pos: 'center 25%' },
-    { date: '28 sept. 2026', title: 'Après-midi entre femmes', place: 'Yaoundé IV', text: 'Un moment convivial pour accueillir les nouvelles membres et créer des liens.', img: 'assets/hero-engager.jpg', pos: '78% 40%' },
+    { date: '26 oct. 2026', title: 'Cercle de parole mensuel', place: 'Messamendongo, Cité de la Paix', text: 'Quinze femmes réunies pour partager leur quotidien avec le SMOP, en toute confidentialité.', img: 'assets/photo-dos.webp', pos: 'center 25%' },
+    { date: '28 sept. 2026', title: 'Après-midi entre femmes', place: 'Yaoundé IV', text: 'Un moment convivial pour accueillir les nouvelles membres et créer des liens.', img: 'assets/hero-engager.webp', pos: '78% 40%' },
   ],
   [
-    { date: '18 oct. 2026', title: 'Journée de consultations', place: 'Yaoundé, avec des gynécologues partenaires', text: 'Quarante femmes reçues et orientées vers un suivi médical adapté.', img: 'assets/hero-smop.png', pos: '72% 20%' },
-    { date: '5 juil. 2026', title: 'Questions à une endocrinologue', place: 'Visioconférence', text: 'Une séance de questions-réponses pour mieux comprendre les traitements possibles.', img: 'assets/hero-actions.jpg', pos: '80% 30%' },
+    { date: '18 oct. 2026', title: 'Journée de consultations', place: 'Yaoundé, avec des gynécologues partenaires', text: 'Quarante femmes reçues et orientées vers un suivi médical adapté.', img: 'assets/hero-smop.webp', pos: '72% 20%' },
+    { date: '5 juil. 2026', title: 'Questions à une endocrinologue', place: 'Visioconférence', text: 'Une séance de questions-réponses pour mieux comprendre les traitements possibles.', img: 'assets/hero-actions.webp', pos: '80% 30%' },
   ],
   [
-    { date: '30 oct. 2026', title: 'Point bien-être trimestriel', place: 'Siège de l’AFEL', text: 'Chaque membre fait le point sur son parcours avec une bénévole référente.', img: 'assets/photo-dos.jpg', pos: 'center 55%' },
-    { date: '12 août 2026', title: 'Atelier alimentation et activité', place: 'Yaoundé IV', text: 'Des conseils pratiques et une marche collective pour bouger ensemble.', img: 'assets/hero-engager.jpg', pos: '60% 40%' },
+    { date: '30 oct. 2026', title: 'Point bien-être trimestriel', place: 'Siège de l’AFEL', text: 'Chaque membre fait le point sur son parcours avec une bénévole référente.', img: 'assets/photo-dos.webp', pos: 'center 55%' },
+    { date: '12 août 2026', title: 'Atelier alimentation et activité', place: 'Yaoundé IV', text: 'Des conseils pratiques et une marche collective pour bouger ensemble.', img: 'assets/hero-engager.webp', pos: '60% 40%' },
   ],
 ];
 const readHash = () => { const h = (location.hash || '').slice(1); return KEYS.includes(h) ? h : 'smop'; };
