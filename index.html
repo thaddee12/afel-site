@@ -607,10 +607,11 @@ class Component extends DCLogic {
       .to(el, { '--m1': '100%', duration: 0.65 }, 0.06)
       .to(lead, { '--l2': '100%', duration: 0.6 }, 0.2)
       .to(lead, { '--l1': '100%', duration: 0.7 }, 0.26)
-      .from(el.querySelectorAll('[data-mla]'), { yPercent: 110, rotation: 2, duration: 0.7, stagger: 0.045, ease: 'power3.out' }, 0.38)
-      .from(el.querySelector('[data-msoc]'), { y: 16, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.75);
+      // Départ et arrivée explicites : avec un simple .from(), la position finale des liens était mal lue et ils restaient cachés.
+      .fromTo(el.querySelectorAll('[data-mla]'), { y: 0, yPercent: 110, rotation: 2 }, { y: 0, yPercent: 0, rotation: 0, duration: 0.7, stagger: 0.045, ease: 'power3.out', clearProps: 'transform' }, 0.38)
+      .fromTo(el.querySelector('[data-msoc]'), { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', clearProps: 'transform,opacity' }, 0.75);
     if (ph) tl.fromTo(ph, { clipPath: 'polygon(100% 0,100% 0,100% 100%,100% 100%)' }, { clipPath: 'polygon(12% 0,100% 0,100% 100%,0 100%)', duration: 0.9, ease: 'power3.inOut' }, 0.35)
-      .from(ph.querySelector('img'), { scale: 1.18, duration: 1.2, ease: 'power3.out' }, 0.35);
+      .fromTo(ph.querySelector('img'), { scale: 1.18 }, { scale: 1, duration: 1.2, ease: 'power3.out', clearProps: 'transform' }, 0.35);
   }
 
 
