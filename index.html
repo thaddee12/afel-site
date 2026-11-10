@@ -14,7 +14,7 @@
 <meta name="description" content="L'AFEL, à Yaoundé, informe, écoute et accompagne les femmes atteintes du SMOP, nouveau nom du SOPK. Rejoignez le mouvement.">
 <link rel="stylesheet" href="assets/afel-fonts.css">
 <script src="assets/vendor/gsap.min.js"></script>
-<style>html,body{margin:0;background:#283D5C}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}</style>
+<style>html,body{margin:0;background:#283D5C}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}@media (min-width:700px) and (max-width:1024.98px){#smop [data-sl],#paroles blockquote{max-width:640px}}</style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;background:#283D5C;color:#FFFFFF;font-family:'Nunito',sans-serif;font-size:18px;line-height:1.55">
 
@@ -158,14 +158,14 @@
   <img data-pbg src="assets/photo-dos.webp" alt="" style="position:absolute;left:0;top:-4%;width:100%;height:108%;object-fit:cover;object-position:center 20%">
   <div style="position:absolute;inset:0;background:#283D5C;opacity:0.82"></div>
   <div style="position:relative;height:100%;min-height:inherit;display:grid;grid-template-columns:{{ cols3 }};gap:4vw;align-items:center;padding:{{ pad }}">
-    <h2 id="t-pres" style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(44px, min(6.4vw, 11vh), 130px);line-height:.9;color:#F4A340;writing-mode:{{ vMode }};transform:{{ vRot }}"><span data-prot style="display:block">Née à<br>Yaoundé</span></h2>
+    <h2 id="t-pres" style="margin:0;grid-column:{{ pSpan }};font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(44px, min(6.4vw, 11vh), 130px);line-height:.9;color:#F4A340;writing-mode:{{ vMode }};transform:{{ vRot }}"><span data-prot style="display:block">Née à<br>Yaoundé</span></h2>
     <div style="display:flex;flex-direction:column;gap:3vh;max-width:560px">
       <p data-pt style="margin:0;font-size:clamp(22px, min(2.1vw, 3.6vh), 36px);line-height:1.25;font-weight:600;text-wrap:pretty">Derrière Femme en Lumière, une femme qui a décidé de briser le silence.</p>
       <div data-pfilet style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 40%,#A01D1D 75%,rgba(160,29,29,0) 100%);transform-origin:0 50%"></div>
       <p data-pt style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">L'Association Femme en Lumière (AFEL) accompagne les femmes atteintes du SMOP, le syndrome métabolique ovarien polyendocrinien, nouveau nom du SOPK (syndrome des ovaires polykystiques). Notre mission : sensibiliser, informer, écouter et accompagner. Nous offrons un espace d'échange et de soutien où chaque femme peut comprendre le SMOP, partager son expérience et ne plus se sentir seule. Nous orientons nos membres vers des professionnels de santé pour un suivi adapté, et nous suivons l'évolution de leur bien-être dans la durée. Aucune femme ne devrait traverser le SMOP seule : rejoignez le mouvement.</p>
     </div>
     <div data-pt style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
-      <div data-pphoto style="position:relative;width:min(300px, 30vh);aspect-ratio:420/485;cursor:pointer;will-change:transform">
+      <div data-pphoto style="position:relative;width:min(300px, 30vh, 100%);aspect-ratio:420/485;cursor:pointer;will-change:transform">
         <div data-pframe aria-hidden="true" style="position:absolute;inset:0;transform:translate(14px,14px);will-change:transform"><div data-pframeh style="position:absolute;inset:0;background:#F4A340;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%);will-change:transform"><div data-pframec style="position:absolute;inset:0;background:#35BDB2;opacity:0"></div></div></div>
         <div style="position:absolute;inset:0;background:#35BDB2;overflow:hidden;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)">
           <div data-pzoom style="position:absolute;inset:0;will-change:transform;transform-origin:50% 30%"><img data-pimg src="assets/presidente-action.webp" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform-origin:50% 30%;will-change:transform"></div>
@@ -334,12 +334,12 @@ function makeGrid(cv, still) {
 
 class Component extends DCLogic {
   state = (() => {
-    const wide = window.innerWidth >= 1025;
+    const wide = window.innerWidth >= 1025, tab = !wide && window.innerWidth >= 700;
     const reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     let seen = false; try { seen = localStorage.getItem('afel-site-vu') === '1'; } catch (e) {}
     const saveData = !!(navigator.connection && navigator.connection.saveData);
     const force = !!(this.props && this.props.alwaysPreload);
-    return { wide, reduced, pinned: wide && !reduced, menu: false, showPre: !reduced && !saveData && (!seen || force) };
+    return { wide, tab, reduced, pinned: wide && !reduced, menu: false, showPre: !reduced && !saveData && (!seen || force) };
   })();
 
   rootRef = el => { this.root = el; };
@@ -391,8 +391,9 @@ class Component extends DCLogic {
   }
 
   handleResize() {
-    const wide = window.innerWidth >= 1025, pinned = wide && !this.state.reduced;
-    if (wide !== this.state.wide || pinned !== this.state.pinned) this.setState({ wide, pinned });
+    const wide = window.innerWidth >= 1025, pinned = wide && !this.state.reduced, tab = !wide && window.innerWidth >= 700;
+    if (wide !== this.state.wide || pinned !== this.state.pinned) this.setState({ wide, pinned, tab });
+    else if (tab !== this.state.tab) this.setState({ tab });
     else if (this.tl) window.dispatchEvent(new Event('scroll'));
   }
 
@@ -426,6 +427,7 @@ class Component extends DCLogic {
     if (this.lenis) { if (g) g.ticker.remove(this.lenisTick); this.lenis.destroy(); this.lenis = null; }
     if (this.unScroll) { this.unScroll(); this.unScroll = null; }
     if (this.io) { this.io.disconnect(); this.io = null; }
+    if (this.curIo) { this.curIo.disconnect(); this.curIo = null; }
     if (this.onVis) { document.removeEventListener('visibilitychange', this.onVis); this.onVis = null; }
     if (this.revealAll) { this.revealAll(); this.revealAll = null; }
     if (this.ctx) { this.ctx.revert(); this.ctx = null; }
@@ -435,14 +437,20 @@ class Component extends DCLogic {
   }
 
   buildFlow() {
-    if (this.state.reduced) return;
     const g = window.gsap, r = this.root;
+    // Rideau turquoise de la photo de la présidente : sans ce lever, la photo reste cachée sur téléphone et tablette.
+    const cur = r.querySelector('#presidente [data-pcur]'), ph = r.querySelector('#presidente [data-pphoto]');
+    if (this.state.reduced) { if (cur) g.set(cur, { yPercent: -102 }); return; }
+    if (cur && ph) {
+      this.curIo = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { g.to(cur, { yPercent: -102, duration: 1, ease: 'power2.inOut', delay: 0.15, force3D: true }); this.curIo.disconnect(); this.curIo = null; } }, { rootMargin: '0px 0px -12% 0px' });
+      this.curIo.observe(ph);
+    }
     this.hiddenEls = [];
     this.io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { this.hiddenEls = this.hiddenEls.filter(x => x !== en.target); g.to(en.target, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }); this.io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
     [...r.querySelectorAll('[data-scene]')].slice(1).forEach((s, i) => g.set(s, { clipPath: i % 2 ? 'polygon(0 0,100% 5vw,100% 100%,0 100%)' : 'polygon(0 5vw,100% 0,100% 100%,0 100%)', marginTop: '-5vw' }));
     r.querySelectorAll('#smop h2, #smop [data-sl], #presidente h2, #presidente [data-pt], #actions h2, #actions [data-aitem], #paroles h2, #paroles [data-pc], #agir [data-band], #contact [data-fin]').forEach(el =>
       { if (document.visibilityState === 'visible' && el.getBoundingClientRect().top > window.innerHeight * 0.92) { g.set(el, { y: 36, opacity: 0 }); this.io.observe(el); this.hiddenEls.push(el); } });
-    this.revealAll = () => { this.hiddenEls.forEach(el => g.set(el, { clearProps: 'opacity,transform' })); this.hiddenEls = []; if (this.io) this.io.disconnect(); };
+    this.revealAll = () => { this.hiddenEls.forEach(el => g.set(el, { clearProps: 'opacity,transform' })); this.hiddenEls = []; if (this.io) this.io.disconnect(); if (this.curIo) { this.curIo.disconnect(); this.curIo = null; if (cur) g.set(cur, { yPercent: -102 }); } };
     this.onVis = () => { if (document.hidden && this.revealAll) this.revealAll(); };
     document.addEventListener('visibilitychange', this.onVis);
   }
@@ -671,7 +679,7 @@ class Component extends DCLogic {
   };
 
   renderVals() {
-    const { wide, pinned, menu, showPre } = this.state;
+    const { wide, pinned, menu, showPre, tab } = this.state;
     const L = 'calc(72px + 5vw)';
     const wa = 'https://wa.me/237658595657?text=' + encodeURIComponent('Bonjour Femme en Lumière, je souhaite être accompagnée.');
     const links = [['Comprendre le SMOP', 'smop'], ['Nos actions', 'actions'], ['Témoignages', 'paroles'], ['L’association', 'presidente'], ['S’engager', 'agir'], ['Devenir partenaire', 'partenaire'], ['Faire un don', 'don'], ['Contact', 'contact']];
@@ -699,23 +707,23 @@ class Component extends DCLogic {
       closeL: wide ? '12px' : 'auto', closeR: wide ? 'auto' : '8px', closeT: wide ? 'calc(50% - 24px)' : '6px',
       menuCols: wide ? 'minmax(0,1.2fr) minmax(0,.8fr)' : 'minmax(0,1fr)', menuPad: wide ? '9vh 6vw 9vh ' + L : '80px 24px 100px',
       waR: wide ? '24px' : '16px',
-      heroMinH: wide ? '100vh' : '880px',
-      clipN: wide ? 'polygon(0 0,var(--ha) 0,var(--hb) 100%,0 100%)' : 'polygon(0 62%,100% 54%,100% 100%,0 100%)',
-      clipP: wide ? 'polygon(var(--ha) 0,var(--hc) 0,var(--hd) 100%,var(--hb) 100%)' : 'polygon(0 30%,100% 22%,100% 54%,0 62%)',
-      clipO: wide ? 'polygon(var(--hc) 0,100% 0,100% 100%,var(--hd) 100%)' : 'polygon(0 0,100% 0,100% 22%,0 30%)',
-      htL: wide ? L : '20px', htT: wide ? '15vh' : '84px', htS: wide ? 'min(8.6vw, 15vh)' : '11vw',
-      txL: wide ? L : '20px', txR: wide ? 'auto' : '20px', txB: wide ? '8vh' : '92px', txW: wide ? '440px' : 'none',
-      pad: wide ? '9vh 6vw 9vh ' + L : '96px 20px 72px',
-      padX: wide ? '0 6vw 0 ' + L : '96px 20px 72px', padY: wide ? '9vh 0' : '0',
+      heroMinH: wide ? '100vh' : tab ? 'max(880px, 100vh)' : '880px',
+      clipN: wide ? 'polygon(0 0,var(--ha) 0,var(--hb) 100%,0 100%)' : tab ? 'polygon(0 62%,100% 56%,100% 100%,0 100%)' : 'polygon(0 62%,100% 54%,100% 100%,0 100%)',
+      clipP: wide ? 'polygon(var(--ha) 0,var(--hc) 0,var(--hd) 100%,var(--hb) 100%)' : tab ? 'polygon(0 36%,100% 28%,100% 56%,0 62%)' : 'polygon(0 30%,100% 22%,100% 54%,0 62%)',
+      clipO: wide ? 'polygon(var(--hc) 0,100% 0,100% 100%,var(--hd) 100%)' : tab ? 'polygon(0 0,100% 0,100% 28%,0 36%)' : 'polygon(0 0,100% 0,100% 22%,0 30%)',
+      htL: wide ? L : tab ? '48px' : '20px', htT: wide ? '15vh' : tab ? '104px' : '84px', htS: wide ? 'min(8.6vw, 15vh)' : tab ? 'min(8vw, 72px)' : '11vw',
+      txL: wide ? L : tab ? '48px' : '20px', txR: wide ? 'auto' : tab ? '48px' : '20px', txB: wide ? '8vh' : tab ? '96px' : '92px', txW: wide ? '440px' : tab ? '600px' : 'none',
+      pad: wide ? '9vh 6vw 9vh ' + L : tab ? '128px 48px 96px' : '96px 20px 72px',
+      padX: wide ? '0 6vw 0 ' + L : tab ? '128px 48px 96px' : '96px 20px 72px', padY: wide ? '9vh 0' : '0',
       cols2: wide ? 'minmax(0,1.05fr) minmax(0,1fr)' : 'minmax(0,1fr)',
-      cols3: wide ? 'auto minmax(0,1.15fr) minmax(0,.85fr)' : 'minmax(0,1fr)',
+      cols3: wide ? 'auto minmax(0,1.15fr) minmax(0,.85fr)' : tab ? 'minmax(0,1.15fr) minmax(0,.85fr)' : 'minmax(0,1fr)', pSpan: tab ? '1 / -1' : 'auto',
       colsP: wide ? 'minmax(0,.9fr) minmax(0,1.1fr)' : 'minmax(0,1fr)',
-      colsF: wide ? 'auto minmax(0,1fr)' : 'minmax(0,1fr)',
+      colsF: wide || tab ? 'auto minmax(0,1fr)' : 'minmax(0,1fr)',
       sMinH: wide ? '100vh' : 'auto',
       vMode: wide ? 'vertical-rl' : 'horizontal-tb', vRot: wide ? 'rotate(180deg)' : 'none',
       aWinH: pinned ? '100vh' : 'auto', aWinO: pinned ? 'hidden' : 'visible', aGap: pinned ? '14vh' : '40px',
       offL: wide ? '1.8em' : '0',
-      bandPad: wide ? '0 6vw 0 ' + L : '28px 20px', bandMin: wide ? '0' : '150px',
+      bandPad: wide ? '0 6vw 0 ' + L : tab ? '36px 48px' : '28px 20px', bandMin: wide ? '0' : tab ? '190px' : '150px',
       carPrev: () => this.car && this.car.scrollBy({ left: -280, behavior: 'smooth' }),
       carNext: () => this.car && this.car.scrollBy({ left: 280, behavior: 'smooth' }),
     };

@@ -13,7 +13,7 @@
 <helmet>
 <link rel="stylesheet" href="assets/afel-fonts.css">
 <script src="./doc-page.js"></script>
-<style>body{margin:0}doc-page:not(:defined){visibility:hidden}a{color:#283D5C}a:hover{color:#35BDB2}</style>
+<style>body{margin:0}doc-page:not(:defined){visibility:hidden}a{color:#283D5C}a:hover{color:#35BDB2}@media print{body{zoom:1!important}}</style>
 </helmet>
 <doc-page size="a4">
 <section class="page" data-screen-label="01 Formulaire d’adhésion" style="background:#FFFFFF;position:relative;overflow:hidden;padding:0;box-sizing:border-box;font-family:'Nunito',sans-serif;color:#283D5C">
@@ -90,5 +90,13 @@
 </section>
 </doc-page>
 </x-dc>
+<script>
+// Sur téléphone et tablette, la feuille A4 est réduite pour tenir dans l'écran. L'impression reste en taille réelle.
+(function () {
+  var fit = function () { var w = document.documentElement.clientWidth, d = document.querySelector('doc-page'); if (!d) return; document.body.style.zoom = ''; var full = Math.max(d.scrollWidth, d.getBoundingClientRect().width) || 842; document.body.style.zoom = w < full ? String(w / full) : ''; };
+  addEventListener('resize', fit); addEventListener('load', fit); setTimeout(fit, 400);
+  addEventListener('beforeprint', function () { document.body.style.zoom = ''; }); addEventListener('afterprint', fit);
+})();
+</script>
 </body>
 </html>
