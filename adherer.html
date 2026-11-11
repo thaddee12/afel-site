@@ -13,10 +13,12 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="assets/afel-fonts.css">
-<style>body{margin:0;background:#F4F6F9}a{color:#283D5C}a:hover{color:#35BDB2}input,select,button{font-family:inherit}</style>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>[role=dialog],[role=dialog] *{box-sizing:border-box}body{margin:0;background:#F4F6F9}a{color:#283D5C}a:hover{color:#35BDB2}input,select,button{font-family:inherit}</style>
 </helmet>
 <div style="min-height:100vh;background:#F4F6F9;font-family:'Nunito',sans-serif;color:#283D5C;display:flex;flex-direction:column">
 
+<sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
   <header style="background:#FFFFFF;border-bottom:1px solid #E3E6EA;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <a href="index.html" aria-label="Retour à l’accueil AFEL" style="display:block;width:170px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:scale(1.04)"><dc-import name="Logo" variant="horizontal" theme="couleur" style="width:170px" hint-size="170px,40px"></dc-import></a>
     <nav aria-label="Navigation" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:15px;font-weight:700">
@@ -29,6 +31,60 @@
       <span>Espace adhérente</span>
     </div>
   </header>
+</sc-if>
+<sc-if value="{{ notWide }}" hint-placeholder-val="{{ false }}">
+  <header style="position:sticky;top:0;left:0;right:0;height:60px;z-index:100;background:#283D5C;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px">
+    <a href="index.html" aria-label="Accueil AFEL" style="display:block;width:180px"><dc-import name="Logo" variant="horizontal" theme="negatif" style="width:180px" hint-size="180px,42px"></dc-import></a>
+    <button type="button" onClick="{{ openMenu }}" aria-label="Ouvrir le menu" aria-expanded="{{ menuStr }}" style="min-height:44px;padding:0 14px 0 16px;border:none;border-radius:999px;background:#F4A340;color:#283D5C;cursor:pointer;display:flex;align-items:center;gap:10px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em;transition:background .25s" style-hover="background:#FFFFFF">MENU<span style="display:flex;flex-direction:column;gap:4px"><span style="display:block;width:20px;height:2.5px;background:#283D5C;border-radius:2px"></span><span style="display:block;width:20px;height:2.5px;background:#283D5C;border-radius:2px"></span><span style="display:block;width:20px;height:2.5px;background:#283D5C;border-radius:2px"></span></span></button>
+  </header>
+</sc-if>
+<sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+  <div ref="{{ menuRef }}" role="dialog" aria-modal="true" aria-label="Menu" style="position:fixed;inset:0;z-index:220;background:#F4A340;color:#283D5C;overflow:auto;--m1:100%;--m2:100%;clip-path:polygon(0 0,var(--m1) 0,var(--m2) 100%,0 100%)">
+    <canvas data-vgrid data-color="rgba(40,61,92,0.16)" data-flow="{{ mFlow }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+    <div data-mlead style="position:absolute;inset:0;z-index:3;background:#35BDB2;pointer-events:none;--l1:100%;--l2:100%;clip-path:polygon(var(--l1) 0,100% 0,100% 100%,var(--l2) 100%)"></div>
+    <button type="button" onClick="{{ closeMenu }}" aria-label="Fermer le menu" style="position:absolute;z-index:2;left:{{ closeL }};right:{{ closeR }};top:{{ closeT }};width:48px;height:48px;border:none;background:transparent;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M4 4l16 16M20 4L4 20" stroke="#283D5C" stroke-width="3"></path></svg></button>
+    <div style="position:relative;min-height:100%;display:grid;grid-template-columns:{{ menuCols }};gap:40px;align-items:center;padding:{{ menuPad }}">
+      <div style="display:flex;flex-direction:column;gap:32px;min-height:{{ mColH }};justify-content:{{ mColJ }}">
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:{{ mGap }};flex:{{ mUlFlex }};justify-content:{{ mUlJ }}">
+          <sc-for list="{{ menuLinks }}" as="l" hint-placeholder-count="6">
+            <li data-ml style="overflow:hidden;padding-right:12px;border-bottom:{{ l.line }};padding-bottom:{{ l.lpad }}" onMouseEnter="{{ l.enter }}">
+              <div style="display:flex;align-items:center;gap:16px">
+                <a data-mla href="{{ l.href }}" onClick="{{ l.go }}" onMouseEnter="{{ l.hover }}" onFocus="{{ l.hover }}" style="display:inline-block;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:{{ mFs }};line-height:1.08;color:{{ l.color }};text-decoration:none;transition:color .2s, transform .25s" style-hover="color:#A01D1D;transform:translateX(10px)">{{ l.label }}</a>
+                <sc-if value="{{ l.hasSubs }}">
+                  <button type="button" data-mla onClick="{{ l.toggle }}" aria-expanded="{{ l.openStr }}" aria-label="Afficher les façons de s’engager" style="flex:none;width:44px;height:44px;padding:0;border:2.5px solid #283D5C;border-radius:50%;background:{{ l.chevBg }};display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s"><svg viewBox="0 0 24 24" width="20" height="20" style="transform:{{ l.chev }};transition:transform .4s cubic-bezier(.65,0,.35,1)"><path d="M5 9l7 7 7-7" fill="none" stroke="#283D5C" stroke-width="3"></path></svg></button>
+                </sc-if>
+              </div>
+              <sc-if value="{{ l.hasSubs }}">
+                <div style="display:grid;grid-template-rows:{{ l.rows }};visibility:{{ l.vis }};transition:grid-template-rows .45s cubic-bezier(.65,0,.35,1), visibility .45s">
+                  <div style="overflow:hidden;min-height:0">
+                    <ul style="list-style:none;margin:0;padding:8px 0 14px 6px;display:flex;flex-direction:column;gap:2px">
+                      <sc-for list="{{ l.subs }}" as="s" hint-placeholder-count="4">
+                        <li><a href="{{ s.href }}" onClick="{{ s.go }}" onMouseEnter="{{ s.hover }}" onFocus="{{ s.hover }}" style="display:inline-flex;align-items:center;gap:12px;min-height:40px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:{{ mSubFs }};color:{{ s.color }};text-decoration:none;transition:color .2s, transform .25s" style-hover="color:#A01D1D;transform:translateX(8px)"><span style="display:block;width:20px;height:3px;background:currentColor"></span>{{ s.label }}</a></li>
+                      </sc-for>
+                    </ul>
+                  </div>
+                </div>
+              </sc-if>
+            </li>
+          </sc-for>
+        </ul>
+        <div data-msoc style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <a href="https://www.tiktok.com/@femmeenlumiere.smop" target="_blank" rel="noopener" aria-label="TikTok" style="width:{{ socS }};height:{{ socS }};border-radius:50%;background:#283D5C;color:#F4A340;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .25s, background .25s, color .25s" style-hover="transform:translateY(-3px);background:#A01D1D;color:#FFFFFF"><svg viewBox="0 0 24 24" width="46%" height="46%" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.4 2.3 1.7 3.7 3.9 3.9v2.6c-1.3.1-2.5-.3-3.8-1v5.9c0 4.2-3.4 6.9-7 5.9-2.3-.7-3.8-2.8-3.7-5.3.1-2.6 2.1-4.7 4.7-4.8.3 0 .6 0 1 .1v2.8c-.3-.1-.6-.2-1-.2-1.2 0-2.1 1-2 2.2 0 1.2 1 2.1 2.2 2 1.2 0 2-1 2-2.2V3z"></path></svg></a>
+          <a href="https://www.instagram.com/afel_237" target="_blank" rel="noopener" aria-label="Instagram" style="width:{{ socS }};height:{{ socS }};border-radius:50%;background:#283D5C;color:#F4A340;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .25s, background .25s, color .25s" style-hover="transform:translateY(-3px);background:#A01D1D;color:#FFFFFF"><svg viewBox="0 0 24 24" width="46%" height="46%" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61594515785675" target="_blank" rel="noopener" aria-label="Facebook" style="width:{{ socS }};height:{{ socS }};border-radius:50%;background:#283D5C;color:#F4A340;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .25s, background .25s, color .25s" style-hover="transform:translateY(-3px);background:#A01D1D;color:#FFFFFF"><svg viewBox="0 0 24 24" width="50%" height="50%" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.8-.1-1.6-.15-2.4-.15-2.4 0-4.05 1.47-4.05 4.16V9.9H7.5V13h2.75v8z"></path></svg></a>
+        </div>
+      </div>
+      <sc-if value="{{ wide }}">
+        <div data-mphoto style="position:relative;height:70vh;clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);overflow:hidden">
+          <sc-for list="{{ menuPhotos }}" as="p" hint-placeholder-count="1">
+            <img loading="lazy" sc-camel-src="{{ p.src }}" alt="{{ p.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ p.pos }};opacity:{{ p.op }};transform:{{ p.t }};transition:opacity .55s cubic-bezier(.65,0,.35,1), transform 1.1s cubic-bezier(.25,1,.5,1)">
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
 
   <main style="width:100%;max-width:780px;margin:0 auto;padding:40px 20px 64px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
     <div style="display:flex;flex-direction:column;gap:6px">
@@ -222,11 +278,63 @@ const TEXT = ['nom', 'naissance', 'genre', 'nationalite', 'ville', 'regime', 'pr
 const BOOL = ['valeurs', 'age21'];
 const fmt = d => d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 
+const M = window.__afelM || (window.__afelM = (() => {
+  const m = { x: -1e4, y: -1e4, v: 0, mouse: false };
+  window.addEventListener('pointermove', e => { m.mouse = e.pointerType === 'mouse' || !!(e.target && e.target.closest && e.target.closest('[role=dialog]')); const d = Math.hypot(e.clientX - m.x, e.clientY - m.y); m.v = m.v * 0.8 + Math.min(d, 80) * 0.2; m.x = e.clientX; m.y = e.clientY; }, { passive: true });
+  return m;
+})());
+
+function makeGrid(cv, still) {
+  const ctx = cv.getContext('2d'); if (!ctx) return { cv, stop() {} };
+  const color = cv.dataset.color || 'rgba(255,255,255,0.08)';
+  let w = 0, h = 0, lines = [], raf = 0, alive = true, vis = true;
+  const t0 = performance.now();
+  const build = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2); w = cv.clientWidth; h = cv.clientHeight; if (!w || !h) return;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const gap = 25 * (window.innerWidth >= 1025 ? 1 : 0.65), n = Math.ceil(w / gap) + 8; lines = [];
+    for (let i = -4; i < n; i++) {
+      const bk = [1, 2, 3].map(k => h * k / 4 + Math.sin(i * 0.45 + k * 1.9) * h * 0.1);
+      const sl = [0, 1, 2, 3].map(k => (k % 2 ? -1 : 1) * (0.32 + 0.18 * Math.sin(i * 0.27 + k * 2.3)));
+      const pts = []; let x = i * gap, s = 0;
+      for (let y = -60; y <= h + 60; y += 20) { while (s < 3 && y > bk[s]) s++; x += sl[s] * 20; pts.push([x, y, 0, 0, 0, 0]); }
+      lines.push(pts);
+    }
+  };
+  const draw = now => {
+    const t = (now - t0) * (+cv.dataset.flow || 1); ctx.clearRect(0, 0, w, h); ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.beginPath();
+    let R = Math.hypot(window.innerWidth, window.innerHeight) * 0.1, act = M.mouse && M.v > 0.5 && !still, vv = M.v;
+    let mx = 0, my = 0; if (act) { const r = cv.getBoundingClientRect(); mx = M.x - r.left; my = M.y - r.top; }
+    // Vague qui traverse le fond à l'ouverture du menu (téléphone et tablette, sans souris).
+    if (!still && cv.__sw) { const k = (now - cv.__sw) / 1600; if (k >= 0 && k <= 1) { act = true; mx = w * (1.1 - 1.2 * k); my = h * (0.05 + 0.9 * k); vv = 55; R *= 2.4; } else if (k > 1) cv.__sw = 0; }
+    M.v *= 0.985;
+    for (const pts of lines) for (let j = 0; j < pts.length; j++) {
+      const p = pts[j];
+      let px = p[0] + 32 * Math.cos(0.002 * (p[0] + 0.0125 * t)), py = p[1] + 16 * Math.sin(0.0015 * (p[1] + 0.005 * t));
+      if (!still) {
+        if (act) { const dx = px + p[2] - mx, dy = py + p[3] - my, d = Math.hypot(dx, dy); if (d < R && d > 0.01) { const f = (1 - d / R) * vv * 0.08; p[4] += dx / d * f; p[5] += dy / d * f; } }
+        p[4] += -p[2] * 0.01; p[5] += -p[3] * 0.01; p[4] *= 0.85; p[5] *= 0.85;
+        p[2] = Math.max(-100, Math.min(100, p[2] + p[4])); p[3] = Math.max(-100, Math.min(100, p[3] + p[5]));
+      }
+      px += p[2]; py += p[3]; j ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.stroke();
+  };
+  build();
+  let rzT = 0, lw = 0, lh = 0;
+  const ro = new ResizeObserver(() => { if (cv.clientWidth === lw && cv.clientHeight === lh) return; lw = cv.clientWidth; lh = cv.clientHeight; clearTimeout(rzT); rzT = setTimeout(() => { build(); if (still) draw(performance.now()); }, 60); }); ro.observe(cv);
+  const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; }); io.observe(cv);
+  const loop = now => { if (!alive) return; if (!cv.isConnected) { alive = false; ro.disconnect(); io.disconnect(); return; } raf = requestAnimationFrame(loop); if (!vis || document.hidden) return; draw(now); };
+  if (still) draw(performance.now()); else raf = requestAnimationFrame(loop);
+  return { cv, stop() { alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); } };
+}
+
+const UI = () => ({ wide: window.innerWidth >= 1025, tab: window.innerWidth < 1025 && window.innerWidth >= 700, menu: false });
 class Component extends DCLogic {
   state = (() => {
     try { localStorage.removeItem(KEY); localStorage.removeItem('afel-adhesions'); } catch (e) {}
-    try { const s = JSON.parse(sessionStorage.getItem(KEY)); if (s && s.f && s.step !== 3) return { f: { ...EMPTY, ...s.f }, step: 1, signature: null, signedAt: '', errors: {}, num: '', sending: false, sendError: '' }; } catch (e) {}
-    return { f: { ...EMPTY }, step: 1, signature: null, signedAt: '', errors: {}, num: '', sending: false, sendError: '' };
+    try { const s = JSON.parse(sessionStorage.getItem(KEY)); if (s && s.f && s.step !== 3) return { f: { ...EMPTY, ...s.f }, step: 1, signature: null, signedAt: '', errors: {}, num: '', sending: false, sendError: '', ...UI() }; } catch (e) {}
+    return { f: { ...EMPTY }, step: 1, signature: null, signedAt: '', errors: {}, num: '', sending: false, sendError: '', ...UI() };
   })();
 
   on = Object.fromEntries([
@@ -234,10 +342,59 @@ class Component extends DCLogic {
     ...BOOL.map(k => [k, e => this.set(k, e.target.checked)]),
   ]);
 
-  componentDidUpdate(pp, ps) {
+  reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  menuRef = el => { this.menuEl = el; };
+  initGrids() {
+    this.grids = (this.grids || []).filter(g => g.cv.isConnected || (g.stop(), false));
+    document.querySelectorAll('canvas[data-vgrid]').forEach(cv => { if (cv.__g) return; cv.__g = makeGrid(cv, this.reduced); this.grids.push(cv.__g); });
+  }
+  componentDidMount() {
+    this.onResizeM = () => { const u = UI(); if (u.wide !== this.state.wide || u.tab !== this.state.tab) this.setState({ wide: u.wide, tab: u.tab, menu: u.wide ? false : this.state.menu }); };
+    this.onKeyM = e => { if (e.key === 'Escape' && this.state.menu) this.closeMenu(); };
+    window.addEventListener('resize', this.onResizeM); window.addEventListener('keydown', this.onKeyM);
+  }
+  componentWillUnmount() { (this.grids || []).forEach(g => g.stop()); window.removeEventListener('resize', this.onResizeM); window.removeEventListener('keydown', this.onKeyM); }
+  animMenu() {
+    const g = window.gsap, el = this.menuEl; if (!g || !el) return;
+    const c0 = el.querySelector('button'); if (c0) c0.focus();
+    if (this.reduced || document.visibilityState !== 'visible') return;
+    const lead = el.querySelector('[data-mlead]'), ph = el.querySelector('[data-mphoto]');
+    const mcv = el.querySelector('canvas[data-vgrid]'); if (mcv && !this.state.wide) mcv.__sw = performance.now() + 250;
+    if (this.menuTl) this.menuTl.kill();
+    const tl = this.menuTl = g.timeline({ defaults: { ease: 'power3.inOut' } });
+    tl.set(el, { '--m1': '0%', '--m2': '0%' }).set(lead, { '--l1': '0%', '--l2': '0%' })
+      .to(el, { '--m2': '100%', duration: 0.55 }, 0)
+      .to(el, { '--m1': '100%', duration: 0.65 }, 0.06)
+      .to(lead, { '--l2': '100%', duration: 0.6 }, 0.2)
+      .to(lead, { '--l1': '100%', duration: 0.7 }, 0.26)
+      // Départ et arrivée explicites : avec un simple .from(), la position finale des liens était mal lue et ils restaient cachés.
+      .fromTo(el.querySelectorAll('[data-mla]'), { y: 0, yPercent: 110, rotation: 2 }, { y: 0, yPercent: 0, rotation: 0, duration: 0.7, stagger: 0.045, ease: 'power3.out', clearProps: 'transform' }, 0.38)
+      .fromTo(el.querySelector('[data-msoc]'), { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', clearProps: 'transform,opacity' }, 0.75);
+    if (ph) tl.fromTo(ph, { clipPath: 'polygon(100% 0,100% 0,100% 100%,100% 100%)' }, { clipPath: 'polygon(12% 0,100% 0,100% 100%,0 100%)', duration: 0.9, ease: 'power3.inOut' }, 0.35)
+      .fromTo(ph.querySelector('img'), { scale: 1.18 }, { scale: 1, duration: 1.2, ease: 'power3.out', clearProps: 'transform' }, 0.35);
+  }
+  closeMenu = cb => {
+    const done = () => { this.closing = false; this.setState({ menu: false }, () => { if (typeof cb === 'function') cb(); }); };
+    const g = window.gsap, el = this.menuEl;
+    if (this.closing) return;
+    if (!g || !el || this.reduced || document.visibilityState !== 'visible') return done();
+    this.closing = true;
+    if (this.menuTl) this.menuTl.kill();
+    const lead = el.querySelector('[data-mlead]'), ph = el.querySelector('[data-mphoto]');
+    const tl = this.menuTl = g.timeline({ defaults: { ease: 'power3.in' }, onComplete: done });
+    tl.to([...el.querySelectorAll('[data-mla]')].reverse(), { yPercent: -110, duration: 0.35, stagger: 0.025 }, 0)
+      .to(el.querySelector('[data-msoc]'), { opacity: 0, duration: 0.2 }, 0);
+    if (ph) tl.to(ph, { clipPath: 'polygon(0 0,0 0,0 100%,0 100%)', duration: 0.45, ease: 'power3.inOut' }, 0.05);
+    tl.to(lead, { '--l1': '0%', duration: 0.4, ease: 'power3.inOut' }, 0.25)
+      .to(lead, { '--l2': '0%', duration: 0.45, ease: 'power3.inOut' }, 0.3)
+      .to(el, { '--m1': '0%', duration: 0.45, ease: 'power3.inOut' }, 0.5)
+      .to(el, { '--m2': '0%', duration: 0.5, ease: 'power3.inOut' }, 0.56);
+  };  componentDidUpdate(pp, ps) {
     // Le moteur ne transmet que les props précédentes : l'état précédent est mémorisé ici.
     ps = ps || this._prevState || {};
     try {
+    this.initGrids();
+    if (!ps.menu && this.state.menu) this.animMenu();
     if (this.cardEl && (ps.step !== this.state.step || ps.f !== this.state.f)) this.drawCard();
     // Brouillon limité à l'onglet, sans la signature ; effacé après l'envoi.
     const { f, step } = this.state;
@@ -388,6 +545,31 @@ class Component extends DCLogic {
   reset = () => { this.canvas = null; this.setState({ f: { ...EMPTY }, step: 1, signature: null, signedAt: '', errors: {}, num: '', sending: false, sendError: '' }); };
 
   renderVals() {
+    const { wide, tab, menu } = this.state;
+    const L = 'calc(72px + 5vw)';
+    const PH = { smop: ['assets/hero-smop.webp', '70% 25%'], actions: ['assets/hero-actions.webp', '40% 30%'], paroles: ['assets/photo-dos.webp', 'center 25%'], presidente: ['assets/presidente-action.webp', '50% 22%'], agir: ['assets/hero-engager.webp', '70% 40%'], partenaire: ['assets/action-3-orienter.webp', 'center 40%'], don: ['assets/action-4-bienetre.webp', '70% 35%'], contact: ['assets/photo-cover.webp', 'center'], adherer: ['assets/action-1-sensibiliser.webp', 'center 60%'], accueil: ['assets/photo-cover.webp', 'center'], vip: ['assets/presidente-action.webp', '50% 30%'] };
+    const act = this.state.mKey || 'adherer', subOpen = !!this.state.subOpen;
+    const goFn = e => { e.preventDefault(); const href = e.currentTarget.getAttribute('href'); const el = this.menuEl; if (el) { el.style.transition = 'opacity .25s'; el.querySelectorAll('[data-mla],[data-msoc],[data-mphoto]').forEach(n => { n.style.transition = 'opacity .25s, transform .3s'; n.style.opacity = '0'; n.style.transform = 'translateY(-20px)'; }); } setTimeout(() => { window.location.href = href; }, 320); };
+    const P = id => 'pages.html#' + id;
+    const mk = (label, k, href) => ({ label, href, go: goFn, hover: () => { if (this.state.mKey !== k) this.setState({ mKey: k }); }, color: k === 'adherer' ? '#A01D1D' : '#283D5C', hasSubs: false, subs: [] });
+    const menuLinks = [
+      mk('Accueil', 'accueil', 'index.html'), mk('Comprendre le SMOP', 'smop', P('smop')), mk('Nos actions', 'actions', P('actions')),
+      mk('Témoignages', 'paroles', P('temoignages')), mk('L’association', 'presidente', P('association')),
+      { ...mk('S’engager', 'agir', P('engager')), color: '#A01D1D', hasSubs: true, hover: () => this.setState({ mKey: 'agir', subOpen: true }),
+        subs: [mk('Adhérer en ligne', 'adherer', 'adherer.html'), mk('Devenir partenaire', 'partenaire', P('partenaire')), mk('Faire un don', 'don', P('don')), mk('Carte VIP Premium', 'vip', 'carte-vip-premium.html')] },
+      mk('Contact', 'contact', P('contact')),
+    ].map(l => ({ ...l, line: wide ? 'none' : '1.5px solid rgba(40,61,92,0.2)', lpad: wide ? '0' : tab ? '14px' : '10px', enter: l.hover, toggle: () => this.setState({ subOpen: !subOpen, mKey: 'agir' }), openStr: subOpen ? 'true' : 'false', rows: subOpen ? '1fr' : '0fr', vis: subOpen ? 'visible' : 'hidden', chev: subOpen ? 'rotate(180deg)' : 'none', chevBg: subOpen ? '#FFFFFF' : 'transparent' }));
+    const menuVals = {
+      wide, notWide: !wide, menu, menuStr: menu ? 'true' : 'false', menuRef: this.menuRef, menuLinks,
+      openMenu: () => this.setState({ menu: true, subOpen: false, mKey: null }), closeMenu: this.closeMenu,
+      menuPhotos: Object.keys(PH).map(k => ({ src: PH[k][0], pos: PH[k][1], alt: k === act ? 'Membres de l’AFEL' : '', op: k === act ? 1 : 0, t: k === act ? 'scale(1)' : 'scale(1.08)' })),
+      closeL: wide ? '12px' : 'auto', closeR: wide ? 'auto' : '8px', closeT: wide ? 'calc(50% - 24px)' : '6px',
+      menuCols: wide ? 'minmax(0,1.2fr) minmax(0,.8fr)' : 'minmax(0,1fr)', menuPad: wide ? '9vh 6vw 9vh ' + L : tab ? '120px 56px 56px' : '88px 24px 36px',
+      mFs: wide ? 'clamp(28px, min(4vw, 6vh), 64px)' : tab ? 'clamp(40px, min(7.4vw, 6.4vh), 64px)' : 'clamp(30px, min(9.6vw, 5.6vh), 48px)',
+      mSubFs: wide ? 'clamp(18px, min(1.7vw, 3vh), 26px)' : tab ? '26px' : '21px',
+      mGap: wide ? '2px' : tab ? '14px' : '10px', mUlFlex: wide ? 'none' : '1', mUlJ: wide ? 'flex-start' : 'space-evenly', mColH: wide ? '0' : tab ? 'calc(100svh - 176px)' : 'calc(100svh - 124px)', mColJ: wide ? 'flex-start' : 'space-between',
+      socS: wide ? '48px' : '56px', mFlow: wide ? '1' : '10',
+    };
     const { f, step, errors } = this.state;
     const labels = ['Formulaire d’adhésion', 'Clause de confidentialité', 'Confirmation'];
     const pick = (k, v) => () => this.set(k, v);
@@ -395,6 +577,7 @@ class Component extends DCLogic {
     const types = ["Membre","Bienfaiteur","Médecin bénévole","Sponsor","Membre d’honneur","Sympathisant(e)"].map(label => { const st = sel(f.type === label); return { label, border: st.b, bg: st.bg, pick: pick('type', label) }; });
     const prenom = (f.nom.trim().split(/\s+/).pop()) || '';
     return {
+      ...menuVals,
       f, err: errors, on: this.on, ageMin: this.ageMin(),
       isStep1: step === 1, isStep2: step === 2, isStep3: step === 3,
       steps: labels.map((label, i) => ({ n: `0${i + 1}`, label, bar: i + 1 <= step ? '#35BDB2' : '#DDE3EA', fg: i + 1 === step ? '#283D5C' : (i + 1 < step ? '#35BDB2' : '#8A97A8') })),
