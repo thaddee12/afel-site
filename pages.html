@@ -13,6 +13,7 @@
 <helmet>
 <link rel="stylesheet" href="assets/afel-fonts.css">
 <script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/afel-scroll.js"></script>
 <style>html,body{margin:0;background:#FFFFFF}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}@keyframes afelUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}@keyframes afelZoom{from{transform:scale(1.08)}to{transform:none}}@keyframes afelMenu{from{clip-path:polygon(0 0,0 0,0 100%,0 100%)}to{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}}@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
 </helmet>
 <div style="position:relative;background:#FFFFFF;color:#283D5C;font-family:'Nunito',sans-serif;font-size:18px;line-height:1.6">
@@ -96,7 +97,7 @@
 
 <sc-if value="{{ isSmop }}" hint-placeholder-val="{{ true }}">
   <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;clip-path:polygon(0 0,100% 0,100% 90%,0 100%);overflow:hidden">
-    <img src="assets/hero-smop.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 20%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="assets/hero-smop-m.webp 1200w, assets/hero-smop.webp 1672w" sc-camel-src="assets/hero-smop.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 20%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,#283D5C 0%,rgba(40,61,92,0.92) 35%,rgba(40,61,92,0.35) 65%,rgba(40,61,92,0.1) 100%);pointer-events:none"></div>
     <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">SMOP, nouveau nom du SOPK</span>
@@ -134,7 +135,7 @@
 
 <sc-if value="{{ isActions }}" hint-placeholder-val="{{ false }}">
   <section style="position:relative;background:#35BDB2;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)">
-    <img src="assets/hero-actions.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="assets/hero-actions-m.webp 1200w, assets/hero-actions.webp 2560w" sc-camel-src="assets/hero-actions.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,#35BDB2 0%,rgba(53,189,178,0.9) 30%,rgba(53,189,178,0.35) 55%,rgba(53,189,178,0) 78%);pointer-events:none"></div>
     <div style="position:relative;max-width:640px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Notre mission</span>
@@ -153,7 +154,7 @@
             <sc-for list="{{ a.events }}" as="ev" hint-placeholder-count="2">
               <article style="position:relative;display:flex;flex-direction:column;background:#F3F5F8;overflow:hidden;transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s" style-hover="transform:translateY(-6px);box-shadow:0 16px 30px rgba(40,61,92,0.2)">
                 <div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C">
-                  <img src="{{ ev.img }}" alt="{{ ev.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ ev.pos }}">
+                  <img loading="lazy" decoding="async" sc-camel-src="{{ ev.img }}" alt="{{ ev.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ ev.pos }}">
                   <span style="position:absolute;left:12px;top:12px;background:{{ a.color }};color:{{ a.chipFg }};font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;padding:6px 10px;line-height:1">{{ ev.date }}</span>
                   <span style="position:absolute;right:10px;top:10px;background:#FFFFFF;color:#A01D1D;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px">Exemple</span>
                 </div>
@@ -195,7 +196,7 @@
 
 <sc-if value="{{ isAsso }}" hint-placeholder-val="{{ false }}">
   <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)">
-    <img src="assets/photo-dos.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%">
+    <img loading="lazy" decoding="async" sizes="100vw" sc-camel-src-set="assets/photo-dos-m.webp 1200w, assets/photo-dos.webp 2560w" sc-camel-src="assets/photo-dos.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%">
     <div style="position:absolute;inset:0;background:#283D5C;opacity:0.84"></div>
     <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">Yaoundé, Cameroun</span>
@@ -210,7 +211,7 @@
       <p style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:34px;line-height:1.2;color:#F4A340">Brisons le silence, allumons l’espoir.</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
-      <div style="position:relative;width:min(340px,100%);aspect-ratio:420/485;background:#35BDB2;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)"><img src="assets/presidente-action.webp" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%"></div>
+      <div style="position:relative;width:min(340px,100%);aspect-ratio:420/485;background:#35BDB2;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)"><img loading="lazy" decoding="async" sizes="100vw" sc-camel-src-set="assets/presidente-action-m.webp 1200w, assets/presidente-action.webp 1706w" sc-camel-src="assets/presidente-action.webp" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%"></div>
       <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:24px;line-height:1.2">Ornella Brinda NGUELE BEKALE</div>
       <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#A01D1D">Présidente</div>
       <span style="border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px">[À FOURNIR : biographie et parcours]</span>
@@ -224,7 +225,7 @@
 
 <sc-if value="{{ isEngager }}" hint-placeholder-val="{{ false }}">
   <section style="position:relative;background:#F4A340;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)">
-    <img src="assets/hero-engager.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 40%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="assets/hero-engager-m.webp 1200w, assets/hero-engager.webp 1376w" sc-camel-src="assets/hero-engager.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 40%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,#F4A340 0%,rgba(244,163,64,0.94) 32%,rgba(244,163,64,0.4) 58%,rgba(244,163,64,0) 80%);pointer-events:none"></div>
     <div style="position:relative;max-width:640px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Rejoignez le mouvement</span>
@@ -446,36 +447,11 @@ class Component extends DCLogic {
     this.grids = (this.grids || []).filter(g => g.cv.isConnected || (g.stop(), false));
     document.querySelectorAll('canvas[data-vgrid]').forEach(cv => { if (cv.__g) return; cv.__g = makeGrid(cv, this.reduced); this.grids.push(cv.__g); });
   }
-  // Apparitions au défilement : mêmes réglages que l'accueil sur téléphone (montée de 36 px, 0,6 s).
-  setupReveal() {
-    const g = window.gsap, main = document.querySelector('[data-pmain]');
-    if (!g || !main || this.reduced || document.visibilityState !== 'visible') return;
-    if (this.rvIo) this.rvIo.disconnect();
-    this.rvHidden = [];
-    const picked = [];
-    main.querySelectorAll('h2, h3, p, ul, ol, figure, blockquote, form, img, article, [data-rv]').forEach(el => {
-      if (el.closest('footer, [aria-label="Comment agir"]') || picked.some(p => p.contains(el))) return;
-      const cs = getComputedStyle(el); if (cs.position === 'absolute' || cs.position === 'fixed') return;
-      picked.push(el);
-    });
-    main.querySelectorAll('[aria-label="Comment agir"] > a, footer > div').forEach(el => picked.push(el));
-    this.rvIo = new IntersectionObserver(es => { let i = 0; es.forEach(en => {
-      if (!en.isIntersecting) return; this.rvIo.unobserve(en.target); this.rvHidden = this.rvHidden.filter(x => x !== en.target);
-      g.to(en.target, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', delay: Math.min(i++, 4) * 0.08, clearProps: 'transform,opacity' });
-    }); }, { rootMargin: '0px 0px -6% 0px' });
-    const vh = window.innerHeight;
-    picked.forEach(el => {
-      if (el.__rv || el.style.transform || el.style.opacity) return; el.__rv = 1;
-      if (el.getBoundingClientRect().top > vh * 0.92) { g.set(el, { y: 36, opacity: 0 }); this.rvIo.observe(el); this.rvHidden.push(el); }
-    });
-  }
-  revealAll = () => { const g = window.gsap; (this.rvHidden || []).forEach(el => g && g.set(el, { clearProps: 'transform,opacity' })); this.rvHidden = []; if (this.rvIo) this.rvIo.disconnect(); };
   componentDidUpdate() {
     // Le moteur ne transmet que les props précédentes : l'état précédent est mémorisé ici.
     const ps = this._prevState || this.state;
     this.initGrids();
     if (!ps.menu && this.state.menu) this.animMenu();
-    if (ps.page !== this.state.page) setTimeout(() => this.setupReveal(), 80);
     this._prevState = Object.assign({}, this.state);
   }
   animMenu() {
@@ -549,8 +525,7 @@ class Component extends DCLogic {
     this.uncover();
     this._prevState = Object.assign({}, this.state);
     this.initGrids();
-    let n = 0; const w = () => { if (window.gsap) this.setupReveal(); else if (n++ < 60) setTimeout(w, 50); }; w();
-    this.onVis = () => { if (document.hidden) this.revealAll(); }; document.addEventListener('visibilitychange', this.onVis);
+
     this.onHash = () => { if (this.skipHash) { this.skipHash = false; return; } this.setState({ page: readHash(), menu: false }); window.scrollTo(0, 0); };
     this.onDocClick = e => {
       const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || e.defaultPrevented) return;
@@ -562,7 +537,7 @@ class Component extends DCLogic {
     this.onKey = e => { if (e.key === 'Escape' && this.state.menu) this.closeMenu(); };
     window.addEventListener('hashchange', this.onHash); window.addEventListener('resize', this.onResize); window.addEventListener('keydown', this.onKey);
   }
-  componentWillUnmount() { (this.grids || []).forEach(g => g.stop()); if (this.rvIo) this.rvIo.disconnect(); document.removeEventListener('visibilitychange', this.onVis); document.removeEventListener('click', this.onDocClick); window.removeEventListener('hashchange', this.onHash); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); }
+  componentWillUnmount() { (this.grids || []).forEach(g => g.stop()); document.removeEventListener('click', this.onDocClick); window.removeEventListener('hashchange', this.onHash); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); }
 
   goSec = id => () => { const el = document.getElementById(id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24, behavior: 'smooth' }); };
 
