@@ -182,13 +182,15 @@
   <img src="assets/silhouettes-reverse.svg" alt="" style="position:absolute;right:5vw;bottom:5vh;width:72px;height:auto">
 </section>
 
-<section id="actions" data-scene aria-labelledby="t-act" style="position:relative;z-index:4;min-height:{{ sMinH }};overflow:hidden;background:#35BDB2;color:#283D5C;--s:50%;clip-path:polygon(0 calc(50% - var(--s)),100% calc(50% - var(--s)),100% calc(50% + var(--s)),0 calc(50% + var(--s)))">
+<section id="actions" data-scene aria-labelledby="t-act" style="position:relative;z-index:4;min-height:{{ sMinH }};overflow:{{ aOv }};background:#35BDB2;color:#283D5C;--s:50%;clip-path:polygon(0 calc(50% - var(--s)),100% calc(50% - var(--s)),100% calc(50% + var(--s)),0 calc(50% + var(--s)))">
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none">
+    <div data-abox style="position:{{ abPos }};top:0;left:0;width:100%;height:{{ abH }};overflow:hidden">
     <img data-abg loading="{{ ld }}" decoding="async" sizes="100vw" sc-camel-src-set="assets/action-1-sensibiliser-m.webp 1200w, assets/action-1-sensibiliser.webp 2048w" sc-camel-src="assets/action-1-sensibiliser.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;opacity:1;will-change:opacity,transform">
     <img data-abg loading="{{ ld }}" decoding="async" sizes="100vw" sc-camel-src-set="assets/photo-dos-m.webp 1200w, assets/photo-dos.webp 2560w" sc-camel-src="assets/photo-dos.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0;will-change:opacity,transform">
     <img data-abg loading="{{ ld }}" decoding="async" sizes="100vw" sc-camel-src-set="assets/action-3-orienter-m.webp 1200w, assets/action-3-orienter.webp 1376w" sc-camel-src="assets/action-3-orienter.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:0;will-change:opacity,transform">
     <img data-abg loading="{{ ld }}" decoding="async" sizes="100vw" sc-camel-src-set="assets/action-4-bienetre-m.webp 1200w, assets/action-4-bienetre.webp 1376w" sc-camel-src="assets/action-4-bienetre.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 35%;opacity:0;will-change:opacity,transform">
-    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(53,189,178,0.93) 0%,rgba(53,189,178,0.8) 45%,rgba(53,189,178,0.88) 100%)"></div>
+    <div style="position:absolute;inset:0;background:{{ aVeil }}"></div>
+    </div>
   </div>
   <div style="position:relative;height:100%;min-height:inherit;display:grid;grid-template-columns:{{ cols2 }};gap:4vw;padding:{{ padX }}">
     <div style="display:flex;flex-direction:column;justify-content:center;gap:5vh;padding:{{ padY }}">
@@ -431,6 +433,7 @@ class Component extends DCLogic {
     if (this.unScroll) { this.unScroll(); this.unScroll = null; }
     if (this.io) { this.io.disconnect(); this.io = null; }
     if (this.curIo) { this.curIo.disconnect(); this.curIo = null; }
+    if (this.abStop) { this.abStop(); this.abStop = null; }
     if (this.onVis) { document.removeEventListener('visibilitychange', this.onVis); this.onVis = null; }
     if (this.revealAll) { this.revealAll(); this.revealAll = null; }
     if (this.ctx) { this.ctx.revert(); this.ctx = null; }
@@ -456,6 +459,26 @@ class Component extends DCLogic {
     this.revealAll = () => { this.hiddenEls.forEach(el => g.set(el, { clearProps: 'opacity,transform' })); this.hiddenEls = []; if (this.io) this.io.disconnect(); if (this.curIo) { this.curIo.disconnect(); this.curIo = null; if (cur) g.set(cur, { yPercent: -102 }); } };
     this.onVis = () => { if (document.hidden && this.revealAll) this.revealAll(); };
     document.addEventListener('visibilitychange', this.onVis);
+    // Diaporama des 4 photos des actions, en fond de la section.
+    const abg = [...r.querySelectorAll('#actions [data-abg]')], asec = r.querySelector('#actions');
+    if (abg.length > 1 && asec) {
+      let k = 0;
+      g.set(abg, { opacity: 0 }); g.set(abg[0], { opacity: 1 });
+      const kb = el => g.fromTo(el, { scale: 1.1 }, { scale: 1, duration: 6, ease: 'none', force3D: true });
+      kb(abg[0]);
+      const step = () => {
+        const prev = abg[k]; k = (k + 1) % abg.length; const nx = abg[k];
+        g.to(prev, { opacity: 0, duration: 1.2, ease: 'power1.inOut' });
+        g.fromTo(nx, { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power1.inOut' }); kb(nx);
+      };
+      this.abIo = new IntersectionObserver(es => {
+        const on = es.some(e => e.isIntersecting) && !document.hidden;
+        if (on && !this.abT) this.abT = setInterval(step, 4500);
+        if (!on && this.abT) { clearInterval(this.abT); this.abT = 0; }
+      });
+      this.abIo.observe(asec);
+      this.abStop = () => { if (this.abT) clearInterval(this.abT); this.abT = 0; if (this.abIo) this.abIo.disconnect(); this.abIo = null; g.killTweensOf(abg); g.set(abg, { clearProps: 'opacity,transform' }); };
+    }
   }
 
   buildPinned() {
@@ -729,6 +752,8 @@ class Component extends DCLogic {
       colsP: wide ? 'minmax(0,.9fr) minmax(0,1.1fr)' : 'minmax(0,1fr)',
       colsF: wide || tab ? 'auto minmax(0,1fr)' : 'minmax(0,1fr)',
       sMinH: wide ? '100vh' : 'auto',
+      aOv: wide ? 'hidden' : 'clip', abPos: wide ? 'absolute' : 'sticky', abH: wide ? '100%' : '100svh',
+      aVeil: wide ? 'linear-gradient(90deg,rgba(53,189,178,0.93) 0%,rgba(53,189,178,0.8) 45%,rgba(53,189,178,0.88) 100%)' : 'linear-gradient(180deg,rgba(53,189,178,0.66) 0%,rgba(53,189,178,0.74) 50%,rgba(53,189,178,0.82) 100%)',
       vMode: wide ? 'vertical-rl' : 'horizontal-tb', vRot: wide ? 'rotate(180deg)' : 'none',
       aWinH: pinned ? '100vh' : 'auto', aWinO: pinned ? 'hidden' : 'visible', aGap: pinned ? '14vh' : '40px',
       offL: wide ? '1.8em' : '0',
