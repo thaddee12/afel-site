@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<link rel="preload" as="image" imagesrcset="assets/photo-cover-m.webp 1200w, assets/photo-cover.webp 2560w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" imagesizes="(max-width: 699px) 120vw, 100vw" fetchpriority="high">
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
@@ -112,8 +112,8 @@
     </div></div>
   </div>
   <div style="position:absolute;inset:0;clip-path:{{ clipP }}">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="assets/photo-cover-m.webp 1200w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%">
-    <div style="position:absolute;inset:0;background:#283D5C;opacity:0.5"></div>
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="(max-width: 699px) 120vw, 100vw" sc-camel-src-set="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" style="position:absolute;left:0;top:{{ phT }};width:100%;height:{{ phH }};object-fit:cover;object-position:{{ phPos }}">
+    <div style="position:absolute;left:0;right:0;top:{{ phT }};height:{{ phH }};background:{{ phVeil }};opacity:{{ phVeilOp }}"></div>
     <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
       <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#FFFFFF"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span></span></div>
     </div></div>
@@ -125,7 +125,7 @@
     </div></div>
   </div>
   <div data-htext style="position:absolute;z-index:3;left:{{ txL }};right:{{ txR }};bottom:{{ txB }};max-width:{{ txW }}">
-    <p data-ht style="margin:0 0 24px;font-size:clamp(18px,1.35vw,22px);line-height:1.5;color:#FFFFFF;text-wrap:pretty">L’Association Femme en Lumière accompagne les femmes atteintes du SMOP, le syndrome métabolique ovarien polyendocrinien, nouveau nom du SOPK.</p>
+    <p data-ht style="margin:0 0 24px;font-size:clamp(18px,1.35vw,22px);line-height:1.5;color:#FFFFFF;text-shadow:{{ txSh }};text-wrap:pretty">L’Association Femme en Lumière accompagne les femmes atteintes du SMOP, le syndrome métabolique ovarien polyendocrinien, nouveau nom du SOPK.</p>
     <div data-ht style="display:flex;flex-wrap:wrap;gap:10px">
       <a data-btn href="{{ waHref }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#35BDB2;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Parler à quelqu’un sur WhatsApp</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Parler à quelqu’un sur WhatsApp</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a>
       <a data-btn href="#smop" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#F4A340;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08)"><span style="position:relative;display:block;overflow:hidden;line-height:1.35"><span data-bl style="display:block">Comprendre le SMOP</span><span data-bl aria-hidden="true" style="position:absolute;left:0;top:100%;display:block;white-space:nowrap">Comprendre le SMOP</span></span><svg data-ba viewBox="0 0 24 24" width="20" height="20" style="flex:none"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></a>
@@ -714,6 +714,8 @@ class Component extends DCLogic {
       mGap: wide ? '2px' : tab ? '14px' : '10px', mUlFlex: wide ? 'none' : '1', mUlJ: wide ? 'flex-start' : 'space-evenly', mColH: wide ? '0' : tab ? 'calc(100svh - 176px)' : 'calc(100svh - 124px)', mColJ: wide ? 'flex-start' : 'space-between',
       socS: wide ? '48px' : '56px', mFlow: wide ? '1' : '10',
       waR: wide ? '24px' : '16px',
+      phT: wide ? '0' : tab ? '28%' : '22%', phH: wide ? '100%' : tab ? '34%' : '40%', phPos: wide ? 'center 40%' : 'center 42%',
+      phVeil: wide ? '#283D5C' : 'linear-gradient(180deg, rgba(40,61,92,0.12) 0%, rgba(40,61,92,0.12) 42%, rgba(40,61,92,0.9) 100%)', phVeilOp: wide ? '0.5' : '1', txSh: wide ? 'none' : '0 1px 14px rgba(40,61,92,0.75)',
       heroMinH: wide ? '100vh' : tab ? 'max(880px, 100vh)' : '880px',
       clipN: wide ? 'polygon(0 0,var(--ha) 0,var(--hb) 100%,0 100%)' : tab ? 'polygon(0 62%,100% 56%,100% 100%,0 100%)' : 'polygon(0 62%,100% 54%,100% 100%,0 100%)',
       clipP: wide ? 'polygon(var(--ha) 0,var(--hc) 0,var(--hd) 100%,var(--hb) 100%)' : tab ? 'polygon(0 36%,100% 28%,100% 56%,0 62%)' : 'polygon(0 30%,100% 22%,100% 54%,0 62%)',
