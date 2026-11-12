@@ -10,7 +10,7 @@ import html, json, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent
 SITE = 'https://afel.cm'
-OG = SITE + '/assets/og-afel.jpg'
+OG = SITE + '/assets/og-afel-2.jpg'
 
 PAGES = {
     'smop': ('Comprendre le SMOP (ex-SOPK) | AFEL Yaoundé',
