@@ -1,0 +1,5 @@
+# Une seule adresse : https://afel.cm (sans www). L'ancienne adresse temporaire Hostinger y renvoie aussi.
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^afel\.cm$ [NC]
+RewriteRule ^ https://afel.cm%{REQUEST_URI} [L,R=301]
