@@ -36,6 +36,10 @@ jobs:
         if: steps.secrets.outputs.ok == 'true'
         uses: actions/checkout@v4
 
+      - name: Generer les pages interieures depuis pages.html
+        if: steps.secrets.outputs.ok == 'true'
+        run: python3 build_pages.py
+
       - name: Envoyer par FTP
         if: steps.secrets.outputs.ok == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -57,4 +61,6 @@ jobs:
             .github/**
             README.md
             supabase/**
+            build_pages.py
+            __pycache__/**
             **/.DS_Store

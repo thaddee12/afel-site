@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<title>Carte VIP Premium | Association Femme en Lumière (AFEL)</title>
+<meta name="description" content="La carte VIP Premium de l’AFEL distingue les membres fondateurs et les personnes engagées pour la cause du SMOP. Avantages et critères d’attribution.">
+<link rel="canonical" href="https://afel.cm/carte-vip-premium.html">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#283D5C">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AFEL, Association Femme en Lumière">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Carte VIP Premium | Association Femme en Lumière (AFEL)">
+<meta property="og:description" content="La carte VIP Premium de l’AFEL distingue les membres fondateurs et les personnes engagées pour la cause du SMOP. Avantages et critères d’attribution.">
+<meta property="og:url" content="https://afel.cm/carte-vip-premium.html">
+<meta property="og:image" content="https://afel.cm/assets/og-afel.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
@@ -11,8 +27,6 @@
 <body>
 <x-dc>
 <helmet>
-<title>Carte VIP Premium | Association Femme en Lumière (AFEL)</title>
-<meta name="description" content="La carte VIP Premium de l’AFEL distingue les membres fondateurs et les personnes engagées pour la cause du SMOP. Avantages et critères d’attribution.">
 <link rel="stylesheet" href="assets/afel-fonts.css">
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/fond-lumiere.js?v=3"></script>
@@ -192,7 +206,7 @@
   <section style="background:#283D5C;color:#FFFFFF;padding:clamp(44px,6vw,80px) clamp(20px,6vw,80px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
     <span style="font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(30px,3.6vw,52px);line-height:1.1;color:#F4A340">Brisons le silence, allumons l’espoir.</span>
     <div style="display:flex;flex-wrap:wrap;gap:12px">
-      <a href="pages.html#engager" style="display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;background:#F4A340;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;border-radius:999px;transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .2s" style-hover="transform:translateY(-3px);background:#35BDB2">S’engager avec l’AFEL</a>
+      <a href="engager.html" style="display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;background:#F4A340;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;border-radius:999px;transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .2s" style-hover="transform:translateY(-3px);background:#35BDB2">S’engager avec l’AFEL</a>
       <a href="verifier.html" style="display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;border:1.5px solid #FFFFFF;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;border-radius:999px;transition:background .2s, color .2s" style-hover="background:#FFFFFF;color:#283D5C">Vérifier une carte</a>
     </div>
   </section>
@@ -314,7 +328,7 @@ class Component extends DCLogic {
     const PH = { smop: ['assets/hero-smop.webp', '70% 25%'], actions: ['assets/hero-actions.webp', '40% 30%'], paroles: ['assets/photo-dos.webp', 'center 25%'], presidente: ['assets/presidente-action.webp', '50% 22%'], agir: ['assets/hero-engager.webp', '70% 40%'], partenaire: ['assets/action-3-orienter.webp', 'center 40%'], don: ['assets/action-4-bienetre.webp', '70% 35%'], contact: ['assets/photo-cover.webp', 'center'], adherer: ['assets/action-1-sensibiliser.webp', 'center 60%'], accueil: ['assets/photo-cover.webp', 'center'], vip: ['assets/presidente-action.webp', '50% 30%'] };
     const act = this.state.mKey || 'vip', subOpen = !!this.state.subOpen;
     const goFn = e => { e.preventDefault(); const href = e.currentTarget.getAttribute('href'); const el = this.menuEl; if (el) { el.style.transition = 'opacity .25s'; el.querySelectorAll('[data-mla],[data-msoc],[data-mphoto]').forEach(n => { n.style.transition = 'opacity .25s, transform .3s'; n.style.opacity = '0'; n.style.transform = 'translateY(-20px)'; }); } setTimeout(() => { window.location.href = href; }, 320); };
-    const P = id => 'pages.html#' + id;
+    const P = id => id + '.html';
     const mk = (label, k, href) => ({ label, href, go: goFn, hover: () => { if (this.state.mKey !== k) this.setState({ mKey: k }); }, color: k === 'vip' ? '#A01D1D' : '#283D5C', hasSubs: false, subs: [] });
     const menuLinks = [
       mk('Accueil', 'accueil', 'index.html'), mk('Comprendre le SMOP', 'smop', P('smop')), mk('Nos actions', 'actions', P('actions')),

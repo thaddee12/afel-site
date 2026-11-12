@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,7 +195,7 @@
   </div>
   <div style="padding:0 0 80px;display:flex;flex-direction:column;gap:16px;margin:{{ innerM }}">
     <p style="margin:0;max-width:680px;font-style:italic;text-wrap:pretty">Chaque témoignage engage son auteure et ne constitue pas un conseil médical. Il est publié avec son accord écrit, et peut être anonyme.</p>
-    <div><a href="#contact" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#283D5C;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Partager mon histoire →</a></div>
+    <div><a href="contact.html" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#283D5C;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Partager mon histoire →</a></div>
   </div>
 </sc-if>
 
@@ -398,7 +398,11 @@ const EVENTS = [
     { date: '12 août 2026', title: 'Atelier alimentation et activité', place: 'Yaoundé IV', text: 'Des conseils pratiques et une marche collective pour bouger ensemble.', img: 'assets/hero-engager.webp', pos: '60% 40%' },
   ],
 ];
-const readHash = () => { const h = (location.hash || '').slice(1); return KEYS.includes(h) ? h : 'smop'; };
+// Chaque page a sa propre adresse (smop.html, actions.html…) pour être référencée par Google.
+// Les anciens liens pages.html#xxx sont redirigés vers la bonne adresse.
+const TITLES = { smop: 'Comprendre le SMOP (ex-SOPK) | AFEL Yaoundé', actions: 'Nos actions | AFEL, Association Femme en Lumière', temoignages: 'Témoignages de femmes atteintes du SMOP | AFEL', association: 'L’association | AFEL, Association Femme en Lumière', engager: 'S’engager avec l’AFEL | Association Femme en Lumière', partenaire: 'Devenir partenaire de l’AFEL | Association Femme en Lumière', don: 'Faire un don à l’AFEL | Association Femme en Lumière', contact: 'Contact | AFEL, Association Femme en Lumière, Yaoundé' };
+const readHash = () => { const f = (location.pathname.match(/([a-z-]+)\.html$/) || [])[1]; if (KEYS.includes(f)) return f; const h = (location.hash || '').slice(1); return KEYS.includes(h) ? h : 'smop'; };
+if (!/\/(smop|actions|temoignages|association|engager|partenaire|don|contact)\.html$/.test(location.pathname)) location.replace(readHash() + '.html' + location.search);
 
 const M = window.__afelM || (window.__afelM = (() => {
   const m = { x: -1e4, y: -1e4, v: 0, mouse: false };
@@ -529,7 +533,7 @@ class Component extends DCLogic {
     if (this.busy) return; this.busy = true;
     this.setState({ curK: k });
     this.cover().then(() => {
-      this.skipHash = true; location.hash = k;
+      history.pushState({ k }, '', k + '.html'); document.title = TITLES[k] || document.title;
       this.setState({ page: k, menu: false, curK: null }, () => { window.scrollTo(0, 0); this.busy = false; this.uncover(); });
     });
   };
@@ -539,18 +543,18 @@ class Component extends DCLogic {
     this._prevState = Object.assign({}, this.state);
     this.initGrids();
 
-    this.onHash = () => { if (this.skipHash) { this.skipHash = false; return; } this.setState({ page: readHash(), menu: false }); window.scrollTo(0, 0); };
+    this.onHash = () => { const k = readHash(); if (k !== this.state.page) { history.replaceState({ k }, '', k + '.html'); document.title = TITLES[k] || document.title; this.setState({ page: k, menu: false }); window.scrollTo(0, 0); } };
     this.onDocClick = e => {
-      const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || e.defaultPrevented) return;
-      const k = a.getAttribute('href').slice(1); if (!KEYS.includes(k)) return;
+      const a = e.target.closest && e.target.closest('a[href]'); if (!a || e.defaultPrevented || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      const h = a.getAttribute('href'), k = h.charAt(0) === '#' ? h.slice(1) : (h.match(/^([a-z-]+)\.html$/) || [])[1]; if (!KEYS.includes(k)) return;
       e.preventDefault(); this.navTo(k);
     };
     document.addEventListener('click', this.onDocClick);
     this.onResize = () => { const w = window.innerWidth >= 1025, t = !w && window.innerWidth >= 700; if (w !== this.state.wide || t !== this.state.tab) this.setState({ wide: w, tab: t }); };
     this.onKey = e => { if (e.key === 'Escape' && this.state.menu) this.closeMenu(); };
-    window.addEventListener('hashchange', this.onHash); window.addEventListener('resize', this.onResize); window.addEventListener('keydown', this.onKey);
+    window.addEventListener('hashchange', this.onHash); window.addEventListener('popstate', this.onHash); window.addEventListener('resize', this.onResize); window.addEventListener('keydown', this.onKey);
   }
-  componentWillUnmount() { (this.grids || []).forEach(g => g.stop()); document.removeEventListener('click', this.onDocClick); window.removeEventListener('hashchange', this.onHash); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); }
+  componentWillUnmount() { (this.grids || []).forEach(g => g.stop()); document.removeEventListener('click', this.onDocClick); window.removeEventListener('hashchange', this.onHash); window.removeEventListener('popstate', this.onHash); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); }
 
   goSec = id => () => { const el = document.getElementById(id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24, behavior: 'smooth' }); };
 
@@ -563,7 +567,7 @@ class Component extends DCLogic {
     const hv = c => wide
       ? `linear-gradient(90deg,rgb(${c}) 0%,rgba(${c},0.9) 32%,rgba(${c},0.35) 58%,rgba(${c},0.05) 100%)`
       : `linear-gradient(180deg,rgba(${c},0.05) 0%,rgba(${c},0.25) 38%,rgba(${c},0.9) 68%,rgb(${c}) 100%)`;
-    const links = [['Accueil', 'index.html'], ...PAGES.map(([k, l]) => [l, '#' + k, k]), ['Adhérer en ligne', 'adherer.html'], ['Carte VIP Premium', 'carte-vip-premium.html']];
+    const links = [['Accueil', 'index.html'], ...PAGES.map(([k, l]) => [l, k + '.html', k]), ['Adhérer en ligne', 'adherer.html'], ['Carte VIP Premium', 'carte-vip-premium.html']];
     return {
       curtainRef: this.curtainRef, curLabel: (PAGES.find(p => p[0] === (this.state.curK || page)) || [, ''])[1],
       wide, notWide: !wide, menu,
@@ -644,7 +648,7 @@ class Component extends DCLogic {
       bands: [
         ['Parler', 'Parlez à quelqu’un', '#35BDB2', '#283D5C', 'rgba(255,255,255,0.18)', 'https://wa.me/237658595657?text=' + encodeURIComponent('Bonjour Femme en Lumière, je souhaite être accompagnée.'), '_blank'],
         ['Rejoindre', 'Rejoignez le mouvement', '#F4A340', '#283D5C', 'rgba(255,255,255,0.2)', 'adherer.html', '_self'],
-        ['Soutenir', 'Don ou partenariat', '#A01D1D', '#FFFFFF', 'rgba(0,0,0,0.14)', '#don', '_self'],
+        ['Soutenir', 'Don ou partenariat', '#A01D1D', '#FFFFFF', 'rgba(0,0,0,0.14)', 'don.html', '_self'],
       ].map(([word, alt, bg, fg, wash, href, target], i) => {
         const on = this.state.hover === i;
         return { word, alt, bg, fg, wash, href, target, enter: () => this.setState({ hover: i }), washT: on ? 'scaleX(1)' : 'scaleX(0)', textT: on ? 'translateY(-1.08em)' : 'none', arT: on ? 'translateX(14px) rotate(-8deg)' : 'none' };

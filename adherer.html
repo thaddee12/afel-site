@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<title>Adhérer à l’AFEL en ligne | Association Femme en Lumière</title>
+<meta name="description" content="Adhérez à l&#x27;AFEL en ligne, comme membre ou sympathisant(e) : complétez le formulaire d&#x27;adhésion puis signez la clause de confidentialité.">
+<link rel="canonical" href="https://afel.cm/adherer.html">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#283D5C">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AFEL, Association Femme en Lumière">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Adhérer à l’AFEL en ligne | Association Femme en Lumière">
+<meta property="og:description" content="Adhérez à l&#x27;AFEL en ligne, comme membre ou sympathisant(e) : complétez le formulaire d&#x27;adhésion puis signez la clause de confidentialité.">
+<meta property="og:url" content="https://afel.cm/adherer.html">
+<meta property="og:image" content="https://afel.cm/assets/og-afel.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
@@ -24,8 +40,8 @@
     <a href="index.html" aria-label="Retour à l’accueil AFEL" style="display:block;width:170px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:scale(1.04)"><dc-import name="Logo" variant="horizontal" theme="couleur" style="width:170px" hint-size="170px,40px"></dc-import></a>
     <nav aria-label="Navigation" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:15px;font-weight:700">
       <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:#283D5C;color:#FFFFFF;text-decoration:none;transition:background .25s, transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="background:#35BDB2;color:#283D5C;transform:translateX(-3px)"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 12H5M11 5.5L4.5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg>Retour au site</a>
-      <a href="pages.html#engager" style="color:#283D5C;text-decoration:none" style-hover="color:#A01D1D">Les statuts</a>
-      <a href="pages.html#contact" style="color:#283D5C;text-decoration:none" style-hover="color:#A01D1D">Contact</a>
+      <a href="engager.html" style="color:#283D5C;text-decoration:none" style-hover="color:#A01D1D">Les statuts</a>
+      <a href="contact.html" style="color:#283D5C;text-decoration:none" style-hover="color:#A01D1D">Contact</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600">
       <span style="width:34px;height:34px;border-radius:50%;background:#35BDB2;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700">{{ initiale }}</span>
@@ -551,7 +567,7 @@ class Component extends DCLogic {
     const PH = { smop: ['assets/hero-smop.webp', '70% 25%'], actions: ['assets/hero-actions.webp', '40% 30%'], paroles: ['assets/photo-dos.webp', 'center 25%'], presidente: ['assets/presidente-action.webp', '50% 22%'], agir: ['assets/hero-engager.webp', '70% 40%'], partenaire: ['assets/action-3-orienter.webp', 'center 40%'], don: ['assets/action-4-bienetre.webp', '70% 35%'], contact: ['assets/photo-cover.webp', 'center'], adherer: ['assets/action-1-sensibiliser.webp', 'center 60%'], accueil: ['assets/photo-cover.webp', 'center'], vip: ['assets/presidente-action.webp', '50% 30%'] };
     const act = this.state.mKey || 'adherer', subOpen = !!this.state.subOpen;
     const goFn = e => { e.preventDefault(); const href = e.currentTarget.getAttribute('href'); const el = this.menuEl; if (el) { el.style.transition = 'opacity .25s'; el.querySelectorAll('[data-mla],[data-msoc],[data-mphoto]').forEach(n => { n.style.transition = 'opacity .25s, transform .3s'; n.style.opacity = '0'; n.style.transform = 'translateY(-20px)'; }); } setTimeout(() => { window.location.href = href; }, 320); };
-    const P = id => 'pages.html#' + id;
+    const P = id => id + '.html';
     const mk = (label, k, href) => ({ label, href, go: goFn, hover: () => { if (this.state.mKey !== k) this.setState({ mKey: k }); }, color: k === 'adherer' ? '#A01D1D' : '#283D5C', hasSubs: false, subs: [] });
     const menuLinks = [
       mk('Accueil', 'accueil', 'index.html'), mk('Comprendre le SMOP', 'smop', P('smop')), mk('Nos actions', 'actions', P('actions')),
