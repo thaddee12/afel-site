@@ -15,7 +15,7 @@
 <meta name="description" content="L'AFEL, à Yaoundé, informe, écoute et accompagne les femmes atteintes du SMOP, nouveau nom du SOPK. Rejoignez le mouvement.">
 <link rel="stylesheet" href="assets/afel-fonts.css">
 <script src="assets/vendor/gsap.min.js"></script>
-<script src="assets/fond-lumiere.js?v=1"></script>
+<script src="assets/fond-lumiere.js?v=2"></script>
 <style>@keyframes afelHalo{0%,100%{box-shadow:0 0 12px -4px rgba(244,163,64,.55)}50%{box-shadow:0 0 26px -2px rgba(244,163,64,.9)}}@media (prefers-reduced-motion:reduce){[style*="afelHalo"]{animation:none!important}}html,body{margin:0;background:#283D5C}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}@media (min-width:700px) and (max-width:1024.98px){#smop [data-sl],#paroles blockquote{max-width:640px}}</style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;background:#283D5C;color:#FFFFFF;font-family:'Nunito',sans-serif;font-size:18px;line-height:1.55">
@@ -52,7 +52,7 @@
 
 <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
   <div ref="{{ menuRef }}" role="dialog" aria-modal="true" aria-label="Menu" style="position:fixed;inset:0;z-index:220;background:#F4A340;color:#283D5C;overflow:auto;--m1:100%;--m2:100%;clip-path:polygon(0 0,var(--m1) 0,var(--m2) 100%,0 100%)">
-    <canvas data-vgrid data-color="rgba(40,61,92,0.16)" data-flow="{{ mFlow }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+    <fond-lumiere colors="#283D5C,#A01D1D,#35BDB2" density="1.4" shape="losange"></fond-lumiere>
     <div data-mlead style="position:absolute;inset:0;z-index:3;background:#35BDB2;pointer-events:none;--l1:100%;--l2:100%;clip-path:polygon(var(--l1) 0,100% 0,100% 100%,var(--l2) 100%)"></div>
     <button type="button" onClick="{{ closeMenu }}" aria-label="Fermer le menu" style="position:absolute;z-index:2;left:{{ closeL }};right:{{ closeR }};top:{{ closeT }};width:48px;height:48px;border:none;background:transparent;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M4 4l16 16M20 4L4 20" stroke="#283D5C" stroke-width="3"></path></svg></button>
     <div style="position:relative;min-height:100%;display:grid;grid-template-columns:{{ menuCols }};gap:40px;align-items:center;padding:{{ menuPad }}">
@@ -108,7 +108,7 @@
 <section id="hero" data-scene aria-label="Accueil" style="position:relative;z-index:1;min-height:{{ heroMinH }};overflow:hidden;background:#283D5C;--ha:46%;--hb:38%;--hc:78%;--hd:66%">
   <img loading="eager" decoding="async" sizes="(max-width: 699px) 120vw, 100vw" sc-camel-src-set="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" aria-hidden="true" style="display:{{ bgD }};position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;pointer-events:none">
   <div style="position:absolute;inset:0;background:rgba(40,61,92,0.8);clip-path:{{ clipN }}">
-    <fond-lumiere color="#35BDB2" density="1" shape="losange" data-hfond></fond-lumiere>
+    <fond-lumiere colors="#35BDB2,#F4A340,#A01D1D" density="1" shape="losange" data-hfond></fond-lumiere>
     <div data-htitle style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
       <h1 style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#F4A340"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" aria-hidden="true" style="display:block;width:1.15em;height:.7em"><path fill="#F4A340" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></h1>
     </div></div>
@@ -121,7 +121,7 @@
     </div></div>
   </div>
   <div style="position:absolute;inset:0;background:{{ orBg }};clip-path:{{ clipO }}">
-    <fond-lumiere color="#283D5C" density="0.8" shape="losange" data-hfond></fond-lumiere>
+    <fond-lumiere colors="#283D5C,#A01D1D,#35BDB2" density="0.8" shape="losange" data-hfond></fond-lumiere>
     <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
       <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#283D5C"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" aria-hidden="true" style="display:block;width:1.15em;height:.7em"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
     </div></div>
