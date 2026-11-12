@@ -173,8 +173,10 @@
 </sc-if>
 
 <sc-if value="{{ isTem }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#FFFFFF;color:#283D5C;padding:{{ heroPad }};border-bottom:56px solid transparent;background-image:url(assets/ornement-frise.svg);background-repeat:repeat-x;background-position:left bottom;background-size:auto 56px">
-    <div style="max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
+  <section style="position:relative;background:#FFFFFF;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;border-bottom:56px solid transparent;background-image:url(assets/ornement-frise.svg);background-repeat:repeat-x;background-position:left bottom;background-origin:border-box;background-size:auto 56px">
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src="assets/hero-temoignages.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ hpTem }};pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <div style="position:absolute;inset:0;background:{{ hvTem }};pointer-events:none"></div>
+    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#A01D1D">Témoignages</span>
       <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95">Elles parlent.<br>On les écoute.</h1>
     </div>
@@ -251,8 +253,10 @@
 </sc-if>
 
 <sc-if value="{{ isPart }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
-    <div style="max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
+  <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src="assets/hero-partenaire.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ hpPart }};pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <div style="position:absolute;inset:0;background:{{ hvPart }};pointer-events:none"></div>
+    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">Entreprises, institutions, professionnels de santé</span>
       <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95;color:#F4A340">Devenir partenaire</h1>
       <p style="margin:0;max-width:640px;font-size:20px;line-height:1.5;text-wrap:pretty">Une cause exige une communauté. Ensemble, faisons sortir le SMOP de l’ombre.</p>
@@ -273,8 +277,10 @@
 </sc-if>
 
 <sc-if value="{{ isDon }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#A01D1D;color:#FFFFFF;padding:{{ heroPad }};clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
-    <div style="max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
+  <section style="position:relative;background:#A01D1D;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src="assets/hero-don.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ hpDon }};pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <div style="position:absolute;inset:0;background:{{ hvDon }};pointer-events:none"></div>
+    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Soutenir l’AFEL</span>
       <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95">Faire un don</h1>
       <p style="margin:0;max-width:640px;font-size:20px;line-height:1.5;text-wrap:pretty">Votre don finance les actions de sensibilisation, les espaces d’écoute et l’orientation des femmes vers un suivi adapté.</p>
@@ -300,8 +306,10 @@
 </sc-if>
 
 <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
-    <div style="max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
+  <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
+    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src="assets/hero-contact.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ hpCon }};pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
+    <div style="position:absolute;inset:0;background:{{ hvCon }};pointer-events:none"></div>
+    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
       <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">Nous sommes à l’écoute</span>
       <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95;color:#F4A340">Contact</h1>
     </div>
@@ -547,6 +555,9 @@ class Component extends DCLogic {
     const PH = { accueil: ['assets/photo-cover.webp', 'center'], smop: ['assets/hero-smop.webp', '70% 25%'], actions: ['assets/hero-actions.webp', '40% 30%'], temoignages: ['assets/photo-dos.webp', 'center 25%'], association: ['assets/presidente-action.webp', '50% 22%'], engager: ['assets/hero-engager.webp', '70% 40%'], partenaire: ['assets/action-3-orienter.webp', 'center 40%'], don: ['assets/action-4-bienetre.webp', '70% 35%'], contact: ['assets/photo-cover.webp', 'center'], adherer: ['assets/action-1-sensibiliser.webp', 'center 60%'], vip: ['assets/presidente-action.webp', '50% 30%'] };
     const act = this.state.mKey || page;
     const is = k => page === k;
+    const hv = c => wide
+      ? `linear-gradient(90deg,rgb(${c}) 0%,rgba(${c},0.9) 32%,rgba(${c},0.35) 58%,rgba(${c},0.05) 100%)`
+      : `linear-gradient(180deg,rgba(${c},0.05) 0%,rgba(${c},0.25) 38%,rgba(${c},0.9) 68%,rgb(${c}) 100%)`;
     const links = [['Accueil', 'index.html'], ...PAGES.map(([k, l]) => [l, '#' + k, k]), ['Adhérer en ligne', 'adherer.html'], ['Carte VIP Premium', 'carte-vip-premium.html']];
     return {
       curtainRef: this.curtainRef, curLabel: (PAGES.find(p => p[0] === (this.state.curK || page)) || [, ''])[1],
@@ -574,7 +585,11 @@ class Component extends DCLogic {
       socS: wide ? '48px' : '56px', mFlow: wide ? '1' : '10',
       menuPhotos: Object.keys(PH).map(k => ({ src: PH[k][0], pos: PH[k][1], alt: k === act ? 'Membres de l’AFEL' : '', op: k === act ? 1 : 0, t: k === act ? 'scale(1)' : 'scale(1.08)' })),
       waHref: 'https://wa.me/237658595657?text=' + encodeURIComponent('Bonjour Femme en Lumière, je souhaite être accompagnée.'),
+      // voile des en-têtes photo : de côté sur grand écran, du bas sur mobile
       smopHeroH: wide ? '92vh' : '78svh',
+      hJust: wide ? 'center' : 'flex-end',
+      hpTem: wide ? 'center 40%' : '72% 30%', hpPart: wide ? 'center 45%' : '62% 40%', hpDon: wide ? 'center' : '62% 50%', hpCon: wide ? '60% 35%' : '55% 30%',
+      hvTem: hv('255,255,255'), hvPart: hv('40,61,92'), hvDon: hv('160,29,29'), hvCon: hv('40,61,92'),
       actPhL: wide ? '44%' : '0', actPhClip: wide ? 'polygon(14% 0,100% 0,100% 100%,0 100%)' : 'none', actPhVeil: wide ? '0' : '0.82',
       actBarL: 'calc(44% + 2px)', actBarD: wide ? 'block' : 'none', actTxtW: wide ? '40%' : '900px',
       mainL: wide ? '72px' : '0', mainT: wide ? '0' : '60px',
