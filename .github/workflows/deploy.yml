@@ -1,0 +1,60 @@
+name: Deploiement AFEL sur Hostinger
+
+# Envoie le site AFEL sur l'hebergement Hostinger a chaque push sur main.
+# Le compte FTP dedie doit etre limite au public_html du site AFEL,
+# d'ou server-dir "./". Tant que les secrets FTP ne sont pas poses,
+# le deploiement est ignore sans erreur.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-afel
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verifier les secrets FTP
+        id: secrets
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          if [ -z "$FTP_HOST" ] || [ -z "$FTP_USER" ] || [ -z "$FTP_PASS" ]; then
+            echo "Secrets FTP absents : deploiement ignore."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Recuperer le code
+        if: steps.secrets.outputs.ok == 'true'
+        uses: actions/checkout@v4
+
+      - name: Envoyer par FTP
+        if: steps.secrets.outputs.ok == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          port: 21
+          protocol: ftps
+          # certificat Hostinger emis pour *.hstgr.io : FTP_HOST doit etre
+          # le nom du serveur en .hstgr.io, pas l'IP
+          security: strict
+          local-dir: ./
+          server-dir: ./
+          exclude: |
+            .git/**
+            .gitignore
+            **/.git*/**
+            .github/**
+            README.md
+            supabase/**
+            **/.DS_Store
