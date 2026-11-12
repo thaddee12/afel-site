@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<link rel="preload" as="image" imagesrcset="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" imagesizes="(max-width: 699px) 120vw, 100vw" fetchpriority="high">
+<link rel="preload" as="image" media="(min-width: 1025px)" imagesrcset="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" media="(max-width: 1024.98px)" href="assets/photo-cover-p.webp" fetchpriority="high">
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
@@ -106,15 +107,15 @@
 <div ref="{{ stageRef }}" style="position:relative">
 
 <section id="hero" data-scene aria-label="Accueil" style="position:relative;z-index:1;min-height:{{ heroMinH }};overflow:hidden;background:#283D5C;--ha:46%;--hb:38%;--hc:78%;--hd:66%">
-  <img loading="eager" decoding="async" sizes="(max-width: 699px) 120vw, 100vw" sc-camel-src-set="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" aria-hidden="true" style="display:{{ bgD }};position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;pointer-events:none">
+  <img loading="eager" decoding="async" sizes="100vw" sc-camel-src-set="{{ hSet }}" sc-camel-src="{{ hSrc }}" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ phPos }};pointer-events:none">
   <div style="position:absolute;inset:0;background:rgba(40,61,92,0.8);clip-path:{{ clipN }}">
     <fond-lumiere colors="#35BDB2,#F4A340,#A01D1D" density="1" shape="losange" data-hfond></fond-lumiere>
     <div data-htitle style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
       <h1 style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#F4A340"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" aria-hidden="true" style="display:block;width:1.15em;height:.7em"><path fill="#F4A340" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></h1>
     </div></div>
   </div>
-  <div style="position:absolute;inset:0;clip-path:{{ clipP }}">
-    <img data-hphoto loading="eager" fetchpriority="high" decoding="async" sizes="(max-width: 699px) 120vw, 100vw" sc-camel-src-set="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" style="position:absolute;left:0;top:{{ phT }};width:100%;height:{{ phH }};object-fit:cover;object-position:{{ phPos }}">
+  <div style="position:absolute;inset:0;overflow:hidden;isolation:isolate;will-change:transform;clip-path:{{ clipP }}">
+    <img data-hphoto loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="{{ hSet }}" sc-camel-src="{{ hSrc }}" alt="" style="position:absolute;left:0;top:{{ phT }};width:100%;height:{{ phH }};object-fit:cover;object-position:{{ phPos }}">
     <div style="position:absolute;left:0;right:0;top:{{ phT }};height:{{ phH }};background:{{ phVeil }};opacity:{{ phVeilOp }}"></div>
     <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
       <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#FFFFFF"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" aria-hidden="true" style="display:block;width:1.15em;height:.7em"><path fill="#FFFFFF" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
@@ -439,6 +440,7 @@ class Component extends DCLogic {
     if (this.abStop) { this.abStop(); this.abStop = null; }
     if (this.onVis) { document.removeEventListener('visibilitychange', this.onVis); this.onVis = null; }
     if (this.revealAll) { this.revealAll(); this.revealAll = null; }
+    if (this.hOff) { this.hOff(); this.hOff = null; }
     if (this.ctx) { this.ctx.revert(); this.ctx = null; }
     if (this.tl) { this.tl.kill(); }
     this.tl = null; this.st = null;
@@ -450,6 +452,24 @@ class Component extends DCLogic {
     // Rideau turquoise de la photo de la présidente : sans ce lever, la photo reste cachée sur téléphone et tablette.
     const cur = r.querySelector('#presidente [data-pcur]'), ph = r.querySelector('#presidente [data-pphoto]');
     if (this.state.reduced) { if (cur) g.set(cur, { yPercent: -102 }); return; }
+    // Hero mobile : bandes orange et bleue entrouvertes ; le défilement les écarte jusqu'à laisser toute la photo.
+    const hero = r.querySelector('#hero');
+    if (hero && !this.state.wide) {
+      const B = this.state.tab ? { o1: 36, o2: 28, n1: 62, n2: 56 } : { o1: 30, o2: 22, n1: 62, n2: 54 }, C = 46;
+      const hb = this.hb = { k: 1, p: 0 };
+      const apply = this.hApply = () => {
+        const L = (a) => C + (a - C) * hb.k, e = 1 - Math.pow(1 - hb.p, 2);
+        hero.style.setProperty('--o1', (L(B.o1) * (1 - e)).toFixed(2) + '%');
+        hero.style.setProperty('--o2', (L(B.o2) * (1 - e)).toFixed(2) + '%');
+        hero.style.setProperty('--n1', (L(B.n1) + (100 - L(B.n1)) * e).toFixed(2) + '%');
+        hero.style.setProperty('--n2', (L(B.n2) + (100 - L(B.n2)) * e).toFixed(2) + '%');
+      };
+      let raf = 0;
+      const onS = () => { raf = 0; hb.p = Math.max(0, Math.min(1, window.scrollY / (hero.offsetHeight * 0.5))); apply(); };
+      const req = () => { if (!raf) raf = requestAnimationFrame(onS); };
+      window.addEventListener('scroll', req, { passive: true }); onS();
+      this.hOff = () => { window.removeEventListener('scroll', req); cancelAnimationFrame(raf); ['--o1', '--o2', '--n1', '--n2'].forEach(v => hero.style.removeProperty(v)); this.hb = null; this.hApply = null; };
+    }
     if (cur && ph) {
       this.curIo = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { g.to(cur, { yPercent: -102, duration: 1, ease: 'power2.inOut', delay: 0.15, force3D: true }); this.curIo.disconnect(); this.curIo = null; } }, { rootMargin: '0px 0px -12% 0px' });
       this.curIo.observe(ph);
@@ -609,6 +629,7 @@ class Component extends DCLogic {
     const r = this.root, qa = s => [...r.querySelectorAll(s)], wide = this.state.wide;
     this.ctx.add(() => {
       if (wide) g.fromTo(r.querySelector('#hero'), { '--ha': '100%', '--hb': '100%', '--hc': '100%', '--hd': '100%' }, { '--ha': '44%', '--hb': '52%', '--hc': '80%', '--hd': '72%', duration: 1.5, ease: 'power3.inOut' });
+      if (!wide && this.hb) g.fromTo(this.hb, { k: 0 }, { k: 1, duration: 1.3, ease: 'power3.inOut', onUpdate: this.hApply });
       g.from(qa('[data-hl]'), { yPercent: 105, duration: 0.85, delay: wide ? 1.05 : 0.2, stagger: 0.06, ease: 'power3.out' });
       g.from(qa('[data-harrow]'), { xPercent: -100, duration: 0.75, delay: wide ? 1.15 : 0.3, ease: 'power3.out' });
       g.from(qa('[data-ht]'), { yPercent: 60, opacity: 0, duration: 0.65, delay: wide ? 1.2 : 0.35, stagger: 0.035, ease: 'power3.out' });
@@ -745,14 +766,15 @@ class Component extends DCLogic {
       mGap: wide ? '2px' : tab ? '14px' : '10px', mUlFlex: wide ? 'none' : '1', mUlJ: wide ? 'flex-start' : 'space-evenly', mColH: wide ? '0' : tab ? 'calc(100svh - 176px)' : 'calc(100svh - 124px)', mColJ: wide ? 'flex-start' : 'space-between',
       socS: wide ? '48px' : '56px', mFlow: wide ? '1' : '10',
       waR: wide ? '24px' : '16px',
-      phT: wide ? '0' : tab ? '28%' : '22%', phH: wide ? '100%' : tab ? '34%' : '40%', phPos: wide ? 'center 40%' : 'center 42%',
-      phVeil: wide ? '#283D5C' : 'linear-gradient(180deg, rgba(40,61,92,0.12) 0%, rgba(40,61,92,0.12) 42%, rgba(40,61,92,0.9) 100%)', phVeilOp: wide ? '0.5' : '1', txSh: wide ? 'none' : '0 1px 14px rgba(40,61,92,0.75)',
-      bgD: wide ? 'block' : 'none', // photo plein cadre sous les bandes : ordinateur seulement
-      orBg: wide ? 'rgba(244,163,64,0.68)' : 'rgba(244,163,64,0.82)',
+      phT: '0', phH: '100%', phPos: wide ? 'center 40%' : '62% 50%',
+      hSrc: wide ? 'assets/photo-cover.webp' : 'assets/photo-cover-p.webp', hSet: wide ? 'assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w' : 'assets/photo-cover-p.webp 1400w',
+      phVeil: wide ? '#283D5C' : 'linear-gradient(180deg, rgba(40,61,92,0.5) 0%, rgba(40,61,92,0.12) 30%, rgba(40,61,92,0.2) 52%, rgba(40,61,92,0.92) 100%)', phVeilOp: wide ? '0.5' : '1', txSh: wide ? 'none' : '0 1px 14px rgba(40,61,92,0.75)',
+      orBg: 'rgba(244,163,64,0.68)',
       heroMinH: wide ? '100vh' : tab ? 'max(880px, 100vh)' : '880px',
-      clipN: wide ? 'polygon(0 0,var(--ha) 0,var(--hb) 100%,0 100%)' : tab ? 'polygon(0 62%,100% 56%,100% 100%,0 100%)' : 'polygon(0 62%,100% 54%,100% 100%,0 100%)',
-      clipP: wide ? 'polygon(var(--ha) 0,var(--hc) 0,var(--hd) 100%,var(--hb) 100%)' : tab ? 'polygon(0 36%,100% 28%,100% 56%,0 62%)' : 'polygon(0 30%,100% 22%,100% 54%,0 62%)',
-      clipO: wide ? 'polygon(var(--hc) 0,100% 0,100% 100%,var(--hd) 100%)' : tab ? 'polygon(0 0,100% 0,100% 28%,0 36%)' : 'polygon(0 0,100% 0,100% 22%,0 30%)',
+      // mobile et tablette : bandes horizontales entrouvertes ; --o1/--o2 (bas de la bande orange), --n1/--n2 (haut de la bande bleue) bougent au défilement
+      clipN: wide ? 'polygon(0 0,var(--ha) 0,var(--hb) 100%,0 100%)' : 'polygon(0 var(--n1,62%),100% var(--n2,54%),100% 100%,0 100%)',
+      clipP: wide ? 'polygon(var(--ha) 0,var(--hc) 0,var(--hd) 100%,var(--hb) 100%)' : 'polygon(0 var(--o1,30%),100% var(--o2,22%),100% var(--n2,54%),0 var(--n1,62%))',
+      clipO: wide ? 'polygon(var(--hc) 0,100% 0,100% 100%,var(--hd) 100%)' : 'polygon(0 0,100% 0,100% var(--o2,22%),0 var(--o1,30%))',
       htL: wide ? L : tab ? '48px' : '20px', htT: wide ? '15vh' : tab ? '104px' : '84px', htS: wide ? 'min(8.6vw, 15vh)' : tab ? 'min(8vw, 72px)' : '11vw',
       txL: wide ? L : tab ? '48px' : '20px', txR: wide ? 'auto' : tab ? '48px' : '20px', txB: wide ? '8vh' : tab ? '96px' : '92px', txW: wide ? '440px' : tab ? '600px' : 'none',
       pad: wide ? '9vh 6vw 9vh ' + L : tab ? '128px 48px 96px' : '96px 20px 72px',
