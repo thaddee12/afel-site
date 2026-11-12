@@ -15,6 +15,7 @@
 <meta name="description" content="L'AFEL, à Yaoundé, informe, écoute et accompagne les femmes atteintes du SMOP, nouveau nom du SOPK. Rejoignez le mouvement.">
 <link rel="stylesheet" href="assets/afel-fonts.css">
 <script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/fond-lumiere.js?v=1"></script>
 <style>@keyframes afelHalo{0%,100%{box-shadow:0 0 12px -4px rgba(244,163,64,.55)}50%{box-shadow:0 0 26px -2px rgba(244,163,64,.9)}}@media (prefers-reduced-motion:reduce){[style*="afelHalo"]{animation:none!important}}html,body{margin:0;background:#283D5C}*{box-sizing:border-box}body{-webkit-font-smoothing:antialiased}a{color:inherit}a:hover{color:inherit}@media (min-width:700px) and (max-width:1024.98px){#smop [data-sl],#paroles blockquote{max-width:640px}}</style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;background:#283D5C;color:#FFFFFF;font-family:'Nunito',sans-serif;font-size:18px;line-height:1.55">
@@ -105,23 +106,24 @@
 <div ref="{{ stageRef }}" style="position:relative">
 
 <section id="hero" data-scene aria-label="Accueil" style="position:relative;z-index:1;min-height:{{ heroMinH }};overflow:hidden;background:#283D5C;--ha:46%;--hb:38%;--hc:78%;--hd:66%">
-  <div style="position:absolute;inset:0;background:#283D5C;clip-path:{{ clipN }}">
-    <canvas data-vgrid data-color="rgba(255,255,255,0.07)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+  <img loading="eager" decoding="async" sizes="(max-width: 699px) 120vw, 100vw" sc-camel-src-set="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" aria-hidden="true" style="display:{{ bgD }};position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;pointer-events:none">
+  <div style="position:absolute;inset:0;background:rgba(40,61,92,0.8);clip-path:{{ clipN }}">
+    <fond-lumiere color="#35BDB2" density="1" shape="losange" data-hfond></fond-lumiere>
     <div data-htitle style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
-      <h1 style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#F4A340"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span></span></h1>
+      <h1 style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#F4A340"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" aria-hidden="true" style="display:block;width:1.15em;height:.7em"><path fill="#F4A340" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></h1>
     </div></div>
   </div>
   <div style="position:absolute;inset:0;clip-path:{{ clipP }}">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="(max-width: 699px) 120vw, 100vw" sc-camel-src-set="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" style="position:absolute;left:0;top:{{ phT }};width:100%;height:{{ phH }};object-fit:cover;object-position:{{ phPos }}">
+    <img data-hphoto loading="eager" fetchpriority="high" decoding="async" sizes="(max-width: 699px) 120vw, 100vw" sc-camel-src-set="assets/photo-cover-m.webp 1600w, assets/photo-cover.webp 2560w" sc-camel-src="assets/photo-cover.webp" alt="" style="position:absolute;left:0;top:{{ phT }};width:100%;height:{{ phH }};object-fit:cover;object-position:{{ phPos }}">
     <div style="position:absolute;left:0;right:0;top:{{ phT }};height:{{ phH }};background:{{ phVeil }};opacity:{{ phVeilOp }}"></div>
     <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
-      <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#FFFFFF"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span></span></div>
+      <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#FFFFFF"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" aria-hidden="true" style="display:block;width:1.15em;height:.7em"><path fill="#FFFFFF" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
     </div></div>
   </div>
-  <div style="position:absolute;inset:0;background:rgba(244,163,64,0.82);clip-path:{{ clipO }}">
-    <canvas data-vgrid data-color="rgba(40,61,92,0.16)" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+  <div style="position:absolute;inset:0;background:{{ orBg }};clip-path:{{ clipO }}">
+    <fond-lumiere color="#283D5C" density="0.8" shape="losange" data-hfond></fond-lumiere>
     <div data-htitle aria-hidden="true" style="position:absolute;left:{{ htL }};top:{{ htT }};right:0;transform-origin:0 50%"><div data-hpar>
-      <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#283D5C"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span></span></div>
+      <div style="font-family:'Dancing Script',cursive;font-weight:700;font-size:{{ htS }};line-height:1.08;color:#283D5C"><span style="display:block;overflow:hidden;padding:0 .1em .08em 0"><span data-hl style="display:block;white-space:nowrap">Brisons le silence,</span></span><span style="display:flex;align-items:center;gap:.25em;overflow:hidden;padding-bottom:.08em"><span data-hl style="display:block;white-space:nowrap">allumons l’espoir.</span><span style="display:block;overflow:hidden;flex:none"><svg data-harrow viewBox="0 0 100 60" aria-hidden="true" style="display:block;width:1.15em;height:.7em"><path fill="#283D5C" d="M0 22h62V3l38 27-38 27V38H0z"></path></svg></span></span></div>
     </div></div>
   </div>
   <div data-htext style="position:absolute;z-index:3;left:{{ txL }};right:{{ txR }};bottom:{{ txB }};max-width:{{ txW }}">
@@ -429,6 +431,7 @@ class Component extends DCLogic {
   teardown() {
     const g = window.gsap;
     if (g && this.parTick) { g.ticker.remove(this.parTick); this.parTick = null; }
+    if (this.root) { const hp = this.root.querySelector('#hero [data-hphoto]'); if (hp && g) g.set(hp, { clearProps: 'transform' }); this.root.querySelectorAll('#hero [data-hfond]').forEach(f => f.removeAttribute('paused')); }
     if (this.lenis) { if (g) g.ticker.remove(this.lenisTick); this.lenis.destroy(); this.lenis = null; }
     if (this.unScroll) { this.unScroll(); this.unScroll = null; }
     if (this.io) { this.io.disconnect(); this.io = null; }
@@ -502,6 +505,7 @@ class Component extends DCLogic {
     tl.addLabel('hero', 0)
       .fromTo(hero, { '--ha': '44%', '--hb': '52%', '--hc': '80%', '--hd': '72%' }, { '--ha': '0%', '--hb': '0%', '--hc': '100%', '--hd': '100%', duration: 1.2, ease: 'power1.out', immediateRender: false }, 0.15)
       .to(qa('[data-htitle]'), { yPercent: -110, rotation: -2, duration: 1.2, ease: 'power1.in' }, 0.15)
+      .to(qa('[data-harrow]'), { xPercent: 200, duration: 0.8, ease: 'power1.in' }, 0.15)
       .to(q('[data-htext]'), { yPercent: -50, opacity: 0, duration: 0.8 }, 0.15);
     tl.to(smop, { '--x1': '0%', duration: 1, ease: 'power1.inOut' }, 1)
       .to(smop, { '--x2': '0%', duration: 1.2, ease: 'power3.inOut' }, 1)
@@ -588,11 +592,14 @@ class Component extends DCLogic {
     let lastY = -1; const poll = setInterval(() => { if (window.scrollY !== lastY) { lastY = window.scrollY; onScroll(); } }, 120);
     this.unScroll = () => { window.removeEventListener('scroll', onScroll); clearTimeout(snapT); clearInterval(poll); };
     onScroll();
-    const parEls = qa('[data-hpar]'); let cx = 0, cy = 0;
+    const hPh = q('#hero [data-hphoto]'), fonds = qa('#hero [data-hfond]'); let cx = 0, cy = 0, off = false;
+    if (hPh) g.set(hPh, { scale: 1.06 });
     this.parTick = () => {
-      if (!M.mouse || (this.tl && this.tl.time() > 1.4)) return;
-      cx += ((M.x / window.innerWidth - 0.5) * -28 - cx) * 0.05; cy += ((M.y / window.innerHeight - 0.5) * -16 - cy) * 0.05;
-      g.set(parEls, { x: cx, y: cy });
+      const covered = !!(this.tl && this.tl.time() > 1.4);
+      if (covered !== off) { off = covered; fonds.forEach(f => f.toggleAttribute('paused', off)); }
+      if (!M.mouse || covered || !hPh) return;
+      cx += ((M.x / window.innerWidth - 0.5) * -24 - cx) * 0.05; cy += ((M.y / window.innerHeight - 0.5) * -16 - cy) * 0.05;
+      g.set(hPh, { x: cx, y: cy });
     };
     g.ticker.add(this.parTick);
   }
@@ -603,6 +610,7 @@ class Component extends DCLogic {
     this.ctx.add(() => {
       if (wide) g.fromTo(r.querySelector('#hero'), { '--ha': '100%', '--hb': '100%', '--hc': '100%', '--hd': '100%' }, { '--ha': '44%', '--hb': '52%', '--hc': '80%', '--hd': '72%', duration: 1.5, ease: 'power3.inOut' });
       g.from(qa('[data-hl]'), { yPercent: 105, duration: 0.85, delay: wide ? 1.05 : 0.2, stagger: 0.06, ease: 'power3.out' });
+      g.from(qa('[data-harrow]'), { xPercent: -100, duration: 0.75, delay: wide ? 1.15 : 0.3, ease: 'power3.out' });
       g.from(qa('[data-ht]'), { yPercent: 60, opacity: 0, duration: 0.65, delay: wide ? 1.2 : 0.35, stagger: 0.035, ease: 'power3.out' });
     });
   }
@@ -739,6 +747,8 @@ class Component extends DCLogic {
       waR: wide ? '24px' : '16px',
       phT: wide ? '0' : tab ? '28%' : '22%', phH: wide ? '100%' : tab ? '34%' : '40%', phPos: wide ? 'center 40%' : 'center 42%',
       phVeil: wide ? '#283D5C' : 'linear-gradient(180deg, rgba(40,61,92,0.12) 0%, rgba(40,61,92,0.12) 42%, rgba(40,61,92,0.9) 100%)', phVeilOp: wide ? '0.5' : '1', txSh: wide ? 'none' : '0 1px 14px rgba(40,61,92,0.75)',
+      bgD: wide ? 'block' : 'none', // photo plein cadre sous les bandes : ordinateur seulement
+      orBg: wide ? 'rgba(244,163,64,0.68)' : 'rgba(244,163,64,0.82)',
       heroMinH: wide ? '100vh' : tab ? 'max(880px, 100vh)' : '880px',
       clipN: wide ? 'polygon(0 0,var(--ha) 0,var(--hb) 100%,0 100%)' : tab ? 'polygon(0 62%,100% 56%,100% 100%,0 100%)' : 'polygon(0 62%,100% 54%,100% 100%,0 100%)',
       clipP: wide ? 'polygon(var(--ha) 0,var(--hc) 0,var(--hd) 100%,var(--hb) 100%)' : tab ? 'polygon(0 36%,100% 28%,100% 56%,0 62%)' : 'polygon(0 30%,100% 22%,100% 54%,0 62%)',
