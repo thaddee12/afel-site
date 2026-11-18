@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "ContactPage", "@id": "https://afel.cm/contact.html#page", "url": "https://afel.cm/contact.html", "name": "Contact | AFEL, Association Femme en Lumière, Yaoundé", "description": "Contactez l'AFEL à Yaoundé IV (Messamendongo, Cité de la Paix) : +237 658 595 657 par appel ou WhatsApp, ou par e-mail à contact@afel.cm.", "inLanguage": "fr", "isPartOf": {"@type": "WebSite", "url": "https://afel.cm/", "name": "AFEL"}, "publisher": {"@id": "https://afel.cm/#association"}, "about": {"@id": "https://afel.cm/#association"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://afel.cm/"}, {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://afel.cm/contact.html"}]}]}</script>
 <title>Contact | AFEL, Association Femme en Lumière, Yaoundé</title>
 <meta name="description" content="Contactez l&#x27;AFEL à Yaoundé IV (Messamendongo, Cité de la Paix) : +237 658 595 657 par appel ou WhatsApp, ou par e-mail à contact@afel.cm.">
 <link rel="canonical" href="https://afel.cm/contact.html">
@@ -113,218 +114,19 @@
 
 <main data-pmain style="padding-left:{{ mainL }};padding-top:{{ mainT }}">
 
-<sc-if value="{{ isSmop }}" hint-placeholder-val="{{ true }}">
-  <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;clip-path:polygon(0 0,100% 0,100% 90%,0 100%);overflow:hidden">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="assets/hero-smop-m.webp 1200w, assets/hero-smop.webp 1672w" sc-camel-src="assets/hero-smop.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 20%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
-    <div style="position:absolute;inset:0;background:linear-gradient(90deg,#283D5C 0%,rgba(40,61,92,0.92) 35%,rgba(40,61,92,0.35) 65%,rgba(40,61,92,0.1) 100%);pointer-events:none"></div>
-    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
-      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">SMOP, nouveau nom du SOPK</span>
-      <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95;color:#F4A340">Comprendre le SMOP</h1>
-      <p style="margin:0;max-width:640px;font-size:20px;line-height:1.5;text-wrap:pretty">Des repères clairs pour comprendre ce trouble hormonal fréquent, et savoir quand consulter.</p>
-      <div style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 40%,#A01D1D 75%,rgba(160,29,29,0) 100%)"></div>
-    </div>
-  </section>
-  <div style="position:relative;isolation:isolate;display:grid;grid-template-columns:{{ docCols }};gap:56px;padding:{{ bodyPad }}">
-    <fond-lumiere colors="#283D5C,#35BDB2,#F4A340,#A01D1D" density="0.55" halo="0.25" shape="losange" style="z-index:-1"></fond-lumiere>
-    <sc-if value="{{ wide }}">
-      <aside style="position:sticky;top:40px;align-self:start;display:flex;flex-direction:column;gap:10px">
-        <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase">Sommaire</span>
-        <sc-for list="{{ smopToc }}" as="t" hint-placeholder-count="5"><button type="button" onClick="{{ t.go }}" style="text-align:left;border:none;background:transparent;padding:6px 0;font-family:'Nunito',sans-serif;font-size:17px;font-weight:600;color:#283D5C;cursor:pointer;border-left:3px solid #35BDB2;padding-left:12px;transition:padding .25s, color .2s, border-color .2s" style-hover="padding-left:20px;color:#A01D1D;border-left-color:#F4A340">{{ t.label }}</button></sc-for>
-      </aside>
-    </sc-if>
-    <article style="max-width:720px;display:flex;flex-direction:column;gap:48px">
-      <section id="s-quoi" style="display:flex;flex-direction:column;gap:14px"><h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Qu’est-ce que le SMOP ?</h2><p style="margin:0;text-wrap:pretty">Le SMOP, syndrome métabolique ovarien polyendocrinien, est le nouveau nom du SOPK, le syndrome des ovaires polykystiques. C’est un trouble hormonal fréquent chez les femmes en âge d’avoir des enfants. Il agit à la fois sur les hormones, sur le fonctionnement des ovaires et sur le métabolisme.</p></section>
-      <section id="s-nom" style="display:flex;flex-direction:column;gap:14px"><h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Pourquoi un nouveau nom ?</h2><p style="margin:0;text-wrap:pretty">L’ancien nom laissait penser à des kystes sur les ovaires. Ce n’est ni toujours le cas, ni la cause du trouble. Le nouveau nom décrit mieux ses effets hormonaux et métaboliques sur tout le corps.</p></section>
-      <section id="s-signes" style="display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Les signes possibles</h2>
-        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
-          <li style="display:flex;gap:14px"><span style="flex:none;width:10px;height:10px;margin-top:10px;background:#35BDB2"></span>Des cycles irréguliers, très longs ou absents.</li>
-          <li style="display:flex;gap:14px"><span style="flex:none;width:10px;height:10px;margin-top:10px;background:#F4A340"></span>De l’acné ou une peau grasse.</li>
-          <li style="display:flex;gap:14px"><span style="flex:none;width:10px;height:10px;margin-top:10px;background:#A01D1D"></span>Une pilosité plus marquée sur le visage ou le corps.</li>
-          <li style="display:flex;gap:14px"><span style="flex:none;width:10px;height:10px;margin-top:10px;background:#283D5C"></span>Une chute de cheveux.</li>
-          <li style="display:flex;gap:14px"><span style="flex:none;width:10px;height:10px;margin-top:10px;background:#35BDB2"></span>Une prise de poids, ou du mal à en perdre.</li>
-          <li style="display:flex;gap:14px"><span style="flex:none;width:10px;height:10px;margin-top:10px;background:#F4A340"></span>Des difficultés à concevoir.</li>
-        </ul>
-        <div style="background:#283D5C;color:#FFFFFF;padding:20px 24px;font-weight:600;text-wrap:pretty">Ces signes ne veulent pas automatiquement dire SMOP. Seul un professionnel de santé peut poser un diagnostic.</div>
-      </section>
-      <section id="s-consulter" style="display:flex;flex-direction:column;gap:14px"><h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Quand consulter ?</h2><p style="margin:0;text-wrap:pretty">Si vos cycles sont irréguliers depuis plusieurs mois, ou si plusieurs de ces signes vous concernent, parlez-en à un médecin ou à un gynécologue. L’AFEL peut vous orienter vers des professionnels de santé.</p><div><a href="{{ waHref }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#35BDB2;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Être orientée par l’AFEL →</a></div></section>
-      <section id="s-vivre" style="display:flex;flex-direction:column;gap:14px"><h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Vivre avec le SMOP</h2><p style="margin:0;text-wrap:pretty">Il n’existe pas de solution unique, et chaque parcours est différent. Un suivi médical, l’alimentation, l’activité physique et le soutien d’autres femmes aident à mieux vivre au quotidien.</p><span style="align-self:flex-start;border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px">[À FOURNIR : relecture de cette page par un professionnel de santé]</span></section>
-    </article>
-  </div>
-</sc-if>
 
-<sc-if value="{{ isActions }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#35BDB2;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="assets/hero-actions-m.webp 1200w, assets/hero-actions.webp 2560w" sc-camel-src="assets/hero-actions.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
-    <div style="position:absolute;inset:0;background:linear-gradient(90deg,#35BDB2 0%,rgba(53,189,178,0.9) 30%,rgba(53,189,178,0.35) 55%,rgba(53,189,178,0) 78%);pointer-events:none"></div>
-    <div style="position:relative;max-width:640px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
-      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Notre mission</span>
-      <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95">Nos actions</h1>
-      <p style="margin:0;max-width:640px;font-size:20px;line-height:1.5;text-wrap:pretty">Sensibiliser, informer, écouter et accompagner : quatre engagements au service des femmes atteintes du SMOP.</p>
-    </div>
-  </section>
-  <div style="position:relative;isolation:isolate;display:flex;flex-direction:column;padding:{{ bodyPad }}">
-    <fond-lumiere colors="#283D5C,#35BDB2,#F4A340,#A01D1D" density="0.55" halo="0.25" shape="losange" style="z-index:-1"></fond-lumiere>
-    <sc-for list="{{ actionsList }}" as="a" hint-placeholder-count="4">
-      <div data-rv style="display:grid;grid-template-columns:{{ actCols }};gap:16px 40px;padding:36px 0;border-top:{{ a.bt }};">
-        <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(44px,5vw,88px);line-height:1;color:{{ a.color }}">{{ a.n }}</span>
-        <div style="display:flex;flex-direction:column;gap:12px;max-width:680px">
-          <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,38px);line-height:1.15">{{ a.title }}</h2>
-          <p style="margin:0;text-wrap:pretty">{{ a.text }}</p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px;margin-top:10px">
-            <sc-for list="{{ a.events }}" as="ev" hint-placeholder-count="2">
-              <article style="position:relative;display:flex;flex-direction:column;background:#F3F5F8;overflow:hidden;transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s" style-hover="transform:translateY(-6px);box-shadow:0 16px 30px rgba(40,61,92,0.2)">
-                <div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#283D5C">
-                  <img loading="lazy" decoding="async" sc-camel-src="{{ ev.img }}" alt="{{ ev.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ ev.pos }}">
-                  <span style="position:absolute;left:12px;top:12px;background:{{ a.color }};color:{{ a.chipFg }};font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;padding:6px 10px;line-height:1">{{ ev.date }}</span>
-                  <span style="position:absolute;right:10px;top:10px;background:#FFFFFF;color:#A01D1D;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px">Exemple</span>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:6px;padding:16px 18px 20px">
-                  <h3 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:19px;line-height:1.25">{{ ev.title }}</h3>
-                  <span style="font-size:15px;color:#5A6B82">{{ ev.place }}</span>
-                  <p style="margin:0;font-size:16px;line-height:1.5;text-wrap:pretty">{{ ev.text }}</p>
-                </div>
-              </article>
-            </sc-for>
-          </div>
-        </div>
-      </div>
-    </sc-for>
-  </div>
-</sc-if>
 
-<sc-if value="{{ isTem }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#FFFFFF;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;border-bottom:56px solid transparent;background-image:url(assets/ornement-frise.svg);background-repeat:repeat-x;background-position:left bottom;background-origin:border-box;background-size:auto 56px">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src="assets/hero-temoignages.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ hpTem }};pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
-    <div style="position:absolute;inset:0;background:{{ hvTem }};pointer-events:none"></div>
-    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
-      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#A01D1D">Témoignages</span>
-      <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95">Elles parlent.<br>On les écoute.</h1>
-    </div>
-  </section>
-  <div style="display:grid;grid-template-columns:{{ cols3 }};gap:28px;padding:{{ bodyPad }}">
-    <sc-for list="{{ temList }}" as="t" hint-placeholder-count="3">
-      <figure data-rv style="margin:0;background:#F3F5F8;padding:28px;display:flex;flex-direction:column;gap:14px;">
-        <svg viewBox="0 0 40 30" width="36" height="27"><path fill="#35BDB2" d="M0 30V17Q0 4 14 0l2 5q-7 3-7 10h7v15zm22 0V17q0-13 14-17l2 5q-7 3-7 10h7v15z"></path></svg>
-        <blockquote style="margin:0;font-size:19px;line-height:1.45;font-weight:600;text-wrap:pretty">« {{ t.quote }} »</blockquote>
-        <figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="flex:none;width:44px;height:44px;border-radius:50%;background:{{ t.color }};color:{{ t.fg }};display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700;font-size:18px">{{ t.ini }}</span><span style="display:flex;flex-direction:column;line-height:1.3"><strong style="font-size:17px">{{ t.name }}</strong><span style="font-size:15px;color:#5A6B82">{{ t.meta }}</span></span><span style="margin-left:auto;align-self:flex-start;background:#FFFFFF;color:#A01D1D;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px">Exemple</span></figcaption>
-      </figure>
-    </sc-for>
-  </div>
-  <div style="padding:0 0 80px;display:flex;flex-direction:column;gap:16px;margin:{{ innerM }}">
-    <p style="margin:0;max-width:680px;font-style:italic;text-wrap:pretty">Chaque témoignage engage son auteure et ne constitue pas un conseil médical. Il est publié avec son accord écrit, et peut être anonyme.</p>
-    <div><a href="contact.html" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#283D5C;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Partager mon histoire →</a></div>
-  </div>
-</sc-if>
 
-<sc-if value="{{ isAsso }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)">
-    <img loading="lazy" decoding="async" sizes="100vw" sc-camel-src-set="assets/photo-dos-m.webp 1200w, assets/photo-dos.webp 2560w" sc-camel-src="assets/photo-dos.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%">
-    <div style="position:absolute;inset:0;background:#283D5C;opacity:0.84"></div>
-    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
-      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">Yaoundé, Cameroun</span>
-      <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95;color:#F4A340">L’association</h1>
-    </div>
-  </section>
-  <div style="display:grid;grid-template-columns:{{ cols2 }};gap:56px;align-items:start;padding:{{ bodyPad }}">
-    <div style="display:flex;flex-direction:column;gap:20px;max-width:640px">
-      <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Qui sommes-nous ?</h2>
-      <p style="margin:0;text-wrap:pretty">L'Association Femme en Lumière (AFEL) accompagne les femmes atteintes du SMOP, le syndrome métabolique ovarien polyendocrinien, nouveau nom du SOPK (syndrome des ovaires polykystiques). Notre mission : sensibiliser, informer, écouter et accompagner. Nous offrons un espace d'échange et de soutien où chaque femme peut comprendre le SMOP, partager son expérience et ne plus se sentir seule. Nous orientons nos membres vers des professionnels de santé pour un suivi adapté, et nous suivons l'évolution de leur bien-être dans la durée. Aucune femme ne devrait traverser le SMOP seule : rejoignez le mouvement.</p>
-      <div style="width:200px;height:4px;border-radius:2px;background:linear-gradient(90deg,#35BDB2 0%,#F4A340 40%,#A01D1D 75%,rgba(160,29,29,0) 100%)"></div>
-      <p style="margin:0;font-family:'Dancing Script',cursive;font-weight:700;font-size:34px;line-height:1.2;color:#F4A340">Brisons le silence, allumons l’espoir.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
-      <div style="position:relative;width:min(340px,100%);aspect-ratio:420/485;background:#35BDB2;clip-path:polygon(0 6%,100% 0,100% 100%,0 100%)"><img loading="lazy" decoding="async" sizes="100vw" sc-camel-src-set="assets/presidente-action-m.webp 1200w, assets/presidente-action.webp 1706w" sc-camel-src="assets/presidente-action.webp" alt="Ornella Brinda NGUELE BEKALE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%"></div>
-      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:24px;line-height:1.2">Ornella Brinda NGUELE BEKALE</div>
-      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#A01D1D">Présidente</div>
-      <span style="border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px">[À FOURNIR : biographie et parcours]</span>
-    </div>
-  </div>
-  <div style="padding:0 0 96px;margin:{{ innerM }};display:flex;flex-direction:column;gap:18px">
-    <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Le bureau</h2>
-    <span style="align-self:flex-start;border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px">[À FOURNIR : membres du bureau, rôles et photos]</span>
-  </div>
-</sc-if>
 
-<sc-if value="{{ isEngager }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#F4A340;color:#283D5C;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:center;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src-set="assets/hero-engager-m.webp 1200w, assets/hero-engager.webp 1376w" sc-camel-src="assets/hero-engager.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 40%;pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
-    <div style="position:absolute;inset:0;background:linear-gradient(90deg,#F4A340 0%,rgba(244,163,64,0.94) 32%,rgba(244,163,64,0.4) 58%,rgba(244,163,64,0) 80%);pointer-events:none"></div>
-    <fond-lumiere colors="#283D5C,#A01D1D,#35BDB2" density="1" shape="losange"></fond-lumiere>
-    <div style="position:relative;max-width:640px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
-      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Rejoignez le mouvement</span>
-      <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95">S’engager</h1>
-      <p style="margin:0;max-width:640px;font-size:20px;line-height:1.5;text-wrap:pretty">Il existe six façons de faire partie de l’AFEL. Choisissez celle qui vous ressemble.</p>
-    </div>
-  </section>
-  <div style="display:grid;grid-template-columns:{{ cols3 }};gap:24px;padding:{{ bodyPad }}">
-    <sc-for list="{{ statuts }}" as="s" hint-placeholder-count="6">
-      <a data-rv href="adherer.html" onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" onFocus="{{ s.enter }}" onBlur="{{ s.leave }}" style="position:relative;overflow:hidden;text-decoration:none;background:{{ s.bg }};color:{{ s.fg }};padding:30px;display:flex;flex-direction:column;gap:12px;min-height:220px;clip-path:{{ s.clip }};transform:{{ s.t }};box-shadow:{{ s.sh }};transition:clip-path .45s cubic-bezier(.65,0,.35,1), transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s;">
-        <img src="assets/silhouettes-white.svg" alt="" style="position:absolute;right:-30px;bottom:-24px;width:200px;height:auto;opacity:{{ s.sOp }};transform:{{ s.sT }};transition:opacity .45s, transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none">
-        <span style="position:relative;font-family:'Quicksand',sans-serif;font-weight:700;font-size:{{ s.nS }};line-height:1;transition:font-size .45s cubic-bezier(.65,0,.35,1)">{{ s.n }}</span>
-        <h2 style="position:relative;margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:28px;line-height:1.15;transform:{{ s.hT }};transition:transform .45s cubic-bezier(.2,.7,.2,1)">{{ s.title }}</h2>
-        <p style="position:relative;margin:0;font-size:17px;text-wrap:pretty">{{ s.text }}</p>
-        <span style="position:relative;margin-top:auto;display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;opacity:{{ s.cOp }};transform:{{ s.cT }};transition:opacity .35s, transform .45s cubic-bezier(.2,.7,.2,1)">Adhérer avec ce statut<svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6"></path></svg></span>
-      </a>
-    </sc-for>
-  </div>
-  <div style="padding:0 0 96px;margin:{{ innerM }};display:flex;flex-wrap:wrap;gap:12px">
-    <a href="adherer.html" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#283D5C;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Adhérer en ligne →</a>
-    <a href="{{ waHref }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#35BDB2;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Poser une question sur WhatsApp →</a>
-  </div>
-</sc-if>
 
-<sc-if value="{{ isPart }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src="assets/hero-partenaire.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ hpPart }};pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
-    <div style="position:absolute;inset:0;background:{{ hvPart }};pointer-events:none"></div>
-    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
-      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#35BDB2">Entreprises, institutions, professionnels de santé</span>
-      <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95;color:#F4A340">Devenir partenaire</h1>
-      <p style="margin:0;max-width:640px;font-size:20px;line-height:1.5;text-wrap:pretty">Une cause exige une communauté. Ensemble, faisons sortir le SMOP de l’ombre.</p>
-    </div>
-  </section>
-  <div style="display:grid;grid-template-columns:{{ cols3 }};gap:40px;padding:{{ bodyPad }}">
-    <sc-for list="{{ partList }}" as="p" hint-placeholder-count="3">
-      <div data-rv style="display:flex;flex-direction:column;gap:12px;border-top:4px solid {{ p.color }};padding-top:22px;">
-        <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:26px;line-height:1.2">{{ p.title }}</h2>
-        <p style="margin:0;text-wrap:pretty">{{ p.text }}</p>
-      </div>
-    </sc-for>
-  </div>
-  <div style="padding:0 0 96px;margin:{{ innerM }};display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-    <span style="border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px">[À FOURNIR : logos des partenaires actuels]</span>
-    <a href="mailto:contact@afel.cm?subject=Partenariat%20AFEL" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#F4A340;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Proposer un partenariat →</a>
-  </div>
-</sc-if>
 
-<sc-if value="{{ isDon }}" hint-placeholder-val="{{ false }}">
-  <section style="position:relative;background:#A01D1D;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
-    <img loading="eager" fetchpriority="high" decoding="async" sizes="100vw" sc-camel-src="assets/hero-don.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ hpDon }};pointer-events:none;animation:afelZoom 1.6s cubic-bezier(.2,.7,.2,1) both">
-    <div style="position:absolute;inset:0;background:{{ hvDon }};pointer-events:none"></div>
-    <div style="position:relative;max-width:900px;display:flex;flex-direction:column;gap:20px;animation:afelUp .7s cubic-bezier(.2,.7,.2,1) both">
-      <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase">Soutenir l’AFEL</span>
-      <h1 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.95">Faire un don</h1>
-      <p style="margin:0;max-width:640px;font-size:20px;line-height:1.5;text-wrap:pretty">Votre don finance les actions de sensibilisation, les espaces d’écoute et l’orientation des femmes vers un suivi adapté.</p>
-    </div>
-  </section>
-  <div style="display:grid;grid-template-columns:{{ cols2 }};gap:48px;align-items:start;padding:{{ bodyPad }}">
-    <div style="display:flex;flex-direction:column;gap:18px">
-      <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.2">Choisir un montant</h2>
-      <div style="display:flex;flex-wrap:wrap;gap:10px">
-        <sc-for list="{{ amounts }}" as="m" hint-placeholder-count="4">
-          <button type="button" onClick="{{ m.pick }}" aria-pressed="{{ m.pressed }}" style="min-height:56px;padding:0 22px;border:2px solid #283D5C;background:{{ m.bg }};color:{{ m.fg }};font-family:'Quicksand',sans-serif;font-weight:700;font-size:20px;cursor:pointer;transition:background .2s, color .2s, transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-3px) rotate(-1deg);box-shadow:4px 4px 0 #F4A340">{{ m.label }}</button>
-        </sc-for>
-      </div>
-      <p style="margin:0;font-size:17px;text-wrap:pretty">{{ amountNote }}</p>
-    </div>
-    <div style="background:#F3F5F8;padding:28px;display:flex;flex-direction:column;gap:14px">
-      <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:700;font-size:24px;line-height:1.2">Comment donner</h2>
-      <div style="display:flex;flex-direction:column;gap:4px"><strong>Mobile Money (MTN, Orange)</strong><span style="border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px;align-self:flex-start">[À FOURNIR : numéro et nom du compte]</span></div>
-      <div style="display:flex;flex-direction:column;gap:4px"><strong>Virement bancaire</strong><span style="border:1.5px dashed #A01D1D;color:#A01D1D;padding:4px 10px;font-size:16px;align-self:flex-start">[À FOURNIR : coordonnées bancaires]</span></div>
-      <a href="{{ donWa }}" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 22px;background:#35BDB2;color:#283D5C;font-weight:700;font-size:17px;text-decoration:none;clip-path:polygon(0 8%,100% 0,98.6% 100%,1.2% 92%);transition:clip-path .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s, letter-spacing .3s" style-hover="clip-path:polygon(1.4% 0,99% 10%,100% 90%,0 100%);transform:translateY(-3px);filter:brightness(1.08);letter-spacing:0.02em">Annoncer mon don sur WhatsApp →</a>
-    </div>
-  </div>
-</sc-if>
+
+
+
+
+
+
+
 
 <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
   <section style="position:relative;background:#283D5C;color:#FFFFFF;padding:{{ heroPad }};min-height:{{ smopHeroH }};display:flex;flex-direction:column;justify-content:{{ hJust }};overflow:hidden;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)">
@@ -547,7 +349,8 @@ class Component extends DCLogic {
     this.anim(t, 'polygon(0 0,115% 0,100% 100%,-15% 100%)', 'polygon(115% 0,115% 0,100% 100%,100% 100%)', 500, 430);
     this.anim(o, 'polygon(0 0,115% 0,100% 100%,-15% 100%)', 'polygon(115% 0,115% 0,100% 100%,100% 100%)', 650, 200).then(() => { c.style.pointerEvents = 'none'; });
   }
-  navTo = k => {
+  navTo = k => this.leaveTo(k + '.html');
+  navToSpa = k => {
     if (this.busy) return; this.busy = true;
     this.setState({ curK: k });
     this.cover().then(() => {
@@ -565,7 +368,7 @@ class Component extends DCLogic {
     this.onDocClick = e => {
       const a = e.target.closest && e.target.closest('a[href]'); if (!a || e.defaultPrevented || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
       const h = a.getAttribute('href'), k = h.charAt(0) === '#' ? h.slice(1) : (h.match(/^([a-z-]+)\.html$/) || [])[1]; if (!KEYS.includes(k)) return;
-      e.preventDefault(); this.navTo(k);
+      return; /* pages separees : navigation classique */
     };
     document.addEventListener('click', this.onDocClick);
     this.onResize = () => { const w = window.innerWidth >= 1025, t = !w && window.innerWidth >= 700; if (w !== this.state.wide || t !== this.state.tab) this.setState({ wide: w, tab: t }); };

@@ -31,9 +31,65 @@ PAGES = {
                 "Contactez l'AFEL à Yaoundé IV (Messamendongo, Cité de la Paix) : +237 658 595 657 par appel ou WhatsApp, ou par e-mail à contact@afel.cm."),
 }
 
-def seo_head(url, title, desc):
+
+# Condition du gabarit pages.html qui affiche chaque page.
+COND = {'smop': 'isSmop', 'actions': 'isActions', 'temoignages': 'isTem', 'association': 'isAsso',
+        'engager': 'isEngager', 'partenaire': 'isPart', 'don': 'isDon', 'contact': 'isContact'}
+
+def strip_block(src, cond):
+    """Retire le bloc <sc-if value="{{ cond }}"> ... </sc-if> correspondant (blocs imbriques compris)."""
+    start = src.find('<sc-if value="{{ %s }}"' % cond)
+    if start < 0:
+        raise SystemExit('bloc introuvable : ' + cond)
+    depth, i = 0, start
+    tag = re.compile(r'<sc-if\b|</sc-if>')
+    for m in tag.finditer(src, start):
+        depth += 1 if m.group(0) == '<sc-if' else -1
+        if depth == 0:
+            return src[:start] + src[m.end():]
+    raise SystemExit('bloc non ferme : ' + cond)
+
+def only_page(src, key):
+    """Chaque fichier ne garde que la section de sa page : un robot qui ne lit pas le JavaScript
+    voit un contenu propre a la page (un seul H1) au lieu des huit sections du gabarit.
+    Les liens entre pages interieures deviennent de vrais changements de page."""
+    for k, c in COND.items():
+        if k != key:
+            src = strip_block(src, c)
+    nav = "e.preventDefault(); this.navTo(k);"
+    assert nav in src
+    src = src.replace(nav, "return; /* pages separees : navigation classique */", 1)
+    spa = "navTo = k => {"
+    assert spa in src
+    # Le menu passe aussi par navTo : on garde le rideau de transition, puis on charge le vrai fichier.
+    return src.replace(spa, "navTo = k => this.leaveTo(k + '.html');\n  navToSpa = k => {", 1)
+
+NAMES = {'smop': 'Comprendre le SMOP', 'actions': 'Nos actions', 'temoignages': 'Témoignages', 'association': "L'association",
+         'engager': "S'engager", 'partenaire': 'Devenir partenaire', 'don': 'Faire un don', 'contact': 'Contact'}
+
+def jsonld(key, url, title, desc):
+    """Donnees structurees de la page : page web rattachee a l'association, fil d'Ariane ;
+    la page SMOP est decrite comme une page d'information medicale sur le SMOP (ex-SOPK)."""
+    org = {'@id': SITE + '/#association'}
+    page = {'@type': 'WebPage', '@id': url + '#page', 'url': url, 'name': title, 'description': desc,
+            'inLanguage': 'fr', 'isPartOf': {'@type': 'WebSite', 'url': SITE + '/', 'name': 'AFEL'},
+            'publisher': org, 'about': org}
+    if key == 'smop':
+        page['@type'] = 'MedicalWebPage'
+        page['about'] = {'@type': 'MedicalCondition', 'name': 'Syndrome métabolique ovarien polyendocrinien (SMOP)',
+                         'alternateName': ['SMOP', 'SOPK', 'Syndrome des ovaires polykystiques']}
+        page['audience'] = {'@type': 'PeopleAudience', 'audienceType': 'Patient'}
+    if key == 'contact':
+        page['@type'] = 'ContactPage'
+    crumbs = {'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Accueil', 'item': SITE + '/'},
+        {'@type': 'ListItem', 'position': 2, 'name': NAMES[key], 'item': url}]}
+    data = {'@context': 'https://schema.org', '@graph': [page, crumbs]}
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + '</script>'
+
+def seo_head(url, title, desc, key=None):
     e = lambda x: html.escape(x, quote=True)
-    return '\n'.join([
+    return '\n'.join(([jsonld(key, url, title, desc)] if key else []) + [
         f'<title>{e(title)}</title>',
         f'<meta name="description" content="{e(desc)}">',
         f'<link rel="canonical" href="{url}">',
@@ -57,9 +113,10 @@ def main():
     src = (ROOT / 'pages.html').read_text(encoding='utf-8')
     assert '<meta name="robots" content="noindex, nofollow">' in src
     for key, (title, desc) in PAGES.items():
-        out = src.replace('<html>', '<html lang="fr">', 1)
+        out = only_page(src, key)
+        out = out.replace('<html>', '<html lang="fr">', 1)
         out = out.replace('<meta name="robots" content="noindex, nofollow">',
-                          seo_head(f'{SITE}/{key}.html', title, desc), 1)
+                          seo_head(f'{SITE}/{key}.html', title, desc, key), 1)
         out = out.replace('<!DOCTYPE html>', '<!DOCTYPE html>\n<!-- Fichier généré par build_pages.py depuis pages.html : ne pas modifier à la main. -->', 1)
         (ROOT / f'{key}.html').write_text(out, encoding='utf-8')
     urls = [SITE + '/'] + [f'{SITE}/{k}.html' for k in PAGES] + [SITE + '/adherer.html', SITE + '/carte-vip-premium.html']

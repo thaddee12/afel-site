@@ -1,4 +1,17 @@
+# Moteurs de recherche et assistants d'IA bienvenus (GEO).
 User-agent: *
+Allow: /
+
+# Robots des IA, autorises explicitement
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://afel.cm/sitemap.xml
